@@ -13,6 +13,12 @@ namespace ReportWebsite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name:"StartPage",
+            //    url: "",
+            //    defaults:new {controller = "Authenticaion",action = "Long"}
+            //    );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
