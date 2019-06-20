@@ -66,3 +66,6 @@ body {
 .blue-grey.lighten-2 {
     color: #B86B77 !important;
 }
+.dropdown .dropdown-menu {
+    border: 1px solid #FFE8E5;
+}
