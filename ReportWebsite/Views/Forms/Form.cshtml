@@ -1,8 +1,231 @@
-﻿
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
 @{
     ViewBag.Title = "Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{
+    ViewBag.Title = "عنوان ";
+}
 
+
+@section Broadcast{
+
+    @Html.RenderBroadcast("ایجاد فرم جدید", new Tuple<string, string>("#", "فرم ها"))
+
+}
+
+@Resource.xx
+
+<div class="content-body">
+    <!-- Basic Elements start -->
+    <section class="basic-elements">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">ایجاد فـــــرم جدید </h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> سایت</label>
+                                        <input type="text" class="form-control" id="basicInput">
+                                    </fieldset>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> تاریخ</label>
+                                        <input type="text" class="form-control" id="basicInput">
+                                    </fieldset>
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> مسئول</label>
+                                        <input type="text" class="form-control" id="basicInput">
+                                    </fieldset>
+                                </div>
+                        
+                            </div>
+                            <!---->
+                            <div class=" row">
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="card-body">
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">@ReportWebsite.re</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2">
+                                                <label class="custom-control-label" for="customCheck2">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3">
+                                                <label class="custom-control-label" for="customCheck3">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck4">
+                                                <label class="custom-control-label" for="customCheck4">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck5">
+                                                <label class="custom-control-label" for="customCheck5">Check this custom checkbox</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck6">
+                                                <label class="custom-control-label" for="customCheck6">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck7">
+                                                <label class="custom-control-label" for="customCheck7">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck8">
+                                                <label class="custom-control-label" for="customCheck8">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="card-body">
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2">
+                                                <label class="custom-control-label" for="customCheck2">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3">
+                                                <label class="custom-control-label" for="customCheck3">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck4">
+                                                <label class="custom-control-label" for="customCheck4">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck5">
+                                                <label class="custom-control-label" for="customCheck5">Check this custom checkbox</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck6">
+                                                <label class="custom-control-label" for="customCheck6">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck7">
+                                                <label class="custom-control-label" for="customCheck7">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck8">
+                                                <label class="custom-control-label" for="customCheck8">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                            
+                                    </div>
+
+                                </div>
+                                <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <div class="card-body">
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck2">
+                                                <label class="custom-control-label" for="customCheck2">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck3">
+                                                <label class="custom-control-label" for="customCheck3">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck4">
+                                                <label class="custom-control-label" for="customCheck4">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck5">
+                                                <label class="custom-control-label" for="customCheck5">Check this custom checkbox</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck6">
+                                                <label class="custom-control-label" for="customCheck6">Custom checkbox checked</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck7">
+                                                <label class="custom-control-label" for="customCheck7">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" name="customCheck" id="customCheck8">
+                                                <label class="custom-control-label" for="customCheck8">Custom checkbox disabled</label>
+                                            </div>
+                                        </fieldset>
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+                        
+                            <!---->
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Inputs end -->
+</div>
 
 

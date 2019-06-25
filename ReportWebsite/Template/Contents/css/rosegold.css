@@ -69,3 +69,12 @@ body {
 .dropdown .dropdown-menu {
     border: 1px solid #FFE8E5;
 }
+.form-control {
+    border-color: #cb959d33;
+    background-color: #fffefe;
+    color: #261316;
+}
+/* ایجاد فاصله بین چک باکس ها*/ 
+.custom-control-label {
+    margin-bottom: 8px;
+}
