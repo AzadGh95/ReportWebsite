@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@using ReportWebsite.UtilitySystem
+<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -208,7 +210,7 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-                        
+
                         <li class="dropdown dropdown-notification nav-item">
                             <a class="nav-link nav-link-label" href="#" data-toggle="dropdown">
                                 <i class="ficon ft-bell"></i>
@@ -421,75 +423,20 @@
                     </ul>
                 </li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-monitor"></i><span>Templates</span></a>
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-monitor"></i><span>فرم ها</span></a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">
-                                Vertical
+                        <li data-menu="">
+                            <a class="dropdown-item " href="@Links.Form()" data-toggle="dropdown">
+                                ایجاد فرم جدید
                                 <submenu class="name"></submenu>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-modern-menu-template"
-                                       data-toggle="dropdown">
-                                        Modern Menu
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-menu-template" data-toggle="dropdown">
-                                        Semi Light
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-menu-template-semi-dark"
-                                       data-toggle="dropdown">
-                                        Semi Dark
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-menu-template-nav-dark"
-                                       data-toggle="dropdown">
-                                        Nav Dark
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-menu-template-light" data-toggle="dropdown">
-                                        Light
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../vertical-overlay-menu-template"
-                                       data-toggle="dropdown">
-                                        Overlay Menu
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
-                        <li class="dropdown dropdown-submenu" data-menu="dropdown-submenu">
-                            <a class="dropdown-item dropdown-toggle" href="#" data-toggle="dropdown">
-                                Horizontal
+                        <li data-menu="">
+                            <a class="dropdown-item " href="#" data-toggle="dropdown">
+                                لیست فرم ها
                                 <submenu class="name"></submenu>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../horizontal-menu-template" data-toggle="dropdown">
-                                        Classic
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                                <li data-menu="">
-                                    <a class="dropdown-item" href="../horizontal-menu-template-nav" data-toggle="dropdown">
-                                        Nav Dark
-                                        <submenu class="name"></submenu>
-                                    </a>
-                                </li>
-                            </ul>
+
                         </li>
                     </ul>
                 </li>
@@ -2140,7 +2087,7 @@
     </div>
     <!-- ////////////////////////////////////////////////////////////////////////////-->
     @Html.Partial("Footer", "amir")
-    
+
     <!-- BEGIN VENDOR JS-->
     <script src="~/Template/Contents/vendors/js/vendors.min.js" type="text/javascript"></script>
     <!-- BEGIN VENDOR JS-->
