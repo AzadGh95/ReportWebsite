@@ -70,11 +70,146 @@ namespace ReportWebsite.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to منوی مدیریت برای نقش اصلی درست است.
+        /// </summary>
+        public static string String10 {
+            get {
+                return ResourceManager.GetString("String10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور admin super  تغییر کرده است.
+        /// </summary>
+        public static string String11 {
+            get {
+                return ResourceManager.GetString("String11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بخش عضویت کار میکند.
+        /// </summary>
+        public static string String12 {
+            get {
+                return ResourceManager.GetString("String12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بخش نقش ها درست است.
+        /// </summary>
+        public static string String13 {
+            get {
+                return ResourceManager.GetString("String13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to بخش ورودی درست کار میکند.
+        /// </summary>
+        public static string String14 {
+            get {
+                return ResourceManager.GetString("String14", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to براحتی میتوان محتوا در وب سایت قرار دهیم.
+        /// </summary>
+        public static string String15 {
+            get {
+                return ResourceManager.GetString("String15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چندخطا در log.consol دارد.
+        /// </summary>
+        public static string String16 {
+            get {
+                return ResourceManager.GetString("String16", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to حجم صفحه اول چقدر است.
+        /// </summary>
+        public static string String17 {
+            get {
+                return ResourceManager.GetString("String17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to کلمه عبور superadmin.
+        /// </summary>
+        public static string String18 {
+            get {
+                return ResourceManager.GetString("String18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to فولدرمدیا تمیز است.
+        /// </summary>
+        public static string String19 {
+            get {
+                return ResourceManager.GetString("String19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تمامی meta تگ هادرست هستند title-desc-key word.
         /// </summary>
         public static string String2 {
             get {
                 return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چک کردن تعداد بازدیدها clicky.
+        /// </summary>
+        public static string String20 {
+            get {
+                return ResourceManager.GetString("String20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to چک کردن 3 ماه از فعالیت سایت.
+        /// </summary>
+        public static string String21 {
+            get {
+                return ResourceManager.GetString("String21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مدت زمان بارگذاری.
+        /// </summary>
+        public static string String22 {
+            get {
+                return ResourceManager.GetString("String22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to امتیاز بارگذاری.
+        /// </summary>
+        public static string String23 {
+            get {
+                return ResourceManager.GetString("String23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Favicon درست است.
+        /// </summary>
+        public static string String24 {
+            get {
+                return ResourceManager.GetString("String24", resourceCulture);
             }
         }
         

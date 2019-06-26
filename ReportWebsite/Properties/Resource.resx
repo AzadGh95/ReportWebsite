@@ -120,8 +120,53 @@
   <data name="String1" xml:space="preserve">
     <value>بدرستی بر روی دامین قرار دارد</value>
   </data>
+  <data name="String10" xml:space="preserve">
+    <value>منوی مدیریت برای نقش اصلی درست است</value>
+  </data>
+  <data name="String11" xml:space="preserve">
+    <value>کلمه عبور admin super  تغییر کرده است</value>
+  </data>
+  <data name="String12" xml:space="preserve">
+    <value>بخش عضویت کار میکند</value>
+  </data>
+  <data name="String13" xml:space="preserve">
+    <value>بخش نقش ها درست است</value>
+  </data>
+  <data name="String14" xml:space="preserve">
+    <value>بخش ورودی درست کار میکند</value>
+  </data>
+  <data name="String15" xml:space="preserve">
+    <value>براحتی میتوان محتوا در وب سایت قرار دهیم</value>
+  </data>
+  <data name="String16" xml:space="preserve">
+    <value>چندخطا در log.consol دارد</value>
+  </data>
+  <data name="String17" xml:space="preserve">
+    <value>حجم صفحه اول چقدر است</value>
+  </data>
+  <data name="String18" xml:space="preserve">
+    <value>کلمه عبور superadmin</value>
+  </data>
+  <data name="String19" xml:space="preserve">
+    <value>فولدرمدیا تمیز است</value>
+  </data>
   <data name="String2" xml:space="preserve">
     <value>تمامی meta تگ هادرست هستند title-desc-key word</value>
+  </data>
+  <data name="String20" xml:space="preserve">
+    <value>چک کردن تعداد بازدیدها clicky</value>
+  </data>
+  <data name="String21" xml:space="preserve">
+    <value>چک کردن 3 ماه از فعالیت سایت</value>
+  </data>
+  <data name="String22" xml:space="preserve">
+    <value>مدت زمان بارگذاری</value>
+  </data>
+  <data name="String23" xml:space="preserve">
+    <value>امتیاز بارگذاری</value>
+  </data>
+  <data name="String24" xml:space="preserve">
+    <value>Favicon درست است</value>
   </data>
   <data name="String3" xml:space="preserve">
     <value>منو در تمامی صفحات کار می کند</value>

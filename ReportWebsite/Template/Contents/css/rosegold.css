@@ -78,3 +78,9 @@ body {
 .custom-control-label {
     margin-bottom: 8px;
 }
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #b0616d;
+}
+hr {
+    border-top: 1px solid rgb(215, 175, 182);
+}
