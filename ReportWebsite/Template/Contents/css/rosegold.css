@@ -1,4 +1,11 @@
 ﻿body {
+    font-family: Vazir !important
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .breadcrumb, .header-navbar {
+    font-family: Vazir !important
+}
+.mb-0, .my-0 {
+    margin-bottom: 13px !important;
 }
 .badge-danger {
     background-color: #8f2032;
