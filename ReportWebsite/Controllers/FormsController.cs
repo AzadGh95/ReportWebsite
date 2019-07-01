@@ -13,5 +13,9 @@ namespace ReportWebsite.Controllers
         {
             return View();
         }
+        public ActionResult Forms()
+        {
+            return View();
+        }
     }
 }

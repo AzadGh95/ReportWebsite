@@ -1,0 +1,16 @@
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
+@{
+    ViewBag.Title = "Forms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Broadcast{
+
+    @Html.RenderBroadcast("لیست فرم ها", new Tuple<string, string>("#", "فرم ها"))
+
+}
+
+<h2>Forms</h2>
+
