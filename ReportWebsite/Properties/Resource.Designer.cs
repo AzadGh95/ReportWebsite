@@ -268,7 +268,7 @@ namespace ReportWebsite.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to حداکثر پنج خطای w3w دارد.
+        ///   Looks up a localized string similar to حداکثر پنج خطای w3c دارد.
         /// </summary>
         public static string String9 {
             get {

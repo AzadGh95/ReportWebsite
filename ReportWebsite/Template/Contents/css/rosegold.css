@@ -91,3 +91,6 @@ body {
 hr {
     border-top: 1px solid rgb(215, 175, 182);
 }
+thead {
+    background-color: #e4c6cab8;
+}

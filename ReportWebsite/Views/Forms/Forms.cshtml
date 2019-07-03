@@ -11,6 +11,75 @@
     @Html.RenderBroadcast("لیست فرم ها", new Tuple<string, string>("#", "فرم ها"))
 
 }
-
-<h2>Forms</h2>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لیست فرم های تحویل سایت</h4>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <p></p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>سایت</th>
+                                    <th>تاریخ</th>
+                                    <th>توسط</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        1
+                                    </th>
+                                    <td>www.google.com</td>
+                                    <td>12/12/92</td>
+                                    <td>الهه حصاری</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        2
+                                    </th>
+                                    <td>www.google.com</td>
+                                    <td>12/12/92</td>
+                                    <td>الهه حصاری</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        3
+                                    </th>
+                                    <td>www.google.com</td>
+                                    <td>12/12/92</td>
+                                    <td>الهه حصاری</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        4
+                                    </th>
+                                    <td>www.google.com</td>
+                                    <td>12/12/92</td>
+                                    <td>الهه حصاری</td>
+                                </tr>
+                   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+             
+            </div>
+        </div>
+    </div>
+</div>
 
