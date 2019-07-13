@@ -2561,11 +2561,14 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataProvider\WebSiteDP.cs" />
+    <Compile Include="DataProvider\ElementDP.cs" />
     <Compile Include="Datas\WebsiteRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
+    <Compile Include="Models\Element.cs" />
     <Compile Include="Models\WebSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
@@ -2573,6 +2576,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="SqlConnections\WebSiteSqlConnection.cs" />
+    <Compile Include="SqlConnections\ElementSqlConnection.cs" />
     <Compile Include="UtilitySystem\Links.cs" />
   </ItemGroup>
   <ItemGroup>
