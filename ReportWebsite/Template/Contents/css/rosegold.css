@@ -94,3 +94,6 @@ hr {
 thead {
     background-color: #e4c6cab8;
 }
+.form-group {
+    margin-bottom: 2rem;
+}
