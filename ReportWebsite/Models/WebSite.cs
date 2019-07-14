@@ -10,7 +10,7 @@ namespace ReportWebsite.Models
     {
         public int SiteId { get; set; }
         public string Name { get; set; }
-        public DateTime CreateTime { get; set; }
+        public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
 
         public static implicit operator WebSite(SqlDataReader sql)
@@ -19,7 +19,7 @@ namespace ReportWebsite.Models
             {
                 Name = sql["Name"].ToString(),
                 Admin = sql["Admin"].ToString(),
-                CreateTime = DateTime.Parse(sql["CreateTime"].ToString()),
+                CreateDate = DateTime.Parse(sql["CreateDate"].ToString()),
             };
         }
     }

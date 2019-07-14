@@ -9,32 +9,53 @@ using System.Collections.Generic;
 
 namespace ReportWebsite.SqlConnections
 {
-    public class WebSiteSqlConnection
+    public static class WebSiteSqlConnection
     {
-        public List<WebSite> SelectWebSite()
+        public static List<WebSite> SelectWebSite(int? id)
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
-                SqlCommand sda = new SqlCommand("SELECT * FROM WebSite", con);
-                con.Open();
-
-                var sqlr = sda.ExecuteReader();
-                var website = new List<WebSite>();
-
-                while (sqlr.Read())
+                if (id == null)
                 {
-                    website.Add((WebSite)sqlr);
+
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlCommand sda = new SqlCommand("SELECT * FROM WebSite", con);
+                    con.Open();
+
+                    var sqlr = sda.ExecuteReader();
+                    var website = new List<WebSite>();
+
+                    while (sqlr.Read())
+                    {
+                        website.Add((WebSite)sqlr);
+                    }
+                    con.Close();
+                    return website.ToList();
                 }
-                con.Close();
-                return website;
+                else
+                {
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM WebSite WHERE  [SiteId] = @id", con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    con.Open();
+
+                    var sqlr = cmd.ExecuteReader();
+                    var website = new List<WebSite>();
+
+                    while (sqlr.Read())
+                    {
+                        website.Add((WebSite)sqlr);
+                    }
+                    con.Close();
+                    return website;
+                }
             }
             catch (System.Exception)
             {
                 throw;
             }
         }
-        public bool InsertWebSite()
+        public static bool InsertWebSite(WebSite webSite)
         {
             try
             {
@@ -42,14 +63,14 @@ namespace ReportWebsite.SqlConnections
 
                 con.Open();
 
-                SqlCommand cmd2 = new SqlCommand("INSERT INTO WebSite ([Name],[CreateDate],[Amin]) " +
+                SqlCommand cmd = new SqlCommand("INSERT INTO WebSite ([Name],[CreateDate],[Admin]) " +
                     "values(@name,@createdate,@admin )", con);
 
-                cmd2.Parameters.AddWithValue("@name", true);
-                cmd2.Parameters.AddWithValue("@createdate", "مقدار تست ");
-                cmd2.Parameters.AddWithValue("@admin", 1);
+                cmd.Parameters.AddWithValue("@name", webSite.Name);
+                cmd.Parameters.AddWithValue("@createdate", webSite.CreateDate);
+                cmd.Parameters.AddWithValue("@admin", webSite.Admin);
 
-                cmd2.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
@@ -59,7 +80,7 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
-        public bool DeleteWebSite()
+        public static bool DeleteWebSite(int id)
         {
             try
             {
@@ -68,8 +89,30 @@ namespace ReportWebsite.SqlConnections
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("DELETE from WebSite where ([SiteId] = @id) ", con);
-                cmd.Parameters.AddWithValue("@id", 1);
+                cmd.Parameters.AddWithValue("@id", id);
 
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+        public static bool UpdateWebSite(WebSite website)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Restaurant;Integrated Security=True");
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin WHERE ([SiteId]= @siteid)", con);
+                cmd.Parameters.AddWithValue("@name", website.Name);
+                cmd.Parameters.AddWithValue("@admin", website.Admin);
+                cmd.Parameters.AddWithValue("@siteid", website.SiteId);
                 cmd.ExecuteNonQuery();
 
                 con.Close();

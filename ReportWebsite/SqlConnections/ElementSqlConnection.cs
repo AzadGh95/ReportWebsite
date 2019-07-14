@@ -9,32 +9,52 @@ using System.Collections.Generic;
 
 namespace ReportWebsite.SqlConnections
 {
-    public class ElementSqlConnection
+    public static class ElementSqlConnection
     {
-        public List<Element> SelectElement()
+        public static List<Element> SelectElement(int? id)
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
-                SqlCommand sda = new SqlCommand("SELECT * FROM Element", con);
-                con.Open();
-
-                var sqlr = sda.ExecuteReader();
-                var Element = new List<Element>();
-
-                while (sqlr.Read())
+                if (id == null)
                 {
-                    Element.Add((Element)sqlr);
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlCommand sda = new SqlCommand("SELECT * FROM Element", con);
+                    con.Open();
+
+                    var sqlr = sda.ExecuteReader();
+                    var Element = new List<Element>();
+
+                    while (sqlr.Read())
+                    {
+                        Element.Add((Element)sqlr);
+                    }
+                    con.Close();
+                    return Element.ToList();
                 }
-                con.Close();
-                return Element;
+                else
+                {
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Element WHERE [ElementId]= @id", con);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    con.Open();
+
+                    var sqlr = cmd.ExecuteReader();
+                    var Element = new List<Element>();
+
+                    while (sqlr.Read())
+                    {
+                        Element.Add((Element)sqlr);
+                    }
+                    con.Close();
+                    return Element.ToList();
+                }
             }
             catch (System.Exception)
             {
                 throw;
             }
         }
-        public bool InsertElement(Element element)
+        public static bool InsertElement(Element element)
         {
             try
             {
@@ -42,14 +62,15 @@ namespace ReportWebsite.SqlConnections
 
                 con.Open();
 
-                SqlCommand cmd2 = new SqlCommand("INSERT INTO Element ([Status],[Value],[SiteId]) " +
-                    "values(@status,@value,@siteId )", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Element ([ElementId],[Status],[Value],[SiteId]) " +
+                    "values(@id,@status,@value,@siteId )", con);
 
-                cmd2.Parameters.AddWithValue("@status", element.Status);
-                cmd2.Parameters.AddWithValue("@value", element.Value);
-                cmd2.Parameters.AddWithValue("@siteId", element.SiteId);
+                cmd.Parameters.AddWithValue("@id", element.ElementId);
+                cmd.Parameters.AddWithValue("@status", element.Status);
+                cmd.Parameters.AddWithValue("@value", element.Value);
+                cmd.Parameters.AddWithValue("@siteId", element.SiteId);
 
-                cmd2.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
@@ -59,17 +80,18 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
-        public bool DeleteElement()
+        public static bool UpdateElement(Element element)
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
-
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Restaurant;Integrated Security=True");
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("DELETE from Element where ([ElementId] = @id) ", con);
-                cmd.Parameters.AddWithValue("@id", 1);
-
+                SqlCommand cmd = new SqlCommand("UPDATE  Element SET [Status]= @status , [Value]= @value WHERE ([ElementId]= @id AND [SiteId]= @siteid)", con);
+                cmd.Parameters.AddWithValue("@status", element.Status);
+                cmd.Parameters.AddWithValue("@value", element.Value);
+                cmd.Parameters.AddWithValue("@id", element.ElementId);
+                cmd.Parameters.AddWithValue("@siteid", element.SiteId);
                 cmd.ExecuteNonQuery();
 
                 con.Close();
