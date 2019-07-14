@@ -17,7 +17,7 @@ namespace ReportWebsite.SqlConnections
             {
                 if (id == null)
                 {
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand sda = new SqlCommand("SELECT * FROM Element", con);
                     con.Open();
 
@@ -59,7 +59,7 @@ namespace ReportWebsite.SqlConnections
             try
             {
 
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Element WHERE [SiteId] = @siteId", con);
                 cmd.Parameters.AddWithValue("@siteId", siteId);
                 con.Open();
@@ -111,7 +111,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Restaurant;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=Restaurant;Integrated Security=True");
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE  Element SET [Status]= @status , [Value]= @value WHERE ([ElementId]= @id AND [SiteId]= @siteid)", con);

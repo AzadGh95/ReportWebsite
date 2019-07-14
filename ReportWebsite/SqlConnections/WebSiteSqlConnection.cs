@@ -107,7 +107,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=Restaurant;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=Restaurant;Integrated Security=True");
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin WHERE ([SiteId]= @siteid)", con);
