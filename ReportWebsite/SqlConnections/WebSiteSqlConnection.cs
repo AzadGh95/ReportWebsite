@@ -80,7 +80,7 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
-        public static bool DeleteWebSite(int id)
+        public static bool DeleteWebSite(int siteId)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace ReportWebsite.SqlConnections
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("DELETE from WebSite where ([SiteId] = @id) ", con);
-                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@id", siteId);
 
                 cmd.ExecuteNonQuery();
 

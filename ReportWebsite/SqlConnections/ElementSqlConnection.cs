@@ -54,6 +54,33 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
+        public static List<Element> SelectElementBySite(int siteId)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Element WHERE [SiteId] = @siteId", con);
+                cmd.Parameters.AddWithValue("@siteId", siteId);
+                con.Open();
+
+                var sqlr = cmd.ExecuteReader();
+                var Element = new List<Element>();
+
+                while (sqlr.Read())
+                {
+                    Element.Add((Element)sqlr);
+                }
+                con.Close();
+                return Element.ToList();
+
+            }
+            catch (System.Exception)
+            {
+                return null;
+                throw;
+            }
+        }
         public static bool InsertElement(Element element)
         {
             try
@@ -92,6 +119,28 @@ namespace ReportWebsite.SqlConnections
                 cmd.Parameters.AddWithValue("@value", element.Value);
                 cmd.Parameters.AddWithValue("@id", element.ElementId);
                 cmd.Parameters.AddWithValue("@siteid", element.SiteId);
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+        public static bool DeleteElement(int siteId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("DELETE from Element where ([SiteId] = @id) ", con);
+                cmd.Parameters.AddWithValue("@id", siteId);
+
                 cmd.ExecuteNonQuery();
 
                 con.Close();

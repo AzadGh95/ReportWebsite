@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReportWebsite.DataProvider;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,9 @@ namespace ReportWebsite.Controllers
 {
     public class FormsController : Controller
     {
+        public WebSiteDP _webSiteDP;
+        public ElementDP _elementDP;
+
         // GET: Forms
         public ActionResult Form()
         {

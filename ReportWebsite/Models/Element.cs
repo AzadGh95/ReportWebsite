@@ -17,6 +17,7 @@ namespace ReportWebsite.Models
         {
             return new Element
             {
+                ElementId = int.Parse(sql["ElementId"].ToString()),
                 Value = sql["Value"].ToString(),
                 Status = bool.Parse(sql["Status"].ToString()),
                 SiteId = int.Parse(sql["SiteId"].ToString()),
