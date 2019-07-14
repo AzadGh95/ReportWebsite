@@ -18,7 +18,7 @@ namespace ReportWebsite.SqlConnections
                 if (id == null)
                 {
 
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand sda = new SqlCommand("SELECT * FROM WebSite", con);
                     con.Open();
 
@@ -34,7 +34,7 @@ namespace ReportWebsite.SqlConnections
                 }
                 else
                 {
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand cmd = new SqlCommand("SELECT * FROM WebSite WHERE  [SiteId] = @id", con);
                     cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
@@ -50,8 +50,9 @@ namespace ReportWebsite.SqlConnections
                     return website;
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
+                var message = e.Message;
                 throw;
             }
         }

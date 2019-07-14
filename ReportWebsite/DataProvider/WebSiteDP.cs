@@ -9,6 +9,31 @@ namespace ReportWebsite.DataProvider
 {
     public class WebSiteDP
     {
+        public WebSiteDP() { }
+
+        public bool InsertWebsite(WebSite webSite)
+        {
+            try
+            {
+                var result = WebSiteSqlConnection.InsertWebSite(webSite);
+                if (!result)
+                    return result;
+                foreach (var element in webSite.Elements)
+                {
+                    result = ElementSqlConnection.InsertElement(element);
+                    if (!result)
+                        return result;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+
+        }
+
         public WebSite GetWebSite(int id)
         {
             return WebSiteSqlConnection.SelectWebSite(id).FirstOrDefault();

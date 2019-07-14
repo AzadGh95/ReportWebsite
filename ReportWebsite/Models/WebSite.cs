@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using ReportWebsite.SqlConnections;
@@ -10,6 +11,10 @@ namespace ReportWebsite.Models
 {
     public class WebSite
     {
+        public WebSite()
+        {
+            CreateDate = DateTime.UtcNow;
+        }
         public int SiteId { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }

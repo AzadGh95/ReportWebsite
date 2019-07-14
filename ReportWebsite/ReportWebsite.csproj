@@ -2561,8 +2561,8 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DataProvider\WebSiteDP.cs" />
     <Compile Include="DataProvider\ElementDP.cs" />
+    <Compile Include="DataProvider\WebSiteDP.cs" />
     <Compile Include="Datas\WebsiteRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
