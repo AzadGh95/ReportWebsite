@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Data.SqlClient;
 using System.Data;
 using ReportWebsite.SqlConnections;
+using ReportWebsite.Enums;
 
 namespace ReportWebsite.Models
 {
@@ -19,6 +20,7 @@ namespace ReportWebsite.Models
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
+        public WebSiteType Type { get; set; }
         public List<Element> Elements
         {
             get

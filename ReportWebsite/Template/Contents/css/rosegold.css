@@ -100,3 +100,17 @@ thead {
 .table thead th td {
     text-align: center;
 }
+.btn-outline-primary {
+    border-color: #b76e79;
+    background-color: #e4cace;
+    color: #b76e79;
+}
+.modal-header {
+    background-color: #f2e4e6;
+    border-bottom: 1px solid #0000;
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+.modal-footer {
+    border-top: 1px solid #0000;
+}

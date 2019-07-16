@@ -18,5 +18,10 @@ namespace ReportWebsite.UtilitySystem
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             return urlHelper.Action("Forms", "Forms");
         }
+        public static string Items()
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("Items", "Items");
+        }
     }
 }

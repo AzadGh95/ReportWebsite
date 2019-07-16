@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="app-content container center-layout mt-2">
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <div class="row full-height-vh-with-nav">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-lg-6 col-10">
+                        @*<img class="img-fluid mx-auto d-block pb-3 pt-4 width-65-per" src="~/Template/Contents/images/portrait/small/avatar-s-1.png" alt="Stack Search">*@
+                        <div class="card-header">
+                            <h5 class="card-title" style="text-align: center;">  عنوان آیتم جدید را وارد کنید </h5>
+                        </div>
+
+                        <form action="/Items/Item" class="form-container">
+                            <fieldset class="form-group position-relative">
+                                <input type="text" class="form-control form-control-xl input-xl" id="iconLeft1" placeholder="عنوان آیتم جدید را وارد کنید">
+                                <div class="form-control-position">
+                                    <i class="ft-mic font-medium-4"></i>
+                                </div>
+                            </fieldset>
+                            <div class="row py-2">
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary ">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
+                                    <button type="button" class="btn btn-danger cancel" onclick="closeForm()">بستن <i class="fa  fa-thumbs-o-down position-right"></i></button>
+
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

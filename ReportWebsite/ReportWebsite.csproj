@@ -43,6 +43,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dualp.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dualp.Common.1.0.3\lib\Dualp.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Dualp.SQLHelper, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dualp.SQLHelper.1.0.2\lib\Dualp.SQLHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -2561,13 +2570,16 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="DataProvider\ElementDP.cs" />
     <Compile Include="DataProvider\WebSiteDP.cs" />
     <Compile Include="Datas\WebsiteRepo.cs" />
+    <Compile Include="Enums\WebSiteType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\WebSite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2576,6 +2588,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="SqlConnections\ItemSqlConnection.cs" />
     <Compile Include="SqlConnections\WebSiteSqlConnection.cs" />
     <Compile Include="SqlConnections\ElementSqlConnection.cs" />
     <Compile Include="UtilitySystem\Links.cs" />
@@ -3037,6 +3050,7 @@
     <Content Include="Template\fonts\Vazir\Without-Latin\Vazir-WOL.woff" />
     <Content Include="Template\fonts\Vazir\Without-Latin\Vazir-WOL.woff2" />
     <Content Include="Views\Forms\Forms.cshtml" />
+    <Content Include="Views\Items\Items.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

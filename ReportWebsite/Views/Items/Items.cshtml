@@ -1,0 +1,115 @@
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
+
+@model  List<ReportWebsite.Models.WebSite>
+@{
+    ViewBag.Title = "Forms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section Broadcast{
+
+    @Html.RenderBroadcast("لیست آیتم ها", new Tuple<string, string>("#", "آیتم ها"))
+
+}
+@section Settings{
+    <button class="btn btn-outline-primary pull-left" type="button" data-toggle="modal" data-target="#bootstrap">
+        <i class="ft-plus"></i> ثبت آیتم جدید
+    </button>
+
+
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لیست آیتم های تحویل سایت</h4>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <p></p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 15px;">ردیف</th>
+                                    <th>سایت</th>
+                                    <th>تاریخ</th>
+                                    <th>توسط</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (@*Model.Count() > 0*@Model != null)
+       {
+           int row = 1;
+           foreach (var m in Model)
+           {
+            <tr>
+                <td scope="row">@(row++)</td>
+                <td>@m.Name</td>
+
+                @*   <td>@m.CreateDate.UtcToLocalTimeZone(Current.TimeZoneInfo).LocalDatetime("fa").ToString()</td>*@
+                <td>@m.Admin</td>
+                <td>
+                    <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                    <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                    <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
+                    <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                </td>
+            </tr>
+        }
+    }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal-->
+<!-- Modal -->
+<div class="modal fade text-left" id="bootstrap" tabindex="-1" role="dialog" aria-labelledby="myModalLabel35"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel35"> آیتم جدید</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+         
+                    <fieldset class="form-group floating-label-form-group">
+                        <label for="title">عنوان آیتم</label>
+                        <input type="text" class="form-control" id="title" placeholder="عنوان آیتم جدید">
+                    </fieldset>
+            
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-outline-primary  " value="ثبت">
+                    <input type="reset" class="btn btn-outline-secondary  " data-dismiss="modal"
+                           value="بستن">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--Modal-->
