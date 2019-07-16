@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ReportWebsite.DataProvider;
+using ReportWebsite.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,18 +10,41 @@ namespace ReportWebsite.Controllers
 {
     public class ItemsController : Controller
     {
+        public ItemDP _itemDP;
+        public ItemsController()
+        {
+            _itemDP = new ItemDP();
+        }
+
         // GET: Items
         public ActionResult Index()
         {
             return View();
         }
-        public ActionResult Item()
+        public PartialViewResult Item(int? itemId = null)
         {
-            return View();
+            if (itemId == null)
+            {
+                return PartialView(new Item());
+            }
+            else
+            {
+                return PartialView(_itemDP.GetItem(itemId ?? 0));
+            }
+
+
+
         }
-        public ActionResult Items()
+        public ActionResult Items(byte? type = null)
         {
-            return View();
+            if (type == null)
+            {
+                return View(_itemDP.GetItems());
+            }
+            else
+            {
+                return View(_itemDP.GetItemsByType(type??0));
+            }
         }
     }
 }

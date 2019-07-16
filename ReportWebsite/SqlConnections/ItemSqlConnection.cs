@@ -60,7 +60,7 @@ namespace ReportWebsite.SqlConnections
             {
 
                 SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand("SELECT * FROM Item WHERE [Type] = @stype", con);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM Item WHERE [Type] = @type", con);
                 cmd.Parameters.AddWithValue("@type", type);
                 con.Open();
 

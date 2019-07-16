@@ -35,11 +35,11 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 15px;">ردیف</th>
-                                    <th>سایت</th>
-                                    <th>تاریخ</th>
-                                    <th>توسط</th>
-                                    <th>#</th>
+                                    <th style="width: 8% ;">ردیف</th>
+                                    <th style="width: 42% ;">سایت</th>
+                                    <th style="width: 15% ;">تاریخ</th>
+                                    <th style="width: 15% ;">توسط</th>
+                                    <th style="width: 20% ;">ابزارک</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,14 +51,14 @@
                                         <tr>
                                             <td scope="row">@(row++)</td>
                                             <td>@m.Name</td>
-
+                                            <td>20/20/2020</td>
                                             @*   <td>@m.CreateDate.UtcToLocalTimeZone(Current.TimeZoneInfo).LocalDatetime("fa").ToString()</td>*@
                                             <td>@m.Admin</td>
                                             <td>
-                                                <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
-                                                <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
-                                                <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-info" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()"  data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-edit" onclick="Alert()"  data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
                                     }
@@ -73,4 +73,52 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script>
 
+        function Alert() {
+            alert("Hello! I am an alert box!");
+            
+        }
+
+
+        $(document).ready(function () {
+        $('.form-delete').on('click', function () {
+            swal({
+                title: "حذف  " ,
+                text: "آیا میخواهید فرم تحویل  " +  $(this).data('title') + " را حذف کنید ؟",
+                icon: "warning",
+                buttons: {
+                    cancel: {
+                        text: "نه ، لغو حذف",
+                        value: null,
+                        visible: true,
+                        className: "",
+                        closeModal: false,
+                    },
+                    confirm: {
+                        text: "بله ، حذف شود ",
+                        value: true,
+                        visible: true,
+                        className: "",
+                        closeModal: false
+                    }
+                }
+            })
+                .then((isConfirm) => {
+                    if (isConfirm) {
+                        swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                    } else {
+                        swal("لغو", "عملیات حذف لغو شد", "error");
+                    }
+                });
+
+            });
+        });
+
+
+
+
+    </script>
+    <script src="~/Template/Contents/vendors/js/extensions/sweetalert.min.js"></script>
+}

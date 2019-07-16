@@ -2571,6 +2571,7 @@
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="DataProvider\ItemDP.cs" />
     <Compile Include="DataProvider\ElementDP.cs" />
     <Compile Include="DataProvider\WebSiteDP.cs" />
     <Compile Include="Datas\WebsiteRepo.cs" />

@@ -1,5 +1,8 @@
 ﻿
 @using ReportWebsite.UtilitySystem
+@using ReportWebsite.Enums
+
+
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
@@ -20,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/charts/morris.css">
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/extensions/unslider.css">
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/weather-icons/climacons.min.css">
-   
+
     <!-- END VENDOR CSS-->
     <!-- BEGIN STACK CSS-->
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/css-rtl/app.css">
@@ -133,8 +136,8 @@
                             </a>
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items()" data-toggle="dropdown">
-                                 آیتم های وبسایت
+                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.WebApp)" data-toggle="dropdown">
+                                آیتم های وبسایت
                                 <submenu class="name"></submenu>
                             </a>
                         </li>
@@ -157,8 +160,8 @@
 
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Forms()" data-toggle="dropdown">
-                                 آیتم های طراحی
+                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Design)" data-toggle="dropdown">
+                                آیتم های طراحی
                                 <submenu class="name"></submenu>
                             </a>
                         </li>
@@ -181,8 +184,8 @@
 
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Forms()" data-toggle="dropdown">
-                                 آیتم های پروژه
+                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Project)" data-toggle="dropdown">
+                                آیتم های پروژه
                                 <submenu class="name"></submenu>
                             </a>
                         </li>
@@ -205,19 +208,19 @@
 
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items()" data-toggle="dropdown">
-                                 آیتم های اپلیکیشن
+                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Application)" data-toggle="dropdown">
+                                آیتم های اپلیکیشن
                                 <submenu class="name"></submenu>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="dropdown nav-item" data-menu="dropdown" >
+                <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-settings"></i><span> تنظیمات</span></a>
                     <ul class="dropdown-menu" hidden>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items()" data-toggle="dropdown">
-                                 افزودن آیتم جدید
+                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Design)" data-toggle="dropdown">
+                                افزودن آیتم جدید
                                 <submenu class="name"></submenu>
                             </a>
                         </li>
@@ -283,7 +286,7 @@
     <!-- END STACK JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <script type="text/javascript" src="~/Template/Contents/app-assets/js/scripts/ui/breadcrumbs-with-stats.js"></script>
-    
+
     <script src="~/Template/Scripts/js/scripts/pages/dashboard-analytics.js" type="text/javascript"></script>
 
     <!-- END PAGE LEVEL JS-->
