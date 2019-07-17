@@ -1,7 +1,7 @@
 ﻿
 @using ReportWebsite.UtilitySystem
 @using ReportWebsite.Enums
-
+@using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
 
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
@@ -136,7 +136,7 @@
                             </a>
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.WebApp)" data-toggle="dropdown">
+                            <a class="dropdown-item " href="@Links.Items(WebSiteType.WebApp)" data-toggle="dropdown">
                                 آیتم های وبسایت
                                 <submenu class="name"></submenu>
                             </a>
@@ -184,7 +184,7 @@
 
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Project)" data-toggle="dropdown">
+                            <a class="dropdown-item " href="@Links.Items(WebSiteType.Project)" data-toggle="dropdown">
                                 آیتم های پروژه
                                 <submenu class="name"></submenu>
                             </a>
@@ -208,7 +208,7 @@
 
                         </li>
                         <li data-menu="">
-                            <a class="dropdown-item " href="@Links.Items((byte)WebSiteType.Application)" data-toggle="dropdown">
+                            <a class="dropdown-item " href="@Links.Items(WebSiteType.Application)" data-toggle="dropdown">
                                 آیتم های اپلیکیشن
                                 <submenu class="name"></submenu>
                             </a>

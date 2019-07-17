@@ -6,6 +6,9 @@ using System.Data.SqlClient;
 using System;
 using ReportWebsite.Models;
 using System.Collections.Generic;
+using ReportWebsite.Enums;
+using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
+
 
 namespace ReportWebsite.SqlConnections
 {
@@ -54,7 +57,7 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
-        public static List<Item> SelectItemByType(byte type)
+        public static List<Item> SelectItemByType(WebSiteType type)
         {
             try
             {
@@ -85,22 +88,22 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;InitialCatalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Item ([ItemId],[Text],[Type]) " +
-                    "values(@id ,@text ,@type)", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Item ([Text],[Type]) " +
+                    "values(@text ,@type)", con);
 
-                cmd.Parameters.AddWithValue("@id", Item.ItemId);
-                cmd.Parameters.AddWithValue("@value", Item.Text);
+                //cmd.Parameters.AddWithValue("@id", Item.ItemId);
+                cmd.Parameters.AddWithValue("@text", Item.Text);
                 cmd.Parameters.AddWithValue("@type", Item.Type);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
                 throw;

@@ -1,8 +1,11 @@
-﻿using System;
+﻿using ReportWebsite.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
+
 
 namespace ReportWebsite.UtilitySystem
 {
@@ -18,7 +21,7 @@ namespace ReportWebsite.UtilitySystem
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             return urlHelper.Action("Forms", "Forms");
         }
-        public static string Items(byte type)
+        public static string Items(WebSiteType type)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             return urlHelper.Action("Items", "Items", new { type = type });

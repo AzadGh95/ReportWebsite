@@ -1,11 +1,13 @@
 ﻿using ReportWebsite.DataProvider;
+using ReportWebsite.Enums;
 using ReportWebsite.Models;
+using ReportWebsite.UtilitySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
 namespace ReportWebsite.Controllers
 {
     public class ItemsController : Controller
@@ -19,7 +21,16 @@ namespace ReportWebsite.Controllers
         // GET: Items
         public ActionResult Index()
         {
+
             return View();
+        }
+        [HttpPost]
+        public ActionResult Index(Item model)
+        {
+            var result = _itemDP.Insert(model);
+            //if (!result)
+            //    return result;
+            return View("Items");
         }
         public PartialViewResult Item(int? itemId = null)
         {
@@ -35,16 +46,11 @@ namespace ReportWebsite.Controllers
 
 
         }
-        public ActionResult Items(byte? type = null)
+        public ActionResult Items(WebSiteType type)
         {
-            if (type == null)
-            {
-                return View(_itemDP.GetItems());
-            }
-            else
-            {
-                return View(_itemDP.GetItemsByType(type??0));
-            }
+            ViewBag.Type = type;
+            return View(_itemDP.GetItemsByType(type));
+
         }
     }
 }

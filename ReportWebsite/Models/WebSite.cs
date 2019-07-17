@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Data;
 using ReportWebsite.SqlConnections;
 using ReportWebsite.Enums;
+using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
+
 
 namespace ReportWebsite.Models
 {
