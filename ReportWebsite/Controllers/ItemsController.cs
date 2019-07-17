@@ -30,7 +30,8 @@ namespace ReportWebsite.Controllers
             var result = _itemDP.Insert(model);
             //if (!result)
             //    return result;
-            return View("Items");
+            return RedirectToAction("Items", new { type = model.ItemId });
+
         }
         public PartialViewResult Item(int? itemId = null)
         {
@@ -52,5 +53,13 @@ namespace ReportWebsite.Controllers
             return View(_itemDP.GetItemsByType(type));
 
         }
+
+        [HttpPost]
+        public ActionResult DeleteItem(int itemId , WebSiteType type)
+        {
+            var result = _itemDP.DeleteItem(itemId);
+            return RedirectToAction("Items", new {type = type });
+        }
+
     }
 }

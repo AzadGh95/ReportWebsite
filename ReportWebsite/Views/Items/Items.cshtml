@@ -9,7 +9,7 @@
 }
 @section Broadcast{
 
-    @Html.RenderBroadcast("لیست آیتم ها" , new Tuple<string, string>("#", "آیتم ها"))
+    @Html.RenderBroadcast("لیست آیتم ها", new Tuple<string, string>("#", "آیتم ها"))
 
 }
 @section Settings{
@@ -57,7 +57,13 @@
                                             <td scope="row">@(row++)</td>
                                             <td>@m.Text</td>
                                             <td style="text-align:center">
-                                                <a class="btn  btn-sm btn-icon form-delete" data-title="@m.Text" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+
+                                                @using (Html.BeginForm("DeleteItem", "Items", new { itemId = m.ItemId, type = ViewBag.Type }, FormMethod.Post ))
+                                                {
+                                                    <a  class="btn  btn-sm btn-icon form-delete" data-title="@m.Text" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف">
+                                                        <i class="ft-trash-2"></i>
+                                                    </a>
+                                                }
                                                 <a class="btn  btn-sm btn-icon  " data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
@@ -109,6 +115,7 @@
     <script>
         $(document).ready(function () {
             $('.form-delete').on('click', function () {
+                formdelete = $(this).parent();
                 swal({
                     title: "حذف  ",
                     text: "آیا میخواهید  آیتم \"   " + $(this).data('title') + "   \"  را حذف کنید ؟",
@@ -132,6 +139,7 @@
                 })
                     .then((isConfirm) => {
                         if (isConfirm) {
+                            formdelete.submit();
                             swal("حذف!", "حذف با موفقیت انجام شد ", "success");
                         } else {
                             swal("لغو", "عملیات حذف لغو شد", "error");

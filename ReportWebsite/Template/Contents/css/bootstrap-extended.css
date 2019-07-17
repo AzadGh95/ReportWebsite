@@ -217,9 +217,11 @@ pre {
   border-bottom: inherit; }
 
 form {
-  /* .form-body{
+    display: inline;
+    /* .form-body{
         overflow: hidden;
-    } */ }
+    } */
+}
   form label {
     color: #2e405c; }
   form .form-group {

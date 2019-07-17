@@ -138,7 +138,7 @@ namespace ReportWebsite.SqlConnections
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("DELETE from Item where ([Item] = @id) ", con);
+                SqlCommand cmd = new SqlCommand("DELETE from Item where ([ItemId] = @id) ", con);
                 cmd.Parameters.AddWithValue("@id", itemId);
 
                 cmd.ExecuteNonQuery();

@@ -33,6 +33,9 @@ namespace ReportWebsite.DataProvider
         {
             return ItemSqlConnection.InsertItem(item);
         }
-
+        public bool DeleteItem(int id)
+        {
+            return ItemSqlConnection.DeleteItem(id);
+        }
     }
 }

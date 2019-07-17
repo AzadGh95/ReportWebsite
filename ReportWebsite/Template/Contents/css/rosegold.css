@@ -114,3 +114,6 @@ thead {
 .modal-footer {
     border-top: 1px solid #0000;
 }
+form {
+    display: inline;
+}
