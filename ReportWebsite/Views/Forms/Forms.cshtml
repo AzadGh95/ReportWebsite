@@ -49,16 +49,19 @@
                                     foreach (var m in Model)
                                     {
                                         <tr>
-                                            <td scope="row">@(row++)</td>
+                                            <td scope="row">@*@(row++)*@     @m.SiteId</td>
                                             <td>@m.Name</td>
                                             <td>20/20/2020</td>
                                             @*   <td>@m.CreateDate.UtcToLocalTimeZone(Current.TimeZoneInfo).LocalDatetime("fa").ToString()</td>*@
                                             <td>@m.Admin</td>
                                             <td>
                                                 <a class="btn  btn-sm btn-icon  form-info" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
-                                                <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()"  data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
-                                                <a class="btn  btn-sm btn-icon  form-edit" onclick="Alert()"  data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId }, FormMethod.Post))
+                                                {
+                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                }
+                                                <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-edit" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
                                     }
@@ -78,40 +81,44 @@
 
         function Alert() {
             alert("Hello! I am an alert box!");
-            
+
         }
 
 
         $(document).ready(function () {
-        $('.form-delete').on('click', function () {
-            swal({
-                title: "حذف  " ,
-                text: "آیا میخواهید فرم تحویل  " +  $(this).data('title') + " را حذف کنید ؟",
-                icon: "warning",
-                buttons: {
-                    cancel: {
-                        text: "نه ، لغو حذف",
-                        value: null,
-                        visible: true,
-                        className: "",
-                        closeModal: false,
-                    },
-                    confirm: {
-                        text: "بله ، حذف شود ",
-                        value: true,
-                        visible: true,
-                        className: "",
-                        closeModal: false
+            $('.form-delete').on('click', function () {
+                formdelete = $(this).parent();
+                swal({
+                    title: "حذف  ",
+                    text: "آیا میخواهید فرم تحویل  " + $(this).data('title') + " را حذف کنید ؟",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "نه ، لغو حذف",
+                            value: null,
+                            visible: true,
+                            className: "",
+                            closeModal: false,
+                        },
+                        confirm: {
+                            text: "بله ، حذف شود ",
+                            value: true,
+                            visible: true,
+                            className: "",
+                            closeModal: false
+                        }
                     }
-                }
-            })
-                .then((isConfirm) => {
-                    if (isConfirm) {
-                        swal("حذف!", "حذف با موفقیت انجام شد ", "success");
-                    } else {
-                        swal("لغو", "عملیات حذف لغو شد", "error");
-                    }
-                });
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm) {
+                            formdelete.submit();
+                            swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                        } else {
+                            //  swal("لغو", "عملیات حذف لغو شد", "error");
+                            swal({ title: "لغو!", text: "عملیات حذف لغو شد", timer: 2000, showConfirmButton: false });
+
+                        }
+                    });
 
             });
         });

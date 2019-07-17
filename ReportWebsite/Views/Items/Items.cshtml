@@ -58,9 +58,9 @@
                                             <td>@m.Text</td>
                                             <td style="text-align:center">
 
-                                                @using (Html.BeginForm("DeleteItem", "Items", new { itemId = m.ItemId, type = ViewBag.Type }, FormMethod.Post ))
+                                                @using (Html.BeginForm("DeleteItem", "Items", new { itemId = m.ItemId, type = ViewBag.Type }, FormMethod.Post))
                                                 {
-                                                    <a  class="btn  btn-sm btn-icon form-delete" data-title="@m.Text" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف">
+                                                    <a class="btn  btn-sm btn-icon form-delete" data-title="@m.Text" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف">
                                                         <i class="ft-trash-2"></i>
                                                     </a>
                                                 }
@@ -142,7 +142,7 @@
                             formdelete.submit();
                             swal("حذف!", "حذف با موفقیت انجام شد ", "success");
                         } else {
-                            swal("لغو", "عملیات حذف لغو شد", "error");
+                            swal({ title: "لغو!", text: "عملیات حذف لغو شد", timer: 2000, showConfirmButton: false });
                         }
                     });
 

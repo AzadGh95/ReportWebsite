@@ -72,13 +72,13 @@ namespace ReportWebsite.DataProvider
         {
             try
             {
-                var result = WebSiteSqlConnection.DeleteWebSite(siteId);
-                if (!result)
-                    return result;
-                result = ElementSqlConnection.DeleteElement(siteId);
-                if (!result)
-                    return result;
 
+                var result = ElementSqlConnection.DeleteElement(siteId);
+                if (!result)
+                    return result;
+                result = WebSiteSqlConnection.DeleteWebSite(siteId);
+                if (!result)
+                    return result;
                 return true;
             }
             catch (Exception)

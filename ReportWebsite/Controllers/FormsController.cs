@@ -56,5 +56,12 @@ namespace ReportWebsite.Controllers
         {
             return View(_webSiteDP.GetWebSites());
         }
+
+        [HttpPost]
+        public ActionResult DeleteForm(int siteId)
+        {
+            _webSiteDP.DeleteWebsite(siteId);
+            return RedirectToAction("Forms");
+        }
     }
 }

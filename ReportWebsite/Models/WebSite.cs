@@ -39,6 +39,8 @@ namespace ReportWebsite.Models
         {
             return new WebSite
             {
+
+                SiteId = int.Parse(sql["SiteId"].ToString()),
                 Name = sql["Name"].ToString(),
                 Admin = sql["Admin"].ToString(),
                 CreateDate = DateTime.Parse(sql["CreateDate"].ToString()),
