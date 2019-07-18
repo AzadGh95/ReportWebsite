@@ -34,11 +34,12 @@ namespace ReportWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult Form(WebSite webSite, int? initSiteId)
+        public ActionResult Form(WebSite webSite, WebSiteType type, int? initSiteId)
         {
+            ViewBag.Type =type;
             if (!ModelState.IsValid)
             {
-                return View(webSite);
+                //return View(webSite);
             }
             if (initSiteId == null)
             {
@@ -47,13 +48,13 @@ namespace ReportWebsite.Controllers
                 if (!result)
                     return View(webSite);
 
-                return RedirectToAction("Forms", new { type = webSite.Type });
+                return RedirectToAction("Forms", new { type = type });
             }
             else
             {
                 // update website
                 var result = _webSiteDP.UpdateWebSite(webSite);
-                return RedirectToAction("Forms", new { type = webSite.Type });
+                return RedirectToAction("Forms", new { type =type});
             }
 
         }

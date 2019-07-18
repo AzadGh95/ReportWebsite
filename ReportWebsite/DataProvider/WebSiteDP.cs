@@ -18,15 +18,18 @@ namespace ReportWebsite.DataProvider
                 var result = WebSiteSqlConnection.InsertWebSite(webSite);
                 if (!result)
                     return result;
+                var SiteId = WebSiteSqlConnection.SelectLastIndex();
+                
                 foreach (var element in webSite.Elements)
                 {
+                    element.SiteId = SiteId;
                     result = ElementSqlConnection.InsertElement(element);
                     if (!result)
                         return result;
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
                 throw;

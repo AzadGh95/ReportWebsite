@@ -5,7 +5,6 @@
 @using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
 @model ReportWebsite.Models.WebSite
 
-@*@model  ReportWebsite.Models.WebSite;*@
 @{
     List<Item> Items = ViewBag.Items;
 
@@ -44,110 +43,110 @@
                         <h4 class="card-title"> فـــــرم  @Title جدید</h4>
                     </div>
 
-                    <form asp-action="/Forms/Form" method="post">
-                        <!-- Using  -->
+                    @*<form asp-action="/Forms/Form" method="post">*@
+                    @using (Html.BeginForm("Form", "Forms", new { type = ViewBag.Type},FormMethod.Post))
+                    {
                         <div class="card-content">
-                            <div class="card-body">
-                                <!--  <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> اطلاعات وب سایت</h4><hr /> -->
-                                <div class="row">
-                                    <input type="hidden" name="SiteId">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Title </label>
-                                            <input type="text" name="Name" class="form-control" id="basicInput">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> تاریخ</label>
-                                            <input type="text" name="CreateDate" class="form-control" id="basicInput">
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> مسئول</label>
-                                            <input type="text" name="Admin" class="form-control" id="basicInput">
-                                        </fieldset>
-                                    </div>
-
+                        <div class="card-body">
+                            <!--  <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> اطلاعات وب سایت</h4><hr /> -->
+                            <div class="row">
+                                <input type="hidden" name="SiteId">
+                                <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> @Title </label>
+                                        <input type="text" name="Name" class="form-control" id="basicInput">
+                                        @*@Html.TextBoxFor(m => m.Name, new { @class = "form-control", id = "Name", placeholder = "عنوان" })*@
+                                    </fieldset>
                                 </div>
-
-                                <!--     <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> امکانات وب سایت</h4><hr />-->
-                                <div class=" row">
-
-
-                                    @foreach (var item in Items)
-                                    {
-                                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-
-                                            <fieldset class="form-group">
-                                                <label for="basicInput"> @(item.Text)</label>
-                                                <input type="hidden" name="Element[@(i++)].ItemText" />
-                                                <input type="hidden" name="Element[@(i++)].ItemId" />
-
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="radio-addon1">
-                                                            <input type="checkbox" name="Elements[@(i++)].Status" id="switchery1" class="switchery-sm" checked />
-                                                        </span>
-                                                    </div>
-                                                    <input type="text" name="Elements[@(i++)].Value" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                                </div>
-                                            </fieldset>
-                                        </div>
-
-                                    }
-
-
-
-
-                                    <div class="col-xl-12" style="margin-top: 35px;">
-
-                                        <button type="submit" class="btn btn-primary text-left" style=" padding-right: 20px; padding-left: 20px;">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
-                                        <button type="reset" class="btn btn-danger text-right">بستن <i class="fa  fa-thumbs-o-down position-right"></i></button>
-
-
-                                    </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> تاریخ</label>
+                                        <input type="text" name="CreateDate" class="form-control" id="basicInput">
+                               @*         @Html.TextBoxFor(m => m.CreateDate, new { @class = "form-control", id = "CreateDate", placeholder = "تاریخ" })*@
+                                    </fieldset>
                                 </div>
+                                <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <label for="basicInput"> مسئول</label>
+                                        <input type="text" name="Admin" class="form-control" id="basicInput">
+                                        @*@Html.TextBoxFor(m => m.Admin, new { @class = "form-control", id = "Admin", placeholder = "مسئول" })*@
 
-
+                                    </fieldset>
+                                </div>
 
                             </div>
+
+                            <!--     <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> امکانات وب سایت</h4><hr />-->
+                            <div class=" row">
+
+                                @foreach (var item in Items)
+                                {
+                                <div hidden>@(i++)</div>
+                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> @(item.Text)</label>
+                                            <input type="hidden" name="Elements.Index" value="@(i)" />
+                                            <input type="hidden" name="Elements[@(i)].ItemText" />
+                                            <input type="hidden" name="Elements[@(i)].ItemId" />
+
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="radio-addon1">
+                                                        <input type="checkbox" name="Elements[@(i)].Status" id="switchery1" class="switchery-sm" checked value="true" />
+                                                    </span>
+                                                </div>
+                                                <input type="text" name="Elements[@(i)].Value" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                }
+
+                                <div class="col-xl-12" style="margin-top: 35px;">
+
+                                    <button type="submit" class="btn btn-primary text-left" style=" padding-right: 20px; padding-left: 20px;">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
+                                    <button type="reset" class="btn btn-danger text-right">بستن <i class="fa  fa-thumbs-o-down position-right"></i></button>
+
+
+                                </div>
+                            </div>
+
                         </div>
-
-
-                    </form>
+                    </div>
+                    }
+                    @*</form>*@
 
                 </div>
             </div>
-        </div>
+    </div>
     </section>
     <!-- Basic Inputs end -->
-</div>
+    </div>
 
-@section Scripts{
-    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.js"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js"></script>
-    <script type="text/javascript" src="~/Template/Contents/vendors/js/ui/jquery.sticky.js"></script>
-    <script type="text/javascript" src="~/Template/Contents/vendors/js/charts/jquery.sparkline.min.js"></script>
-    <script src="~/Template/Contents/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.js"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
-    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
-    @*<script src="~/Template/Contents/js/scripts/tables/components/table-components.js"></script>
-        <script src="~/Template/Contents/js/scripts/tables/components/table-components.min.js"></script>*@
-    <script>
-        $(function () {
+    @section Scripts{
+        <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.js"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js"></script>
+        <script type="text/javascript" src="~/Template/Contents/vendors/js/ui/jquery.sticky.js"></script>
+        <script type="text/javascript" src="~/Template/Contents/vendors/js/charts/jquery.sparkline.min.js"></script>
+        <script src="~/Template/Contents/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.js"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+        <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+        @*<script src="~/Template/Contents/js/scripts/tables/components/table-components.js"></script>
+            <script src="~/Template/Contents/js/scripts/tables/components/table-components.min.js"></script>*@
+        <script>
+            $(function () {
 
-            //new Switchery(document.querySelector('.switchery-sm'), { size: 'small' });
-            var elemSmall = document.querySelectorAll('.switchery-sm');
-            for (i = 0; i < elemSmall.length; i++) {
-                new Switchery(elemSmall[i], { className: "switchery switchery-small", color: '#b76e79', secondaryColor: '#f2e4e6', jackColor: '#ecd7da', jackSecondaryColor: '#ecd7da' });
-            }
-            //{ color: '#faab43', secondaryColor: '#fC73d0', jackColor: '#fcf45e', jackSecondaryColor: '#c8ff77' }
-        });
-    </script>
+                //new Switchery(document.querySelector('.switchery-sm'), { size: 'small' });
+                var elemSmall = document.querySelectorAll('.switchery-sm');
+                for (i = 0; i < elemSmall.length; i++) {
+                    new Switchery(elemSmall[i], { className: "switchery switchery-small", color: '#b76e79', secondaryColor: '#f2e4e6', jackColor: '#ecd7da', jackSecondaryColor: '#ecd7da' });
+                }
+                //{ color: '#faab43', secondaryColor: '#fC73d0', jackColor: '#fcf45e', jackSecondaryColor: '#c8ff77' }
+            });
+        </script>
 
-}
+    }

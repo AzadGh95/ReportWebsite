@@ -60,16 +60,17 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;InitialCatalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO WebSite ([Name],[CreateDate],[Admin]) " +
-                    "values(@name,@createdate,@admin )", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO WebSite ([Name],[CreateDate],[Admin],[Type]) " +
+                    "values (@name,@createdate,@admin,@type )", con);
 
                 cmd.Parameters.AddWithValue("@name", webSite.Name);
                 cmd.Parameters.AddWithValue("@createdate", webSite.CreateDate);
                 cmd.Parameters.AddWithValue("@admin", webSite.Admin);
+                cmd.Parameters.AddWithValue("@type", webSite.Type);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -122,6 +123,33 @@ namespace ReportWebsite.SqlConnections
             catch (Exception)
             {
                 return false;
+                throw;
+            }
+        }
+        public static int SelectLastIndex()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlCommand sda = new SqlCommand("SELECT MAX(SiteId) FROM WebSite  ", con);
+                con.Open();
+
+                var sqlr = sda.ExecuteReader();
+                //var r = int.Parse(sqlr["SiteId"].ToString());
+                int columnValue =0 ;
+
+                while (sqlr.Read())
+                {
+                    string column = sqlr[0].ToString();
+                    columnValue = Convert.ToInt32(sqlr[0]);
+                }
+                con.Close();
+                return columnValue;
+
+            }
+            catch (System.Exception e)
+            {
+                var message = e.Message;
                 throw;
             }
         }

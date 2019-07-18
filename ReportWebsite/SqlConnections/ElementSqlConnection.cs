@@ -85,14 +85,13 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;InitialCatalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Element ([ElementId],[Status],[Value],[SiteId]) " +
-                    "values(@id,@status,@value,@siteId )", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Element ([Status],[Value],[SiteId]) " +
+                    "values(@status,@value,@siteId )", con);
 
-                cmd.Parameters.AddWithValue("@id", element.ElementId);
                 cmd.Parameters.AddWithValue("@status", element.Status);
                 cmd.Parameters.AddWithValue("@value", element.Value);
                 cmd.Parameters.AddWithValue("@siteId", element.SiteId);
@@ -101,7 +100,7 @@ namespace ReportWebsite.SqlConnections
                 con.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
                 throw;

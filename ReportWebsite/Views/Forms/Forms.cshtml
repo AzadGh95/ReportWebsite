@@ -60,7 +60,7 @@
                                             <td>@m.Admin</td>
                                             <td>
                                                 <a class="btn  btn-sm btn-icon  form-info" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId }, FormMethod.Post))
+                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type}, FormMethod.Post))
                                                 {
                                                     <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
                                                 }
