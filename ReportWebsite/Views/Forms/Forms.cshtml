@@ -1,10 +1,15 @@
 ﻿@using ReportWebsite.Infrastructure;
 @using ReportWebsite.Properties
+@using Dualp.Common.Types
+@using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
 
 @model  List<ReportWebsite.Models.WebSite>
 @{
-    ViewBag.Title = "Forms";
+    WebSiteType type = ViewBag.Type;
+   var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
+    ViewBag.Title = Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 
@@ -17,12 +22,12 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">لیست فرم های تحویل سایت</h4>
+                <h4 class="card-title">لیست فرم    @Title ها</h4>
                 <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                 <div class="heading-elements">
                     <ul class="list-inline mb-0">
                         <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        @*<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>*@
                         <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
                         <li><a data-action="close"><i class="ft-x"></i></a></li>
                     </ul>
@@ -39,7 +44,7 @@
                                     <th style="width: 42% ;">سایت</th>
                                     <th style="width: 15% ;">تاریخ</th>
                                     <th style="width: 15% ;">توسط</th>
-                                    <th style="width: 20% ;">ابزارک</th>
+                                    <th style="width: 20% ;">ابزارک ها</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,8 +56,7 @@
                                         <tr>
                                             <td scope="row">@(row++) </td>
                                             <td>@m.Name</td>
-                                            <td>20/20/2020</td>
-                                            @*   <td>@m.CreateDate.UtcToLocalTimeZone(Current.TimeZoneInfo).LocalDatetime("fa").ToString()</td>*@
+                                            <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
                                             <td>@m.Admin</td>
                                             <td>
                                                 <a class="btn  btn-sm btn-icon  form-info" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
@@ -80,7 +84,7 @@
     <script>
 
         function Alert() {
-            alert("Hello! I am an alert box!");
+            swal({ text: "این قسمت هنوز نوشته نشده ", timer: 2000, showConfirmButton: false, icon: "info" });
 
         }
 
@@ -112,11 +116,12 @@
                     .then((isConfirm) => {
                         if (isConfirm) {
                             formdelete.submit();
-                            swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                            //swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                            swal({ title: "حذف!", text: "حذف با موفقیت انجام شد", timer: 2000, showConfirmButton: false, icon: "success" });
+
                         } else {
                             //  swal("لغو", "عملیات حذف لغو شد", "error");
-                            swal({ title: "لغو!", text: "عملیات حذف لغو شد", timer: 2000, showConfirmButton: false });
-
+                            swal({ title: "لغو!", text: "عملیات حذف لغو شد", timer: 2000, showConfirmButton: false, icon: "error" });
                         }
                     });
 

@@ -52,8 +52,9 @@ namespace ReportWebsite.SqlConnections
                     return Item.ToList();
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
+                var m=e.Message;
                 throw;
             }
         }

@@ -1,15 +1,20 @@
 ﻿@using ReportWebsite.Infrastructure
 @using ReportWebsite.Properties
 @using ReportWebsite.UtilitySystem
+@using ReportWebsite.Models
+@using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
 @model ReportWebsite.Models.WebSite
 
 @*@model  ReportWebsite.Models.WebSite;*@
 @{
-    ViewBag.Title = "Form";
+    List<Item> Items = ViewBag.Items;
+
+    WebSiteType type = ViewBag.Type;
+    var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
+    ViewBag.Title = Title;
+
     Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@{
-    ViewBag.Title = "عنوان ";
+    var i = 0;
 }
 
 @section Styles{
@@ -36,10 +41,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">ایجاد فـــــرم جدید </h4>
+                        <h4 class="card-title"> فـــــرم  @Title جدید</h4>
                     </div>
 
                     <form asp-action="/Forms/Form" method="post">
+                        <!-- Using  -->
                         <div class="card-content">
                             <div class="card-body">
                                 <!--  <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> اطلاعات وب سایت</h4><hr /> -->
@@ -47,7 +53,7 @@
                                     <input type="hidden" name="SiteId">
                                     <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> سایت</label>
+                                            <label for="basicInput"> @Title </label>
                                             <input type="text" name="Name" class="form-control" id="basicInput">
                                         </fieldset>
                                     </div>
@@ -68,293 +74,48 @@
 
                                 <!--     <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> امکانات وب سایت</h4><hr />-->
                                 <div class=" row">
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
 
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String1</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" name="Elements[0].Status" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" name="" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String2</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String3</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String4</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String5</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String6</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String7</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String8</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String9</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String10</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String11</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String12</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String13</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String14</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String15</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String16</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String17</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String18</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String19</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String20</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
 
+                                    @foreach (var item in Items)
+                                    {
+                                        <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
+
+                                            <fieldset class="form-group">
+                                                <label for="basicInput"> @(item.Text)</label>
+                                                <input type="hidden" name="Element[@(i++)].ItemText" />
+                                                <input type="hidden" name="Element[@(i++)].ItemId" />
+
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="radio-addon1">
+                                                            <input type="checkbox" name="Elements[@(i++)].Status" id="switchery1" class="switchery-sm" checked />
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="Elements[@(i++)].Value" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
                                                 </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String21</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String22</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String23</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                        <fieldset class="form-group">
-                                            <label for="basicInput"> @Resource.String24</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text" id="radio-addon1">
-                                                        <input type="checkbox" id="switchery1" class="switchery-sm" checked />
-                                                    </span>
-                                                </div>
-                                                <input type="text" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
-                                            </div>
-                                        </fieldset>
-                                    </div>
+                                            </fieldset>
+                                        </div>
+
+                                    }
+
+
+
+
                                     <div class="col-xl-12" style="margin-top: 35px;">
-                                       
-                                            <button type="submit" class="btn btn-primary text-left" style=" padding-right: 20px; padding-left: 20px;">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
-                                            <button type="reset" class="btn btn-danger text-right">بستن <i class="fa  fa-thumbs-o-down position-right"></i></button>
-                                      
+
+                                        <button type="submit" class="btn btn-primary text-left" style=" padding-right: 20px; padding-left: 20px;">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
+                                        <button type="reset" class="btn btn-danger text-right">بستن <i class="fa  fa-thumbs-o-down position-right"></i></button>
+
 
                                     </div>
                                 </div>
 
-                  
+
 
                             </div>
                         </div>
-                  
-                
+
+
                     </form>
 
                 </div>

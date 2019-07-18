@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.Controllers
 {
@@ -12,14 +13,18 @@ namespace ReportWebsite.Controllers
     {
         public WebSiteDP _webSiteDP;
         public ElementDP _elementDP;
+        public ItemDP _itemDP;
         public FormsController()
         {
             _webSiteDP = new WebSiteDP();
+            _itemDP = new ItemDP();
         }
         // GET: Forms
-        public ActionResult Form(int? siteId)
+        public ActionResult Form(WebSiteType type, int? siteId)
         {
-
+            var Items = _itemDP.GetItemsByType(type);
+            ViewBag.Items = Items;
+            ViewBag.Type = type;
             if (siteId == null)
             {
                 return View(new WebSite());
@@ -42,26 +47,27 @@ namespace ReportWebsite.Controllers
                 if (!result)
                     return View(webSite);
 
-                return RedirectToAction("Forms");
+                return RedirectToAction("Forms", new { type = webSite.Type });
             }
             else
             {
                 // update website
                 var result = _webSiteDP.UpdateWebSite(webSite);
-                return RedirectToAction("Forms");
+                return RedirectToAction("Forms", new { type = webSite.Type });
             }
 
         }
-        public ActionResult Forms()
+        public ActionResult Forms(WebSiteType type)
         {
+            ViewBag.Type = type;
             return View(_webSiteDP.GetWebSites());
         }
 
         [HttpPost]
-        public ActionResult DeleteForm(int siteId)
+        public ActionResult DeleteForm(int siteId, WebSiteType type)
         {
             _webSiteDP.DeleteWebsite(siteId);
-            return RedirectToAction("Forms");
+            return RedirectToAction("Forms", new { type = type });
         }
     }
 }

@@ -25,12 +25,12 @@ namespace ReportWebsite.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Item model)
+        public ActionResult Item(Item model)
         {
             var result = _itemDP.Insert(model);
             //if (!result)
             //    return result;
-            return RedirectToAction("Items", new { type = model.ItemId });
+            return RedirectToAction("Items", new { type = model.Type });
 
         }
         public PartialViewResult Item(int? itemId = null)

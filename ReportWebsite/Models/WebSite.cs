@@ -23,17 +23,35 @@ namespace ReportWebsite.Models
         public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
         public WebSiteType Type { get; set; }
+    
+
+        private List<Element> _elements;
+        private bool _get;
         public List<Element> Elements
         {
             get
             {
-                return ElementSqlConnection.SelectElement(null);
+                if (!_get && _elements == null)
+                {
+                    _elements = ElementSqlConnection.SelectElement(null).ToList();
+                    _get = true;
+                }
+
+                return _elements;
             }
             set
             {
-                Elements = value;
+                _elements = value;
+                _get = true;
             }
         }
+
+
+
+
+
+
+
 
         public static implicit operator WebSite(SqlDataReader sql)
         {
