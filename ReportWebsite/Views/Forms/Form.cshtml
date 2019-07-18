@@ -87,8 +87,8 @@
                                         <fieldset class="form-group">
                                             <label for="basicInput"> @(item.Text)</label>
                                             <input type="hidden" name="Elements.Index" value="@(i)" />
-                                            <input type="hidden" name="Elements[@(i)].ItemText" />
-                                            <input type="hidden" name="Elements[@(i)].ItemId" />
+                                            <input type="hidden" name="Elements[@(i)].ItemText" value="@item.Text" />
+                                            <input type="hidden" name="Elements[@(i)].ItemId" value="@item.ItemId"/>
 
                                             <div class="input-group">
                                                 <div class="input-group-prepend">

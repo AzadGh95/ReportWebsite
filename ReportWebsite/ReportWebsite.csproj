@@ -3052,6 +3052,7 @@
     <Content Include="Template\fonts\Vazir\Without-Latin\Vazir-WOL.woff2" />
     <Content Include="Views\Forms\Forms.cshtml" />
     <Content Include="Views\Items\Items.cshtml" />
+    <Content Include="Views\Forms\FormInfo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

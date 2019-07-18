@@ -1,15 +1,16 @@
 ﻿@using ReportWebsite.Infrastructure;
 @using ReportWebsite.Properties
 @using Dualp.Common.Types
+@using ReportWebsite.Models
 @using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
 
 @model  List<ReportWebsite.Models.WebSite>
 @{
     WebSiteType type = ViewBag.Type;
-   var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
+    var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
     ViewBag.Title = Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    WebSite w;
 }
 
 
@@ -59,8 +60,10 @@
                                             <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
                                             <td>@m.Admin</td>
                                             <td>
-                                                <a class="btn  btn-sm btn-icon  form-info" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type}, FormMethod.Post))
+                                            
+                                                <a class="btn  btn-sm btn-icon  form-info" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                    
+                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
                                                 {
                                                     <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
                                                 }
@@ -87,8 +90,8 @@
             swal({ text: "این قسمت هنوز نوشته نشده ", timer: 2000, showConfirmButton: false, icon: "info" });
 
         }
-
-
+       
+      
         $(document).ready(function () {
             $('.form-delete').on('click', function () {
                 formdelete = $(this).parent();

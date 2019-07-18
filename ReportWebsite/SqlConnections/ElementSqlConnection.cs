@@ -49,7 +49,7 @@ namespace ReportWebsite.SqlConnections
                     return Element.ToList();
                 }
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
                 throw;
             }
@@ -89,12 +89,15 @@ namespace ReportWebsite.SqlConnections
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO Element ([Status],[Value],[SiteId]) " +
-                    "values(@status,@value,@siteId )", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO Element ([Status],[Value],[SiteId],[ItemText],[ItemId]) " +
+                    "values(@status,@value,@siteId,@itemtext , @itemid )", con);
 
                 cmd.Parameters.AddWithValue("@status", element.Status);
                 cmd.Parameters.AddWithValue("@value", element.Value);
                 cmd.Parameters.AddWithValue("@siteId", element.SiteId);
+                cmd.Parameters.AddWithValue("@itemtext", element.ItemText);
+                cmd.Parameters.AddWithValue("@itemid", element.ItemId);
+
 
                 cmd.ExecuteNonQuery();
                 con.Close();

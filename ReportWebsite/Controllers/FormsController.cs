@@ -70,5 +70,11 @@ namespace ReportWebsite.Controllers
             _webSiteDP.DeleteWebsite(siteId);
             return RedirectToAction("Forms", new { type = type });
         }
+        [HttpPost]
+        public PartialViewResult FormInfo()
+        {
+            return PartialView();
+        }
+
     }
 }
