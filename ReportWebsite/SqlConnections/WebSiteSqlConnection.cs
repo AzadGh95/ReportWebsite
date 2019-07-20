@@ -6,11 +6,39 @@ using System.Data.SqlClient;
 using System;
 using ReportWebsite.Models;
 using System.Collections.Generic;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.SqlConnections
 {
     public static class WebSiteSqlConnection
     {
+        public static List<WebSite> SelectWebSiteByType(WebSiteType type)
+        {
+            try
+            {
+
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlCommand sda = new SqlCommand("SELECT * FROM WebSite WHERE [Type] = @type", con);
+                sda.Parameters.AddWithValue("@type", type);
+
+                con.Open();
+
+                var sqlr = sda.ExecuteReader();
+                var website = new List<WebSite>();
+
+                while (sqlr.Read())
+                {
+                    website.Add((WebSite)sqlr);
+                }
+                con.Close();
+                return website.ToList();
+            }
+            catch (System.Exception e)
+            {
+                var message = e.Message;
+                throw;
+            }
+        }
         public static List<WebSite> SelectWebSite(int? id)
         {
             try
@@ -108,11 +136,12 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=Restaurant;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin WHERE ([SiteId]= @siteid)", con);
+                SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin ,[CreateDate] = @createdate WHERE ([SiteId]= @siteid)", con);
                 cmd.Parameters.AddWithValue("@name", website.Name);
+                cmd.Parameters.AddWithValue("@createdate", website.CreateDate);
                 cmd.Parameters.AddWithValue("@admin", website.Admin);
                 cmd.Parameters.AddWithValue("@siteid", website.SiteId);
                 cmd.ExecuteNonQuery();
@@ -136,7 +165,7 @@ namespace ReportWebsite.SqlConnections
 
                 var sqlr = sda.ExecuteReader();
                 //var r = int.Parse(sqlr["SiteId"].ToString());
-                int columnValue =0 ;
+                int columnValue = 0;
 
                 while (sqlr.Read())
                 {

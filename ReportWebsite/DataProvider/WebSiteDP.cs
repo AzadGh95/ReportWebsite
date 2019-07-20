@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.DataProvider
 {
@@ -19,11 +20,11 @@ namespace ReportWebsite.DataProvider
                 if (!result)
                     return result;
                 var SiteId = WebSiteSqlConnection.SelectLastIndex();
-                
+
                 foreach (var element in webSite.Elements)
                 {
                     element.SiteId = SiteId;
-                    result = ElementSqlConnection.InsertElement(element);
+                    result = ElementSqlConnection.InsertElement(element , SiteId);
                     if (!result)
                         return result;
                 }
@@ -46,7 +47,10 @@ namespace ReportWebsite.DataProvider
         {
             return WebSiteSqlConnection.SelectWebSite(null);
         }
-
+        public List<WebSite> GetWebSites(WebSiteType type)
+        {
+            return WebSiteSqlConnection.SelectWebSiteByType(type);
+        }
         public bool UpdateWebSite(WebSite WebSite)
         {
             try
@@ -55,12 +59,18 @@ namespace ReportWebsite.DataProvider
                 if (!result)
                     return result;
 
-                foreach (var element in ElementSqlConnection.SelectElementBySite(WebSite.SiteId))
+                result = ElementSqlConnection.DeleteElement(WebSite.SiteId);
+                if (!result)
+                    return result;
+
+                foreach (var element in WebSite.Elements)
                 {
-                    result = ElementSqlConnection.UpdateElement(element);
+                    result = ElementSqlConnection.InsertElement(element , WebSite.SiteId);
                     if (!result)
                         return result;
                 }
+
+
                 return true;
             }
             catch (Exception)

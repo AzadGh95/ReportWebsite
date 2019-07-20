@@ -81,7 +81,7 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
-        public static bool InsertElement(Element element)
+        public static bool InsertElement(Element element,int siteId)
         {
             try
             {
@@ -94,7 +94,7 @@ namespace ReportWebsite.SqlConnections
 
                 cmd.Parameters.AddWithValue("@status", element.Status);
                 cmd.Parameters.AddWithValue("@value", element.Value);
-                cmd.Parameters.AddWithValue("@siteId", element.SiteId);
+                cmd.Parameters.AddWithValue("@siteId", siteId);
                 cmd.Parameters.AddWithValue("@itemtext", element.ItemText);
                 cmd.Parameters.AddWithValue("@itemid", element.ItemId);
 

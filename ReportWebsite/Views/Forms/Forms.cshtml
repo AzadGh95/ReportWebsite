@@ -1,6 +1,7 @@
 ﻿@using ReportWebsite.Infrastructure;
 @using ReportWebsite.Properties
 @using Dualp.Common.Types
+@using ReportWebsite.UtilitySystem
 @using ReportWebsite.Models
 @using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
 
@@ -60,15 +61,15 @@
                                             <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
                                             <td>@m.Admin</td>
                                             <td>
-                                            
+
                                                 <a class="btn  btn-sm btn-icon  form-info" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                    
+
                                                 @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
                                                 {
-                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-placement="bottom" data-toggle="tooltip" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
                                                 }
                                                 <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
-                                                <a class="btn  btn-sm btn-icon  form-edit" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(type,m.SiteId)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
                                     }
@@ -90,9 +91,30 @@
             swal({ text: "این قسمت هنوز نوشته نشده ", timer: 2000, showConfirmButton: false, icon: "info" });
 
         }
-       
-      
+
+
         $(document).ready(function () {
+
+
+            $('.form-info').on('click', function () {
+                var el = document.createElement('span'),
+                    t = document.createTextNode('What to do  What not to do ');
+                el.style.cssText = 'color:#e001a4';
+                el.appendChild(t);
+                swal({
+
+                    title: 'HTML Alert!',
+                    content: {
+                        element: el,
+                    }
+                });
+            });
+
+
+
+
+
+
             $('.form-delete').on('click', function () {
                 formdelete = $(this).parent();
                 swal({

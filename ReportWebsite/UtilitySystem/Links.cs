@@ -11,10 +11,10 @@ namespace ReportWebsite.UtilitySystem
 {
     public class Links
     {
-        public static string Form(WebSiteType type)
+        public static string Form(WebSiteType type , int? siteId=null)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.Action("Form", "Forms", new { type = type });
+            return urlHelper.Action("Form", "Forms", new { type = type  , siteId = siteId });
         }
         public static string Forms(WebSiteType type)
         {
