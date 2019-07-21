@@ -33,7 +33,7 @@ namespace ReportWebsite.Models
             {
                 if (!_get && _elements == null)
                 {
-                    _elements = ElementSqlConnection.SelectElement(null).ToList();
+                    _elements = ElementSqlConnection.SelectElementBySite(SiteId).ToList();
                     _get = true;
                 }
 

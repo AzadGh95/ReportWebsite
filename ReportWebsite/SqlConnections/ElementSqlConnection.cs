@@ -11,11 +11,11 @@ namespace ReportWebsite.SqlConnections
 {
     public static class ElementSqlConnection
     {
-        public static List<Element> SelectElement(int? id)
+        public static List<Element> SelectElement(int? elementId)
         {
             try
             {
-                if (id == null)
+                if (elementId == null)
                 {
                     SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand sda = new SqlCommand("SELECT * FROM Element", con);
@@ -35,7 +35,7 @@ namespace ReportWebsite.SqlConnections
                 {
                     SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand cmd = new SqlCommand("SELECT * FROM Element WHERE [ElementId]= @id", con);
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@id", elementId);
                     con.Open();
 
                     var sqlr = cmd.ExecuteReader();

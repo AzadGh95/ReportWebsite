@@ -62,7 +62,7 @@
                                             <td>@m.Admin</td>
                                             <td>
 
-                                                <a class="btn  btn-sm btn-icon  form-info" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-info" @*href="@{Html.RenderPartial("~/Views/Forms/FormInfo.cshtml",@m);}"*@ data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
 
                                                 @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
                                                 {

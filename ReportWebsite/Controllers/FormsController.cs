@@ -25,7 +25,7 @@ namespace ReportWebsite.Controllers
             var Items = _itemDP.GetItemsByType(type);
             ViewBag.Items = Items;
             ViewBag.Type = type;
-            ViewBag.siteId = siteId??0;
+            ViewBag.siteId = siteId ?? 0;
 
             if (siteId == null)
             {
@@ -39,7 +39,7 @@ namespace ReportWebsite.Controllers
         [HttpPost]
         public ActionResult Form(WebSite webSite, WebSiteType type, int? initSiteId)
         {
-            ViewBag.Type =type;
+            ViewBag.Type = type;
             if (!ModelState.IsValid)
             {
                 //return View(webSite);
@@ -56,9 +56,9 @@ namespace ReportWebsite.Controllers
             else
             {
                 // update website
-                webSite.SiteId = initSiteId??0;
+                webSite.SiteId = initSiteId ?? 0;
                 var result = _webSiteDP.UpdateWebSite(webSite);
-                return RedirectToAction("Forms", new { type =type});
+                return RedirectToAction("Forms", new { type = type });
             }
 
         }
@@ -75,9 +75,10 @@ namespace ReportWebsite.Controllers
             return RedirectToAction("Forms", new { type = type });
         }
         [HttpPost]
-        public PartialViewResult FormInfo()
+        public PartialViewResult FormInfo(int siteId)
         {
-            return PartialView();
+            var model = _webSiteDP.GetWebSite(siteId);
+            return PartialView(model);
         }
 
     }

@@ -1,19 +1,39 @@
-﻿
+﻿@model ReportWebsite.Models.WebSite
 
 
 
 <div class="modal fade text-left" id="modal-info-brand" tabindex="-1" role="dialog"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
+     <h4>@Model.Name</h4>
+    <h4>@Model.CreateDate</h4>
+     <h4>@Model.Admin</h4>
+
+
         <div class="modal-content profile-card-with-cover">
-            <div class="modal-header bg-primary white">
-                <h4 class="modal-title" id="myModalLabel8">
-                    <i class="ft-twitter"></i> Hi I'm Truuuuue :)
-                </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            @foreach (var model in Model.Elements)
+            {
+                if (model.Status)
+                {
+                    <div class="modal-header bg-primary white">
+                        <h6 class="modal-title" id="myModalLabel8">@(model.ItemText) : @(model.Value)</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <br />
+                }
+                else
+                {
+                    <div class="modal-header bg-warning white">
+                        <h6 class="modal-title" id="myModalLabel8">@(model.ItemText) : @(model.Value)</h6>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+            }
+
         </div>
     </div>
 </div>
