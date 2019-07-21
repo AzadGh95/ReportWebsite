@@ -1,4 +1,5 @@
-﻿using ReportWebsite.DataProvider;
+﻿using Dualp.Common.Logger;
+using ReportWebsite.DataProvider;
 using ReportWebsite.Models;
 using System;
 using System.Collections.Generic;
@@ -74,12 +75,76 @@ namespace ReportWebsite.Controllers
             _webSiteDP.DeleteWebsite(siteId);
             return RedirectToAction("Forms", new { type = type });
         }
+        //[HttpPost]
+        //public PartialViewResult FormInfo(int siteId)
+        //{
+        //    var model = _webSiteDP.GetWebSite(siteId);
+        //    return PartialView(model);
+        //}
+
+
+
+
+
         [HttpPost]
-        public PartialViewResult FormInfo(int siteId)
+        public JsonResult FormInfo(int? siteId)
         {
-            var model = _webSiteDP.GetWebSite(siteId);
-            return PartialView(model);
+            try
+            {
+                if (siteId == null)
+                    return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
+             
+                var model = _webSiteDP.GetWebSite(siteId??0);
+                if (model == null)
+                    return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
+
+                string html = $@"  
+        <div class='card'>
+                <div>
+                    <div class='col-12' style='background-color: #e4cace;'>
+                        <div class='card-header'  style='background-color: #e4cace;' >
+                            <h4 class='card-title' id='heading-buttons2'>{model.Name} </h4>
+                            <a class='heading-elements-toggle'><i class='fa fa-ellipsis-v font-medium-3'></i></a>
+                            <div class='heading-elements'>
+                                    <i class='fa fa-user'   ></i><small> {model.Admin}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div style='margin: 28px; margin-top: 0;' class='list-group'>";
+                foreach (var m in model.Elements)
+                {
+
+                  html+=  $@"
+                                             <a style=' padding: 0.75rem 0.75rem; ' href='javascript:void(0)' class='list-group-item'>
+                        <div class='media'>
+                            <div class='media-left pr-1'>
+                                        {(m.Status ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>")}
+                            </div>
+                            <div class='media-body w-100'>
+                                <h6 class='media-heading rose-mb-0'>{m.ItemText}</h6>
+                                <strong class='font-small-2 rose-mb-0 text-muted'> {m.Value}</strong>
+                            </div>
+                        </div>
+                    </a>
+
+
+";
+                }
+                html += $@"</div></div> ";
+                        return Json(new Tuple<bool, string>(true, html));
+
+            }
+            catch (Exception e)
+            {
+                this.Log().Fatal(e.Message);
+                return Json(new Tuple<bool, string>(false, e.Message));
+            }
+
+
         }
+
 
     }
 }

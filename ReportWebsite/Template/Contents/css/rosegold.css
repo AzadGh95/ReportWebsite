@@ -121,3 +121,14 @@ form {
 .violet {
     color: #ac5eaa;
 }
+.list-group-item {
+    padding: 0.7rem 0.5rem;
+}
+.rose-mb-0{
+    margin-bottom: 5px !important;
+}
+
+.modal-dialog {
+    max-width: 620px;
+    margin: 1.75rem auto;
+}
