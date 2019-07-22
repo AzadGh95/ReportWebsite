@@ -30,7 +30,18 @@ namespace ReportWebsite.Controllers
 
             if (siteId == null)
             {
-                return View(new WebSite());
+                var webSiteModel = new WebSite();
+                foreach (var item in Items)
+                {
+                    webSiteModel.Elements.Add(new Element
+                    {
+                        ItemId = item.ItemId,
+                        ItemText = item.Text,
+                        Status = true
+                    });
+                }
+
+                return View(webSiteModel);
             }
             else
             {
@@ -39,7 +50,7 @@ namespace ReportWebsite.Controllers
                 List<ViewEditModel> ViewEditModels = new List<ViewEditModel>() { };
                 List<Element> TempElements = new List<Element>() { };
                 var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
-                if (Items.Count()>=0)
+                if (Items.Count() >= 0)
                 {
                     foreach (var item in Items)
                     {
@@ -86,10 +97,10 @@ namespace ReportWebsite.Controllers
         public ActionResult Form(WebSite webSite, WebSiteType type, int? initSiteId)
         {
             ViewBag.Type = type;
-            if (!ModelState.IsValid)
-            {
-                //return View(webSite);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(webSite);
+            //}
             if (initSiteId == 0)
             {
                 // insert into wesite

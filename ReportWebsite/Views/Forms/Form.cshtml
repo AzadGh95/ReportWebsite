@@ -82,24 +82,24 @@
                                 <!--     <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> امکانات وب سایت</h4><hr />-->
                                 <div class=" row">
 
-                                    @foreach (var item in Items)
+                                    @foreach (var element in Model.Elements)
                                     {
                                         <div hidden>@(i++)</div>
                                         <div class="col-xl-4 col-lg-4 col-md-12 mb-1">
 
                                             <fieldset class="form-group">
-                                                <label for="basicInput"> @(item.Text)</label>
+                                                <label for="basicInput"> @(element.ItemText)</label>
                                                 <input type="hidden" name="Elements.Index" value="@(i)" />
-                                                <input type="hidden" name="Elements[@(i)].ItemText" value="@item.Text" />
-                                                <input type="hidden" name="Elements[@(i)].ItemId" value="@item.ItemId" />
+                                                <input type="hidden" name="Elements[@(i)].ItemText" value="@element.ItemText" />
+                                                <input type="hidden" name="Elements[@(i)].ItemId" value="@element.ItemId" />
 
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="radio-addon1">
-                                                            <input type="checkbox" name="Elements[@(i)].Status" value="Elements[@(i)].Status" id="switchery1" class="switchery-sm" checked value="true" />
+                                                            <input type="checkbox" name="Elements[@(i)].Status"  id="switchery1" class="switchery-sm" value="@(element.Status?"true":"false")"  checked/>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="Elements[@(i)].Value" value="Elements[@(i)].Value"  class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
+                                                    <input type="text" name="Elements[@(i)].Value" value="@(element.Value)"  class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
                                                 </div>
                                             </fieldset>
                                         </div>
