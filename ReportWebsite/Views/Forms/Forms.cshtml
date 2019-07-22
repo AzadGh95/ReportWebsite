@@ -63,7 +63,6 @@
                                             <td>
 
                                                 <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-
                                                 @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
                                                 {
                                                     <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
@@ -104,14 +103,14 @@
 
             $(".form-info").click(function() {
 
-                var siteId = $(this).data("siteId");
-
+                var siteId = $(this).data("siteid");
+                console.log(siteId);
                 $.ajax({
                     type: "POST",
                     /**/
-                    url: '@Url.Action("FormInfo", "Forms", new { siteId=20})',
+                    url: '@Url.Action("FormInfo", "Forms")',
                     /**/
-                    //data: `{siteId: siteId  }`,
+                    data: JSON.stringify({'siteId': siteId  }),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function(response) {
@@ -123,7 +122,6 @@
                                 title: 'خطا در بارگذاری اطلاعات',
                                 text: response.Item2,
                                 confirmButtonText: 'تایید',
-                                //text: "You will not be able to recover this imaginary file!",
                                 type: "error"
                             });
                         }
@@ -156,10 +154,6 @@
             //        }
             //    });
             //});
-
-
-
-
 
 
             $('.form-delete').on('click', function () {

@@ -32,9 +32,54 @@ namespace ReportWebsite.Controllers
             {
                 return View(new WebSite());
             }
-            ViewBag.siteId = siteId;
-            var model = _webSiteDP.GetWebSite(siteId ?? 1);
-            return View(model);
+            else
+            {
+
+                ViewBag.siteId = siteId;
+                List<ViewEditModel> ViewEditModels = new List<ViewEditModel>() { };
+                List<Element> TempElements = new List<Element>() { };
+                var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
+                if (Items.Count()>=0)
+                {
+                    foreach (var item in Items)
+                    {
+                        var elementModel = webSiteModel.Elements.FirstOrDefault(x => x.ItemId == item.ItemId);
+                        TempElements.Add(new Element
+                        {
+                            ItemId = elementModel.ItemId,
+                            ElementId = elementModel.ElementId,
+                            ItemText = elementModel.ItemText,
+                            SiteId = elementModel.SiteId,
+                            Status = elementModel.Status,
+                            Value = elementModel.Value
+                        });
+                        //ViewEditModels.Add(new ViewEditModel
+                        //{
+                        //    Value = elementModel.Value,
+                        //    ItemText = elementModel.ItemText,
+                        //    Status = elementModel.Status,
+                        //    ElementId = elementModel.ElementId,
+                        //    ItemId = elementModel.ItemId
+                        //});
+                    }
+
+
+                    //foreach (var vems in ViewEditModels)
+                    //{
+                    //    TempElements.Add(new Element {
+                    //        ItemId = vems.ItemId,
+                    //        ElementId =vems.ElementId,
+                    //        ItemText = vems .ItemText,
+                    //        SiteId = webSiteModel.SiteId,
+                    //        Status = vems.Status,
+                    //        Value = vems.Value
+                    //    });
+                    //}
+                    webSiteModel.Elements = TempElements;
+                }
+                return View(webSiteModel);
+            }
+
         }
 
         [HttpPost]
@@ -93,8 +138,8 @@ namespace ReportWebsite.Controllers
             {
                 if (siteId == null)
                     return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
-             
-                var model = _webSiteDP.GetWebSite(siteId??0);
+
+                var model = _webSiteDP.GetWebSite(siteId ?? 0);
                 if (model == null)
                     return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
 
@@ -116,14 +161,14 @@ namespace ReportWebsite.Controllers
                 foreach (var m in model.Elements)
                 {
 
-                  html+=  $@"
+                    html += $@"
                                              <a style=' padding: 0.75rem 0.75rem; ' href='javascript:void(0)' class='list-group-item'>
                         <div class='media'>
-                            <div class='media-left pr-1'>
-                                        {(m.Status ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>")}
+                            <div class='media-left pr-1' >
+                                        {(m.Status ? "<i  style='color:#6e3941;'class='fa fa-check'></i>" : "<i  style='color:#6e3941;'class='fa fa-times'></i>")}
                             </div>
                             <div class='media-body w-100'>
-                                <h6 class='media-heading rose-mb-0'>{m.ItemText}</h6>
+                                <h6 class='media-heading rose-mb-0' style='color:#6e3941;'>{m.ItemText}</h6>
                                 <strong class='font-small-2 rose-mb-0 text-muted'> {m.Value}</strong>
                             </div>
                         </div>
@@ -133,7 +178,7 @@ namespace ReportWebsite.Controllers
 ";
                 }
                 html += $@"</div></div> ";
-                        return Json(new Tuple<bool, string>(true, html));
+                return Json(new Tuple<bool, string>(true, html));
 
             }
             catch (Exception e)
