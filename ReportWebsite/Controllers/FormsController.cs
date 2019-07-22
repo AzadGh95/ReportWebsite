@@ -64,33 +64,11 @@ namespace ReportWebsite.Controllers
                             Status = elementModel.Status,
                             Value = elementModel.Value
                         });
-                        //ViewEditModels.Add(new ViewEditModel
-                        //{
-                        //    Value = elementModel.Value,
-                        //    ItemText = elementModel.ItemText,
-                        //    Status = elementModel.Status,
-                        //    ElementId = elementModel.ElementId,
-                        //    ItemId = elementModel.ItemId
-                        //});
                     }
-
-
-                    //foreach (var vems in ViewEditModels)
-                    //{
-                    //    TempElements.Add(new Element {
-                    //        ItemId = vems.ItemId,
-                    //        ElementId =vems.ElementId,
-                    //        ItemText = vems .ItemText,
-                    //        SiteId = webSiteModel.SiteId,
-                    //        Status = vems.Status,
-                    //        Value = vems.Value
-                    //    });
-                    //}
                     webSiteModel.Elements = TempElements;
                 }
                 return View(webSiteModel);
             }
-
         }
 
         [HttpPost]

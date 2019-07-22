@@ -1,17 +1,17 @@
 ﻿@using Dualp.Common.Types
 @model string
 
-<footer class="footer footer-static footer-light navbar-border" style="
+<footer class="footer footer-static footer-light navbar-border"
+        style="
     position: fixed;
     bottom: 0;
     width: 100%;
-">
+    ">
     <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
         <span class="float-md-left d-block d-md-inline-block">
-            Copyright &copy; 2018 <a class="text-bold-800 grey darken-2" href="https://themeforest.net/user/pixinvent/portfolio?ref=pixinvent"
-                                     target="_blank"></a>, All rights reserved.
-            YOU IN @Model
+            <a class="text-bold-800 grey darken-2" href="http://dualp.ir" target="_blank">پردازش پارسیان</a>
         </span>
+
         <span class="float-md-right d-block d-md-inline-block d-none d-lg-block">@DateTime.UtcNow.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</span>
     </p>
 </footer>

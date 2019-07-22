@@ -96,10 +96,10 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="radio-addon1">
-                                                            <input type="checkbox" name="Elements[@(i)].Status"  id="switchery1" class="switchery-sm" value="@(element.Status?"true":"false")"  checked/>
+                                                            <input type="checkbox" name="Elements[@(i)].Status" id="switchery1" class="switchery-sm" value="true"  @(element.Status?"checked":string.Empty)/>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="Elements[@(i)].Value" value="@(element.Value)"  class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
+                                                    <input type="text" name="Elements[@(i)].Value" value="@(element.Value)" class="form-control" placeholder="توضیحات" aria-describedby="radio-addon1" />
                                                 </div>
                                             </fieldset>
                                         </div>
@@ -141,6 +141,17 @@
     @*<script src="~/Template/Contents/js/scripts/tables/components/table-components.js"></script>
         <script src="~/Template/Contents/js/scripts/tables/components/table-components.min.js"></script>*@
     <script>
+  
+        //$(document).ready(function () {
+        //    var status = $(this).data("st");
+        //    if (status) {
+        //        $(".switchery-sm").prop("checked", true);
+        //    } else {
+        //        $(".switchery-sm").prop("checked", false);
+        //    }
+        //});
+
+
         $(function () {
 
             //new Switchery(document.querySelector('.switchery-sm'), { size: 'small' });
@@ -160,7 +171,7 @@
         });
     </script>
 
-   
+
 
 
 }

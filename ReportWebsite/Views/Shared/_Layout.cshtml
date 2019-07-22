@@ -73,12 +73,12 @@
                                 <span class="user-name">مدیر سیستم</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i class="ft-user"></i> پروفایل </a>
-                                <a class="dropdown-item" href="#"><i class="ft-mail"></i> پیغام ها </a>
-                                <a class="dropdown-item" href="#"><i class="ft-check-square"></i> دسترسی ها</a>
+                                <a class="dropdown-item" href="@Links.Dashboard()"><i class="ft-home"></i> خانه </a>
+                                @*<a class="dropdown-item" href="#"><i class="ft-mail"></i> پیغام ها </a>*@
+                                @*<a class="dropdown-item" href="#"><i class="ft-check-square"></i> دسترسی ها</a>*@
 
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ft-power"></i> خروج</a>
+                                @*<div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i class="ft-power"></i> خروج</a>*@
                             </div>
                         </li>
                     </ul>
@@ -95,33 +95,25 @@
             <!-- include ../../../includes/mixins-->
             <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" href="index.html" data-toggle="dropdown">
+                    <a class="dropdown-toggle nav-link" href="@Links.Dashboard()" data-toggle="dropdown">
                         <i class="ft-home"></i>
                         <span>داشبــــورد</span>
                     </a>
-                    <ul hidden class="dropdown-menu">
-                        <li data-menu="">
-                            <a class="dropdown-item" href="dashboard-ecommerce.html" data-toggle="dropdown">
-                                eCommerce
-                                <submenu class="name"></submenu>
-                            </a>
-                        </li>
-                        <li class="active" data-menu="">
-                            <a class="dropdown-item" href="dashboard-analytics.html" data-toggle="dropdown">
-                                Analytics
-                                <submenu class="name"></submenu>
-                            </a>
-                        </li>
-                        <li data-menu="">
-                            <a class="dropdown-item" href="dashboard-fitness.html" data-toggle="dropdown">
-                                Fitness
-                                <submenu class="name"></submenu>
-                            </a>
-                        </li>
-                    </ul>
+                        <ul class="dropdown-menu">
+                            <li data-menu="">
+                                <a class="dropdown-item " href="@Links.Dashboard()" data-toggle="dropdown">
+                                   خانه
+                                </a>
+                            </li>
+                        </ul>
+             
+
+          
                 </li>
                 <li class="dropdown nav-item" data-menu="dropdown">
-                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown"><i class="ft-monitor"></i><span> وب سایت ها</span></a>
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
+                    <i class="ft-monitor"></i>
+                    <span> وب سایت ها</span></a>
                     <ul class="dropdown-menu">
                         <li data-menu="">
                             <a class="dropdown-item " href="@Links.Form(WebSiteType.WebApp)" data-toggle="dropdown">

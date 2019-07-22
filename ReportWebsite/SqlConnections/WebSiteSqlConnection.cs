@@ -182,5 +182,30 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
+        public static int Count(WebSiteType type)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlCommand sda = new SqlCommand("SELECT COUNT(SiteId) FROM WebSite  WHERE [Type] = @type" , con);
+                sda.Parameters.AddWithValue("@type", type);
+                con.Open();
+                var sqlr = sda.ExecuteReader();
+                int columnValue = 0;
+                while (sqlr.Read())
+                {
+                    string column = sqlr[0].ToString();
+                    columnValue = Convert.ToInt32(sqlr[0]);
+                }
+                con.Close();
+                return columnValue;
+
+            }
+            catch (System.Exception e)
+            {
+                var message = e.Message;
+                throw;
+            }
+        }
     }
 }

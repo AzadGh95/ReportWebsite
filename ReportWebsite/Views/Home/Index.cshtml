@@ -4,7 +4,7 @@
 @using ReportWebsite.Enums
 @using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
 @{
-    ViewBag.Title = "عنوان ";
+    ViewBag.Title = "Website Report  ";
 }
 <!--stats-->
 <div class="row">
@@ -15,7 +15,7 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body text-left w-100">
-                                <h3 class="violet">21</h3>
+                                <h3 class="violet" id="countwebsite">.</h3>
                                 <strong> وب سایت</strong>
                             </div>
                             <div class="media-right media-middle">
@@ -38,7 +38,7 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body text-left w-100">
-                                <h3 class="danger">22</h3>
+                                <h3 class="danger" id="countdesign">.</h3>
                                 <strong>طراحی </strong>
                             </div>
                             <div class="media-right media-middle">
@@ -61,7 +61,7 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body text-left w-100">
-                                <h3 class="success">23</h3>
+                                <h3 class="success" id="countproject">.</h3>
                                 <strong>پروژه </strong>
                             </div>
                             <div class="media-right media-middle">
@@ -84,7 +84,7 @@
                     <div class="card-body">
                         <div class="media">
                             <div class="media-body text-left w-100">
-                                <h3 class="warning">24</h3>
+                                <h3 class="warning" id="countapp">.</h3>
                                 <strong>اپلیکیشن </strong>
                             </div>
                             <div class="media-right media-middle">
@@ -180,11 +180,11 @@
                     <h4>/نرگس محمدی</h4>*@
                 <div>
                     <div class="col-12" style="background-color: #e4cace;">
-                        <div class="card-header"  style="background-color: #e4cace;" >
+                        <div class="card-header" style="background-color: #e4cace;">
                             <h4 class="card-title" id="heading-buttons2">سایت گوگل</h4>
                             <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
                             <div class="heading-elements">
-                                    <i class="fa fa-user"   ></i><small> مهتاب کرامتی</small>
+                                <i class="fa fa-user"></i><small> مهتاب کرامتی</small>
                             </div>
                         </div>
                     </div>
@@ -251,5 +251,23 @@
 <!-- Analytics map based session -->
 
 @section Scripts{
+    <script>
 
+    $(function() {
+
+        $.get("@Url.Action("CountWebSite", "Home" , new { type = WebSiteType.WebApp })", function (data) {
+            $( "#countwebsite" ).html( data );
+        });
+                $.get("@Url.Action("CountWebSite", "Home" , new { type = WebSiteType.Design })", function (data) {
+                    $( "#countdesign" ).html( data );
+        });
+                $.get("@Url.Action("CountWebSite", "Home" , new { type = WebSiteType.Project })", function (data) {
+                    $( "#countproject" ).html( data );
+        });
+                $.get("@Url.Action("CountWebSite", "Home" , new { type = WebSiteType.Application })", function (data) {
+                    $( "#countapp" ).html( data );
+        });
+    });
+
+    </script>
 }
