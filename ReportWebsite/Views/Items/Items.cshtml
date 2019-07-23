@@ -3,9 +3,10 @@
 
 @model  List<ReportWebsite.Models.Item>
 @{
-    ViewBag.Title = "Items";
-    Layout = "~/Views/Shared/_Layout.cshtml";
     var title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(ViewBag.Type);
+    ViewBag.Title = " آیتم های تحویل " + title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 @section Broadcast{
 
@@ -101,7 +102,7 @@
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-outline-primary " value="ثبت">
-                    <input type="reset" class="btn btn-outline-secondary " data-dismiss="modal"  value="بستن">
+                    <input type="reset" class="btn btn-outline-secondary " data-dismiss="modal" value="بستن">
                 </div>
             }
         </div>

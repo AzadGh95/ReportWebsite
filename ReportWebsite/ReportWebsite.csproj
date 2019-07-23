@@ -1087,6 +1087,7 @@
     <Content Include="Template\Contents\images\ico\apple-icon-76.png" />
     <Content Include="Template\Contents\images\ico\favicon-32.png" />
     <Content Include="Template\Contents\images\ico\favicon.ico" />
+    <Content Include="Template\Contents\images\ico\favicondp.ico" />
     <Content Include="Template\Contents\images\jqueryui\calendar.png" />
     <Content Include="Template\Contents\images\jqueryui\ui-anim_basic_16x16.gif" />
     <Content Include="Template\Contents\images\jqueryui\ui-icons_ffffff_256x240.png" />
@@ -1179,6 +1180,7 @@
     <Content Include="Template\Contents\images\portrait\medium\avatar-m-7.png" />
     <Content Include="Template\Contents\images\portrait\medium\avatar-m-8.png" />
     <Content Include="Template\Contents\images\portrait\medium\avatar-m-9.png" />
+    <Content Include="Template\Contents\images\portrait\medium\logo-pd.png" />
     <Content Include="Template\Contents\images\portrait\small\avatar-s-1.png" />
     <Content Include="Template\Contents\images\portrait\small\avatar-s-10.png" />
     <Content Include="Template\Contents\images\portrait\small\avatar-s-11.png" />
@@ -3054,6 +3056,7 @@
     <Content Include="Views\Forms\Forms.cshtml" />
     <Content Include="Views\Items\Items.cshtml" />
     <Content Include="Views\Forms\FormInfo.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

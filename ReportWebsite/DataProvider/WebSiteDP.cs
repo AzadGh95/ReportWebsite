@@ -24,6 +24,10 @@ namespace ReportWebsite.DataProvider
                 foreach (var element in webSite.Elements)
                 {
                     element.SiteId = SiteId;
+                    if (element.Value==null)
+                    {
+                        element.Value = "";
+                    }
                     result = ElementSqlConnection.InsertElement(element , SiteId);
                     if (!result)
                         return result;
@@ -65,6 +69,10 @@ namespace ReportWebsite.DataProvider
 
                 foreach (var element in WebSite.Elements)
                 {
+                    if (element.Value==null)
+                    {
+                        element.Value = "";
+                    }
                     result = ElementSqlConnection.InsertElement(element , WebSite.SiteId);
                     if (!result)
                         return result;

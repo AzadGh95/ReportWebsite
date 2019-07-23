@@ -35,7 +35,11 @@ namespace ReportWebsite.DataProvider
         }
         public bool DeleteItem(int id)
         {
-            return ItemSqlConnection.DeleteItem(id);
+            var result = ItemSqlConnection.DeleteItem(id);
+            if (!result)
+                return result;
+            // begin delete from Elements
+            return ElementSqlConnection.DeleteElementByItemId(id);
         }
     }
 }

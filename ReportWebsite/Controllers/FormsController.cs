@@ -37,7 +37,8 @@ namespace ReportWebsite.Controllers
                     {
                         ItemId = item.ItemId,
                         ItemText = item.Text,
-                        Status = true
+                        Status = true,
+                       Value = "",
                     });
                 }
 
@@ -55,15 +56,18 @@ namespace ReportWebsite.Controllers
                     foreach (var item in Items)
                     {
                         var elementModel = webSiteModel.Elements.FirstOrDefault(x => x.ItemId == item.ItemId);
-                        TempElements.Add(new Element
+                        if (elementModel != null)
                         {
-                            ItemId = elementModel.ItemId,
-                            ElementId = elementModel.ElementId,
-                            ItemText = elementModel.ItemText,
-                            SiteId = elementModel.SiteId,
-                            Status = elementModel.Status,
-                            Value = elementModel.Value
-                        });
+                            TempElements.Add(new Element
+                            {
+                                ItemId = elementModel.ItemId,
+                                ElementId = elementModel.ElementId,
+                                ItemText = elementModel.ItemText,
+                                SiteId = elementModel.SiteId,
+                                Status = elementModel.Status,
+                                Value = elementModel.Value
+                            });
+                        }
                     }
                     webSiteModel.Elements = TempElements;
                 }

@@ -14,7 +14,7 @@
     <meta name="author" content="PIXINVENT">
     <title>@ViewBag.Title</title>
     <link rel="apple-touch-icon" href="~/Template/Contents/app-assets/images/ico/apple-icon-120.png">
-    <link rel="shortcut icon" type="image/x-icon" href="~/Template/Contents/app-assets/images/ico/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Template/Contents/images/ico/favicondp.ico">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
           rel="stylesheet">
     <!-- BEGIN VENDOR CSS-->
@@ -50,8 +50,8 @@
                     <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                     <li class="nav-item">
                         <a class="navbar-brand" href="index.html">
-                            <!--   <img class="brand-logo" alt="stack admin logo" src="~/Template/Contents/images/logo/stack-logo.png"> -->
-                            <h2 class="brand-text"><i class="icon-globe"></i>گزارش وب سایت </h2>
+                            @*<img class="brand-logo" alt="stack admin logo" src="~/Template/Contents/images/portrait/medium/logo-pd.png">*@
+                            <h2 class="brand-text">گزارش تحویل کار </h2>
                         </a>
                     </li>
                     <li class="nav-item d-md-none">
@@ -68,7 +68,7 @@
                         <li class="dropdown dropdown-user nav-item">
                             <a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
                                 <span class="avatar avatar-online">
-                                    <img src="~/Template/Contents/images/portrait/small/avatar-s-1.png" alt="avatar"><i></i>
+                                    <img style="width: 205px;" src="~/Template/Contents/images/portrait/medium/logo-pd.png" alt="avatar"><i></i>
                                 </span>
                                 <span class="user-name">مدیر سیستم</span>
                             </a>
@@ -77,8 +77,8 @@
                                 @*<a class="dropdown-item" href="#"><i class="ft-mail"></i> پیغام ها </a>*@
                                 @*<a class="dropdown-item" href="#"><i class="ft-check-square"></i> دسترسی ها</a>*@
 
-                                @*<div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#"><i class="ft-power"></i> خروج</a>*@
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Links.Login()"><i class="ft-power"></i> خروج</a>
                             </div>
                         </li>
                     </ul>
@@ -99,21 +99,22 @@
                         <i class="ft-home"></i>
                         <span>داشبــــورد</span>
                     </a>
-                        <ul class="dropdown-menu">
-                            <li data-menu="">
-                                <a class="dropdown-item " href="@Links.Dashboard()" data-toggle="dropdown">
-                                   خانه
-                                </a>
-                            </li>
-                        </ul>
-             
+                    <ul class="dropdown-menu">
+                        <li data-menu="">
+                            <a class="dropdown-item " href="@Links.Dashboard()" data-toggle="dropdown">
+                                خانه
+                            </a>
+                        </li>
+                    </ul>
 
-          
+
+
                 </li>
                 <li class="dropdown nav-item" data-menu="dropdown">
                     <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
-                    <i class="ft-monitor"></i>
-                    <span> وب سایت ها</span></a>
+                        <i class="ft-monitor"></i>
+                        <span> وب سایت ها</span>
+                    </a>
                     <ul class="dropdown-menu">
                         <li data-menu="">
                             <a class="dropdown-item " href="@Links.Form(WebSiteType.WebApp)" data-toggle="dropdown">

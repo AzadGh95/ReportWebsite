@@ -15,7 +15,10 @@ namespace ReportWebsite.Controllers
         {
             return View();
         }
-
+        public ActionResult Login()
+        {
+            return View();
+        }
         [HttpGet]
         public JsonResult CountWebSite(WebSiteType type)
         {

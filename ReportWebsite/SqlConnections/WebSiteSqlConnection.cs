@@ -18,7 +18,7 @@ namespace ReportWebsite.SqlConnections
             {
 
                 SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
-                SqlCommand sda = new SqlCommand("SELECT * FROM WebSite WHERE [Type] = @type", con);
+                SqlCommand sda = new SqlCommand("SELECT * FROM WebSite WHERE [Type] = @type ORDER BY [CreateDate] DESC", con);
                 sda.Parameters.AddWithValue("@type", type);
 
                 con.Open();

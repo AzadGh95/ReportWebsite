@@ -154,5 +154,28 @@ namespace ReportWebsite.SqlConnections
                 throw;
             }
         }
+
+        public static bool DeleteElementByItemId(int itemId)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("DELETE from Element where ([ItemId] = @id) ", con);
+                cmd.Parameters.AddWithValue("@id", itemId);
+
+                cmd.ExecuteNonQuery();
+
+                con.Close();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }
