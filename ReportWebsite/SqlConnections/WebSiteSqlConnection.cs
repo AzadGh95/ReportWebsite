@@ -17,7 +17,7 @@ namespace ReportWebsite.SqlConnections
             try
             {
 
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                 SqlCommand sda = new SqlCommand("SELECT * FROM WebSite WHERE [Type] = @type ORDER BY [CreateDate] DESC", con);
                 sda.Parameters.AddWithValue("@type", type);
 
@@ -46,7 +46,7 @@ namespace ReportWebsite.SqlConnections
                 if (id == null)
                 {
 
-                    SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand sda = new SqlCommand("SELECT * FROM WebSite", con);
                     con.Open();
 
@@ -62,7 +62,7 @@ namespace ReportWebsite.SqlConnections
                 }
                 else
                 {
-                    SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                     SqlCommand cmd = new SqlCommand("SELECT * FROM WebSite WHERE  [SiteId] = @id", con);
                     cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
@@ -88,7 +88,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
 
                 con.Open();
 
@@ -114,7 +114,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
 
                 con.Open();
 
@@ -136,7 +136,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin ,[CreateDate] = @createdate WHERE ([SiteId]= @siteid)", con);
@@ -159,7 +159,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                 SqlCommand sda = new SqlCommand("SELECT MAX(SiteId) FROM WebSite  ", con);
                 con.Open();
 
@@ -186,7 +186,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.\\SQLExpress;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
                 SqlCommand sda = new SqlCommand("SELECT COUNT(SiteId) FROM WebSite  WHERE [Type] = @type" , con);
                 sda.Parameters.AddWithValue("@type", type);
                 con.Open();

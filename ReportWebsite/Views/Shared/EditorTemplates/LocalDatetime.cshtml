@@ -1,0 +1,28 @@
+﻿@using Dualp.Common.Types
+@using ReportWebsite.UtilitySystem.HtmlHelper
+@using System.Web.Optimization
+
+@model DateTime?
+
+<script>
+    $(function () {
+        //var sample =
+            @*'@Model.Value.UtcToLocalTimeZone(Current.TimeZoneInfo).LocalDatetime(Medias.codeLanguage).ToString() ';*@
+        var objCal1 = new AMIB.persianCalendar('@Html.NameFor(x => x)',
+            {
+                extraInputID: "@Html.NameFor(x => x)-extra", extraInputFormat: "YYYYMMDD", initialDate: "@((Model.HasValue ? Model.Value.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString() : string.Empty))", onchange: function (pdate) {
+                } });
+        if ('' === '@(Model.HasValue?"x":string.Empty)') {
+            $("#@Html.NameFor(x => x)").val('');
+        }
+    })
+</script>
+
+@Html.TextBoxFor(x => x, new { placeholder = "تاریخ را انتخاب کنید", @class = "pdate form-control", autocomplete = "off", id = Html.NameFor(x => x), @value = (Model.HasValue ? Model.Value.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString() : string.Empty) })
+<input type="hidden" name="@Html.NameFor(x => x)-extra" id="@Html.NameFor(x => x)-extra">
+@Html.StyleSheetPartial("EditorTemplateDatetime", Styles.Render("~/TemplateContent/js/scripts/PersianCalender/js-persian-cal.css").ToString())
+
+@Html.ScriptPartial("EditorTemplateDatetime", Scripts.Render("~/TemplateContent/js/scripts/PersianCalender/js-persian-cal.min.js").ToString())
+
+
+

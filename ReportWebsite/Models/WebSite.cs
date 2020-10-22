@@ -8,7 +8,7 @@ using System.Data;
 using ReportWebsite.SqlConnections;
 using ReportWebsite.Enums;
 using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace ReportWebsite.Models
 {
@@ -20,6 +20,7 @@ namespace ReportWebsite.Models
         }
         public int SiteId { get; set; }
         public string Name { get; set; }
+        [UIHint("LocalDatetime")]
         public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
         public WebSiteType Type { get; set; }
