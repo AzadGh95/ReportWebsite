@@ -10,8 +10,9 @@ namespace ReportWebsite.DataProvider
 {
     public class WebSiteDP
     {
-        public WebSiteDP() { }
-
+        public WebSiteDP()
+        {
+        }
         public bool InsertWebsite(WebSite webSite)
         {
             try
@@ -24,11 +25,11 @@ namespace ReportWebsite.DataProvider
                 foreach (var element in webSite.Elements)
                 {
                     element.SiteId = SiteId;
-                    if (element.Value==null)
+                    if (element.Value == null)
                     {
                         element.Value = "";
                     }
-                    result = ElementSqlConnection.InsertElement(element , SiteId);
+                    result = ElementSqlConnection.InsertElement(element, SiteId);
                     if (!result)
                         return result;
                 }
@@ -69,11 +70,11 @@ namespace ReportWebsite.DataProvider
 
                 foreach (var element in WebSite.Elements)
                 {
-                    if (element.Value==null)
+                    if (element.Value == null)
                     {
                         element.Value = "";
                     }
-                    result = ElementSqlConnection.InsertElement(element , WebSite.SiteId);
+                    result = ElementSqlConnection.InsertElement(element, WebSite.SiteId);
                     if (!result)
                         return result;
                 }

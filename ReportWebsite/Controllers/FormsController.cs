@@ -120,10 +120,6 @@ namespace ReportWebsite.Controllers
         //    return PartialView(model);
         //}
 
-
-
-
-
         [HttpPost]
         public JsonResult FormInfo(int? siteId)
         {

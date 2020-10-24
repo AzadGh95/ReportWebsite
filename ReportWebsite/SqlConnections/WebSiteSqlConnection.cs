@@ -12,12 +12,100 @@ namespace ReportWebsite.SqlConnections
 {
     public static class WebSiteSqlConnection
     {
+        public const string ConnectionString = "Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True";
+
+        public static bool CheckDatabase(string name = "ReportWebSiteDB")
+        {
+            try
+            {
+                var result = false;
+                string query = $@"SELECT * FROM sys.databases WHERE name = '{name}'";
+
+                using (var sqlconn = new SqlConnection("Data Source=.;Initial Catalog=master;Integrated Security=True"))
+                {
+                    var sqlcomm = new SqlCommand(query, sqlconn);
+                    if (sqlconn.State != ConnectionState.Open)
+                    {
+                        sqlconn.Open();
+
+                    }
+
+
+                    var ready = sqlcomm.ExecuteReader();
+                    while (ready.Read())
+                    {
+                        result = true;
+                    }
+
+                    if (sqlconn.State == ConnectionState.Open)
+                    {
+                        sqlconn.Close();
+
+                    }
+
+                    return result;
+
+                }
+
+            }
+            catch (Exception exc)
+            {
+                return false;
+                
+            }
+        }
+
+        public static bool CreateDB()
+        {
+            try
+            {
+                if (CheckDatabase())
+                    return true;
+
+                string src = "Create database 'ReportWebSiteDB'";
+                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=master;Integrated Security=True");
+                SqlCommand sda = new SqlCommand(src, con);
+                con.Open();
+                int exists = sda.ExecuteNonQuery();
+                if ((con.State == ConnectionState.Open))
+                {
+                    con.Close();
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+        public static bool CreateTableWebSite()
+        {
+            try
+            {
+                var src = "If not exists (select name from sysobjects where name = 'WebSite') " +
+                    "CREATE TABLE WebSite(SiteId int , Name char(50),CreateDate datetime," +
+                    "Admin char(50),Type char(10))";
+
+                SqlConnection con = new SqlConnection(ConnectionString);
+                using (SqlCommand command = new SqlCommand(src, con))
+                    command.ExecuteNonQuery();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            
+        }
         public static List<WebSite> SelectWebSiteByType(WebSiteType type)
         {
             try
             {
 
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
                 SqlCommand sda = new SqlCommand("SELECT * FROM WebSite WHERE [Type] = @type ORDER BY [CreateDate] DESC", con);
                 sda.Parameters.AddWithValue("@type", type);
 
@@ -46,7 +134,7 @@ namespace ReportWebsite.SqlConnections
                 if (id == null)
                 {
 
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(ConnectionString);
                     SqlCommand sda = new SqlCommand("SELECT * FROM WebSite", con);
                     con.Open();
 
@@ -62,7 +150,7 @@ namespace ReportWebsite.SqlConnections
                 }
                 else
                 {
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(ConnectionString);
                     SqlCommand cmd = new SqlCommand("SELECT * FROM WebSite WHERE  [SiteId] = @id", con);
                     cmd.Parameters.AddWithValue("@id", id);
                     con.Open();
@@ -88,7 +176,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
 
                 con.Open();
 
@@ -114,7 +202,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
 
                 con.Open();
 
@@ -136,7 +224,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin ,[CreateDate] = @createdate WHERE ([SiteId]= @siteid)", con);
@@ -159,7 +247,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
                 SqlCommand sda = new SqlCommand("SELECT MAX(SiteId) FROM WebSite  ", con);
                 con.Open();
 
@@ -186,8 +274,9 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSite;Integrated Security=True");
-                SqlCommand sda = new SqlCommand("SELECT COUNT(SiteId) FROM WebSite  WHERE [Type] = @type" , con);
+
+                SqlConnection con = new SqlConnection(ConnectionString);
+                SqlCommand sda = new SqlCommand("SELECT COUNT(SiteId) FROM WebSite  WHERE [Type] = @type", con);
                 sda.Parameters.AddWithValue("@type", type);
                 con.Open();
                 var sqlr = sda.ExecuteReader();

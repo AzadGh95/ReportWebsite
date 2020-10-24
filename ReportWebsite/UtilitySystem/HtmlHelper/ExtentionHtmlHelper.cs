@@ -65,7 +65,7 @@ namespace ReportWebsite.UtilitySystem.HtmlHelper
             ";
             return new HtmlString(html);
         }
- public static IHtmlString DisplayUnitProduct(this System.Web.Mvc.HtmlHelper htmlHelper,
+        public static IHtmlString DisplayUnitProduct(this System.Web.Mvc.HtmlHelper htmlHelper,
             string sellUnit,float? amount,string detailUnit)
         {
             string html =sellUnit;
@@ -80,7 +80,7 @@ namespace ReportWebsite.UtilitySystem.HtmlHelper
             string html = $@"
 
                                         $(document).on('click','{elementButton}',function() {{
- var id = $(this).data('{dataIdname}');
+                                            var id = $(this).data('{dataIdname}');
                                                 var block_ele = $(this).closest('.card');
                                             var isblock;
                                             // Block Element
