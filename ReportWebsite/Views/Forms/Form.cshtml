@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/forms/icheck/icheck.css">
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/forms/icheck/custom.css">
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/css-rtl/plugins/forms/switch.css">
+
 }
 
 @section Broadcast{
@@ -65,7 +66,7 @@
                                         <fieldset class="form-group">
                                             <label for="basicInput"> تاریخ</label>
                                             @*<input type="text" name="CreateDate" class="form-control" id="basicInput">*@
-                                            @Html.EditorFor(x => x.CreateDate)
+                                            @Html.EditorFor(x => x.CreateDate , new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
                                             @*@Html.TextBoxFor(m => m.CreateDate, new { @class = "form-control", id = "CreateDate", placeholder = "تاریخ" })*@
                                         </fieldset>
                                     </div>

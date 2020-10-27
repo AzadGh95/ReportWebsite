@@ -111,6 +111,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.css" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.fa.js" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.fa.min.js" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.js" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.min.css" />
+    <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.min.js" />
     <Content Include="Template\Contents\css-rtl\app.css" />
     <Content Include="Template\Contents\css-rtl\app.min.css" />
     <Content Include="Template\Contents\css-rtl\bootstrap-extended.css" />
@@ -2581,6 +2587,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Common\System.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\FormsController.cs" />

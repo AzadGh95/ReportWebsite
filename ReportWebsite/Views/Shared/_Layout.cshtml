@@ -39,6 +39,7 @@
     @RenderSection("Styles", false)
     <link rel="stylesheet" type="text/css" href="~/Template/Contents/css/rosegold.css">
     <link href="~/Template/fonts/Vazir/font-face.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Template/Contents/BootstrapJalaliDatePicker/bootstrap-datepicker.css">
 </head>
 <body class="horizontal-layout horizontal-menu 2-columns   menu-expanded" data-open="click"
       data-menu="horizontal-menu" data-col="2-columns">
@@ -284,5 +285,12 @@
 
     <!-- END PAGE LEVEL JS-->
     @RenderSection("Scripts", false)
+    <script src="~/Template/Contents/BootstrapJalaliDatePicker/bootstrap-datepicker.min.js"></script>
+    <script src="~/Template/Contents/BootstrapJalaliDatePicker/bootstrap-datepicker.fa.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type=datetime]').datepicker({ dateFormat: "yy/mm/dd", isRTL: true, showButtonPanel: true });
+        });
+    </script>
 </body>
 </html>

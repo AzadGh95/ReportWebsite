@@ -20,7 +20,13 @@ namespace ReportWebsite.Models
         }
         public int SiteId { get; set; }
         public string Name { get; set; }
-        [UIHint("LocalDatetime")]
+
+
+        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
+        //[UIHint("LocalDatetime")]
+        [Display(Name = "تاریخ تحویل")]
+        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
         public WebSiteType Type { get; set; }

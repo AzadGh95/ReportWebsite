@@ -14,13 +14,14 @@ namespace ReportWebsite.SqlConnections
 {
     public static class ItemSqlConnection
     {
+        public const string ConnectionString = "Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True";
         public static List<Item> SelectItem(int? id)
         {
             try
             {
                 if (id == null)
                 {
-                    SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(ConnectionString);
                     SqlCommand sda = new SqlCommand("SELECT * FROM Item", con);
                     con.Open();
 
@@ -63,7 +64,7 @@ namespace ReportWebsite.SqlConnections
             try
             {
 
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
                 SqlCommand cmd = new SqlCommand("SELECT * FROM Item WHERE [Type] = @type", con);
                 cmd.Parameters.AddWithValue("@type", type);
                 con.Open();
@@ -89,7 +90,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
 
                 con.Open();
 
@@ -106,6 +107,7 @@ namespace ReportWebsite.SqlConnections
             }
             catch (Exception e)
             {
+                string error = e.Message;
                 return false;
                 throw;
             }
@@ -114,7 +116,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
                 con.Open();
 
                 SqlCommand cmd = new SqlCommand("UPDATE  Item SET [Text]= @text WHERE ([ItemId]= @id )", con);
@@ -135,7 +137,7 @@ namespace ReportWebsite.SqlConnections
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source=.;Initial Catalog=ReportWebSiteDB;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConnectionString);
 
                 con.Open();
 

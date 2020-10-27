@@ -45,8 +45,8 @@
                                     <th style="width: 8% ;">ردیف</th>
                                     <th style="width: 42% ;">سایت</th>
                                     <th style="width: 15% ;">تاریخ</th>
-                                    <th style="width: 15% ;">توسط</th>
-                                    <th style="width: 20% ;">ابزارک ها</th>
+                                    <th style="width: 12% ;">توسط</th>
+                                    <th style="width: 23% ;">ابزارک ها</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,6 +61,7 @@
                                             <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
                                             <td>@m.Admin</td>
                                             <td>
+                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود به پنل مدیریت "><i class="ft-log-in"></i></a>
 
                                                 <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
                                                 @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
