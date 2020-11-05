@@ -75,8 +75,9 @@ namespace ReportWebsite.SqlConnections
                 return Element.ToList();
 
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
+                var error = e.Message;
                 return null;
                 throw;
             }
@@ -105,6 +106,7 @@ namespace ReportWebsite.SqlConnections
             }
             catch (Exception e)
             {
+                var error = e.Message;
                 return false;
                 throw;
             }

@@ -21,9 +21,6 @@ namespace ReportWebsite.Models
         public int SiteId { get; set; }
         public string Name { get; set; }
 
-
-        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        //[UIHint("LocalDatetime")]
         [Display(Name = "تاریخ تحویل")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
@@ -53,7 +50,11 @@ namespace ReportWebsite.Models
             }
         }
 
-
+        public string UserSite { get; set; }
+        public string UserSuper { get; set; }
+        public string PasswordSite { get; set; }
+        public string PasswordSuper { get; set; }
+        public string Description { get; set; }
 
 
 
@@ -68,6 +69,11 @@ namespace ReportWebsite.Models
                 SiteId = int.Parse(sql["SiteId"].ToString()),
                 Name = sql["Name"].ToString(),
                 Admin = sql["Admin"].ToString(),
+                UserSite = sql["UserSite"].ToString(),
+                UserSuper = sql["UserSuper"].ToString(),
+                PasswordSite = sql["PasswordSite"].ToString(),
+                PasswordSuper = sql["PasswordSuper"].ToString(),
+                Description = sql["Description"].ToString(),
                 CreateDate = DateTime.Parse(sql["CreateDate"].ToString()),
             };
         }

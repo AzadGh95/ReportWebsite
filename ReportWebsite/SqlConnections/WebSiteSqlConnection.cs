@@ -180,20 +180,27 @@ namespace ReportWebsite.SqlConnections
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("INSERT INTO WebSite ([Name],[CreateDate],[Admin],[Type]) " +
-                    "values (@name,@createdate,@admin,@type )", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO WebSite " +
+                    "([Name],[CreateDate],[Admin],[Type],[UserSuper],[PasswordSuper],[UserSite],[PasswordSite],[Description]) " +
+                    "values (@name,@createdate,@admin,@type,@usersuper,@passwordsuper,@usersite,@passwordsite,@description )", con);
 
                 cmd.Parameters.AddWithValue("@name", webSite.Name);
                 cmd.Parameters.AddWithValue("@createdate", webSite.CreateDate);
                 cmd.Parameters.AddWithValue("@admin", webSite.Admin);
                 cmd.Parameters.AddWithValue("@type", webSite.Type);
+                cmd.Parameters.AddWithValue("@usersite", webSite.UserSite);
+                cmd.Parameters.AddWithValue("@usersuper", webSite.UserSuper);
+                cmd.Parameters.AddWithValue("@passwordsite", webSite.PasswordSite);
+                cmd.Parameters.AddWithValue("@passwordsuper", webSite.PasswordSuper);
+                cmd.Parameters.AddWithValue("@description", webSite.Description);
 
                 cmd.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                var error = e.Message;
                 return false;
                 throw;
             }
@@ -227,11 +234,19 @@ namespace ReportWebsite.SqlConnections
                 SqlConnection con = new SqlConnection(ConnectionString);
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name , [Admin]= @admin ,[CreateDate] = @createdate WHERE ([SiteId]= @siteid)", con);
+                SqlCommand cmd = new SqlCommand("UPDATE  WebSite SET [Name]= @name ," +
+                    " [Admin]= @admin ,[CreateDate] = @createdate , [UserSite]=@usersite,[UserSuper]=@usersuper"  +
+                    ", [PasswordSite]=@passwordsite , [PasswordSuper]=@passwordsuper ,[Description]=@description " +
+                    " WHERE ([SiteId]= @siteid)", con);
                 cmd.Parameters.AddWithValue("@name", website.Name);
                 cmd.Parameters.AddWithValue("@createdate", website.CreateDate);
                 cmd.Parameters.AddWithValue("@admin", website.Admin);
                 cmd.Parameters.AddWithValue("@siteid", website.SiteId);
+                cmd.Parameters.AddWithValue("@usersite", website.UserSite);
+                cmd.Parameters.AddWithValue("@usersuper", website.UserSuper);
+                cmd.Parameters.AddWithValue("@passwordsite", website.PasswordSite);
+                cmd.Parameters.AddWithValue("@passwordsuper", website.PasswordSuper);
+                cmd.Parameters.AddWithValue("@description", website.Description);
                 cmd.ExecuteNonQuery();
 
                 con.Close();

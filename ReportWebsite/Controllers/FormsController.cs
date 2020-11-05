@@ -38,7 +38,7 @@ namespace ReportWebsite.Controllers
                         ItemId = item.ItemId,
                         ItemText = item.Text,
                         Status = true,
-                       Value = "",
+                        Value = "",
                     });
                 }
 
@@ -97,7 +97,12 @@ namespace ReportWebsite.Controllers
                 // update website
                 webSite.SiteId = initSiteId ?? 0;
                 var result = _webSiteDP.UpdateWebSite(webSite);
+                if (result)
+                {
+                    return RedirectToAction("Forms", new { type = type });
+                }
                 return RedirectToAction("Forms", new { type = type });
+                //todo : نمایش پیغام خطا
             }
 
         }
@@ -173,10 +178,8 @@ namespace ReportWebsite.Controllers
             catch (Exception e)
             {
                 this.Log().Fatal(e.Message);
-                return Json(new Tuple<bool, string>(false, e.Message));
+                return Json(new Tuple<bool, string>(false,"مشاهده اطلاعات با خطا مواجه شد."));
             }
-
-
         }
 
 
