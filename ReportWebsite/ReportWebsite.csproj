@@ -2599,6 +2599,7 @@
     <Compile Include="Controllers\FormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="DataProvider\ItemDP.cs" />
     <Compile Include="DataProvider\ElementDP.cs" />
     <Compile Include="DataProvider\WebSiteDP.cs" />
@@ -3088,6 +3089,7 @@
     <Content Include="Views\Forms\FormInfo.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\LocalDatetime.cshtml" />
+    <Content Include="Views\Users\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

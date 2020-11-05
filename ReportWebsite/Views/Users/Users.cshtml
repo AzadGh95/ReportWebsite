@@ -1,0 +1,205 @@
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
+@using Dualp.Common.Types
+@using ReportWebsite.UtilitySystem
+@using ReportWebsite.Models
+@using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
+
+@model  List<ReportWebsite.Models.User>
+@{
+    WebSiteType type = ViewBag.Type;
+    var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
+    ViewBag.Title = Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebSite w;
+}
+
+
+@section Broadcast{
+
+    @Html.RenderBroadcast("لیست کاربران", new Tuple<string, string>("#", "کاربران"))
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">لیست @Title </h4>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        @*<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>*@
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <p></p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th style="width: 8% ;">ردیف</th>
+                                    <th style="width: 35% ;">نام و نام خانوادگی</th>
+                                    <th style="width: 35% ;">نام کاربری</th>
+                                    <th style="width: 10% ;">تاریخ ایجاد</th>
+                                    <th style="width: 17% ;">وضعیت</th>
+                                    <th style="width: 30% ;">ابزارک ها</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Count() > 0)
+                                {
+                                    int row = 1;
+                                    foreach (var m in Model)
+                                    {
+                                        <tr>
+                                            <td scope="row">@(row++) </td>
+                                            <td>@m.Name</td>
+                                            <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
+                                            <td>@m.Admin</td>
+                                            <td>
+                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
+                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
+
+                                                <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
+                                                {
+                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                }
+                                               
+                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(type,m.SiteId)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="FormInfo" class="modal">
+    <div class="modal-dialog">
+        <div id="contentInfoForm">
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+
+        function Alert() {
+            swal({ text: "این قسمت هنوز نوشته نشده ", timer: 2000, showConfirmButton: false, icon: "info" });
+
+        }
+
+
+        $(document).ready(function () {
+
+            $(".form-info").click(function() {
+
+                var siteId = $(this).data("siteid");
+                console.log(siteId);
+                $.ajax({
+                    type: "POST",
+                    /**/
+                    url: '@Url.Action("FormInfo", "Forms")',
+                    /**/
+                    data: JSON.stringify({'siteId': siteId  }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.Item1) {
+                            $("#contentInfoForm").html(response.Item2);
+                            $('#FormInfo').modal('show');
+                        } else {
+                            swal({
+                                title: 'خطا در بارگذاری اطلاعات',
+                                text: response.Item2,
+                                confirmButtonText: 'تایید',
+                                type: "error"
+                            });
+                        }
+                    },
+                    failure: function(response) {
+                        swal({
+                            title: 'خطا در بارگذاری اطلاعات',
+                            text: response.responseText,
+                            confirmButtonText: 'تایید',
+                            //text: "You will not be able to recover this imaginary file!",
+                            type: "error"
+                        });
+
+                    }
+                });
+            });
+
+
+
+            //$('.form-info').on('click', function () {
+            //    var el = document.createElement('span'),
+            //        t = document.createTextNode('What to do  What not to do ');
+            //    el.style.cssText = 'color:#e001a1';
+            //    el.appendChild(t);
+            //    swal({
+
+            //        title: '!HTML Alert',
+            //        content: {
+            //            element: el,
+            //        }
+            //    });
+            //});
+
+
+            $('.form-delete').on('click', function () {
+                formdelete = $(this).parent();
+                swal({
+                    title: "حذف  ",
+                    text: "آیا میخواهید فرم تحویل  " + $(this).data('title') + " را حذف کنید ؟",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "نه ، لغو حذف",
+                            value: null,
+                            visible: true,
+                            className: "",
+                            closeModal: false,
+                        },
+                        confirm: {
+                            text: "بله ، حذف شود ",
+                            value: true,
+                            visible: true,
+                            className: "",
+                            closeModal: false
+                        }
+                    }
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm) {
+                            formdelete.submit();
+                            //swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                            swal({ title: "حذف!", text: "حذف با موفقیت انجام شد", timer: 2000, showConfirmButton: false, icon: "success" });
+
+                        } else {
+                            //  swal("لغو", "عملیات حذف لغو شد", "error");
+                            swal({ title: "لغو!", text: "عملیات حذف لغو شد", timer: 2000, showConfirmButton: false, icon: "error" });
+                        }
+                    });
+
+            });
+        });
+
+
+
+
+    </script>
+    <script src="~/Template/Contents/vendors/js/extensions/sweetalert.min.js"></script>
+}
