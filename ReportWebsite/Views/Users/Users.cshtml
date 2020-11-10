@@ -3,15 +3,15 @@
 @using Dualp.Common.Types
 @using ReportWebsite.UtilitySystem
 @using ReportWebsite.Models
-@using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType
+
 
 @model  List<ReportWebsite.Models.User>
 @{
-    WebSiteType type = ViewBag.Type;
-    var Title = ReportWebsite.Enums.ReportWebSiteType.ToDisplay(type);
+
+    var Title = "کاربران";
     ViewBag.Title = Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    WebSite w;
+    User w;
 }
 
 
@@ -58,20 +58,20 @@
                                     {
                                         <tr>
                                             <td scope="row">@(row++) </td>
-                                            <td>@m.Name</td>
+                                            <td>@m.FirstName +&nbsp; @m.LastName</td>
                                             <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
-                                            <td>@m.Admin</td>
+                                            <td>@m.UserName</td>
                                             <td>
                                                 <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
                                                 <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
 
-                                                <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
+                                                <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.Id}, FormMethod.Post))
                                                 {
-                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Id" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
                                                 }
                                                
-                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(type,m.SiteId)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(m.Id)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
                                     }

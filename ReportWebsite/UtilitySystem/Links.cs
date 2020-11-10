@@ -11,6 +11,19 @@ namespace ReportWebsite.UtilitySystem
 {
     public class Links
     {
+
+        public static string User(int? userId = null)
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("User", "Users", new { userId = userId });
+        }
+        public static string Users()
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("Users", "Users");
+        }
+
+
         public static string Form(WebSiteType type , int? siteId=null)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
