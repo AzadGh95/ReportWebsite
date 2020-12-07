@@ -7,7 +7,7 @@ namespace ReportWebsite.DataBaseContext
 {
     public class DataBaseContext:System.Data.Entity.DbContext
     {
-        public DataBaseContext()
+        public DataBaseContext() : base("WebContext")
         {
 
         }
@@ -21,5 +21,6 @@ namespace ReportWebsite.DataBaseContext
         public System.Data.Entity.DbSet<Entities.EN_WebSite> WebSites { get; set; }
         public System.Data.Entity.DbSet<Entities.EN_ViewEditModel> ViewEditModels { get; set; }
         public System.Data.Entity.DbSet<Entities.EN_Item> Items { get; set; }
+
     }
 }

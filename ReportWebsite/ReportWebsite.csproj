@@ -2622,6 +2622,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\CurrencyModelBinder.cs" />
     <Compile Include="ModelBinders\IntModelBinder.cs" />
     <Compile Include="Models\Item.cs" />
