@@ -123,7 +123,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ConnectionString.txt" />
     <Content Include="Global.asax" />
+    <Content Include="Migrations\migration-help.txt" />
     <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.css" />
     <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.fa.js" />
     <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.fa.min.js" />
@@ -2622,6 +2624,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
+    <Compile Include="Migrations\202012090737200_Initial.cs" />
+    <Compile Include="Migrations\202012090737200_Initial.designer.cs">
+      <DependentUpon>202012090737200_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\CurrencyModelBinder.cs" />
     <Compile Include="ModelBinders\IntModelBinder.cs" />
@@ -3117,10 +3123,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202012090737200_Initial.resx">
+      <DependentUpon>202012090737200_Initial.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

@@ -41,11 +41,11 @@ namespace ReportWebsite.Controllers
             }
             else
             {
-                return PartialView(_itemDP.GetItem(itemId ?? 0));
+                //ADO
+                //return PartialView(_itemDP.GetItem(itemId ?? 0)); 
+
+                return PartialView(null);
             }
-
-
-
         }
         public ActionResult Items(WebSiteType type)
         {

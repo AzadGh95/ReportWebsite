@@ -30,5 +30,18 @@ namespace ReportWebsite.Models
                             WebSiteType.Application,
             };
         }
+        public static implicit operator Item(Entities.EN_Item model)
+        {
+            if (model == null) return null;
+
+            return new Item()
+            {
+                ItemId = model.ItemId,
+                Text = model.Text,
+                Type = model.Type
+
+            };
+        }
+
     }
 }
