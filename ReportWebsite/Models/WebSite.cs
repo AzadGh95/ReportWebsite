@@ -19,6 +19,7 @@ namespace ReportWebsite.Models
             CreateDate = DateTime.UtcNow;
         }
         public int SiteId { get; set; }
+        [Required(ErrorMessage ="لطفا نام وبسایت را وارد کنید .")]
         public string Name { get; set; }
 
         [Display(Name = "تاریخ تحویل")]
@@ -57,10 +58,6 @@ namespace ReportWebsite.Models
         public string Description { get; set; }
 
 
-
-
-
-
         public static implicit operator WebSite(SqlDataReader sql)
         {
             return new WebSite
@@ -77,5 +74,23 @@ namespace ReportWebsite.Models
                 CreateDate = DateTime.Parse(sql["CreateDate"].ToString()),
             };
         }
+
+        public Entities.EN_WebSite ToWebSite()
+        {
+            return new Entities.EN_WebSite
+            {
+               Admin = Admin,
+               CreateDate = CreateDate,
+               Description = Description,
+               Name=Name,
+               PasswordSite = PasswordSite,
+               PasswordSuper = PasswordSuper,
+               SiteId = SiteId,
+               Type = Type,
+               UserSite = UserSite,
+               UserSuper = UserSuper,
+            };
+        }
+
     }
 }

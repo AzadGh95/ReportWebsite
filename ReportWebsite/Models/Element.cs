@@ -30,5 +30,37 @@ namespace ReportWebsite.Models
                 ItemText = sql["ItemText"].ToString(),
             };
         }
+
+        public static implicit operator Element(Entities.En_Element model)
+        {
+            if (model == null) return null;
+            return new Element()
+            {
+                ElementId = model.ElementId,
+                ItemId = model.ItemId,
+                ItemText = model.ItemText,
+                SiteId = model.SiteId,
+                Status = model.Status,
+                Value = model.Value,
+            };
+        
+
+        
+        }
+
+        public Entities.En_Element ToElement()
+        {
+            return new Entities.En_Element()
+            {
+                ElementId = ElementId,
+                ItemId = ItemId ,
+                ItemText = ItemText ,
+                SiteId = SiteId ,
+                Status = Status ,
+                Value = Value,
+               
+            };
+        }
+
     }
 }

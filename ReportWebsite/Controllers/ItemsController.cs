@@ -1,6 +1,8 @@
 ﻿using ReportWebsite.DataProvider;
 using ReportWebsite.Enums;
 using ReportWebsite.Models;
+using ReportWebsite.Plugins;
+using ReportWebsite.Repositories;
 using ReportWebsite.UtilitySystem;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,16 @@ namespace ReportWebsite.Controllers
     public class ItemsController : Controller
     {
         public ItemDP _itemDP;
+        public ItemDataProvider _itemDataProvider;
+
+        //public ItemDataProvider() : this() { }
+
         public ItemsController()
         {
             _itemDP = new ItemDP();
+            _itemDataProvider = new ItemDataProvider();
         }
+
 
         // GET: Items
         public ActionResult Index()

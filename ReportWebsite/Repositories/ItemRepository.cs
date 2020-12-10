@@ -5,13 +5,20 @@ using System.Web;
 using Dualp.Common.Logger;
 using Dualp.Common.Types;
 using ReportWebsite.Entities;
+using ReportWebsite.Models;
 
 namespace ReportWebsite.Repositories
 {
     public class ItemRepository : IItemRepository
     {
         private readonly DataBaseContext.DataBaseContext _context;
-              
+
+
+        public ItemRepository()
+        {
+            this._context = new DataBaseContext.DataBaseContext();
+        }
+
         public ItemRepository(DataBaseContext.DataBaseContext mainContext)
         {
             this._context = mainContext;
@@ -87,7 +94,6 @@ namespace ReportWebsite.Repositories
 
         ResultActivity IItemRepository.Insert(EN_Item item)
         {
-
             try
             {
                 _context.Items.Add(item);
@@ -101,5 +107,6 @@ namespace ReportWebsite.Repositories
             }
             
         }
+
     }
 }

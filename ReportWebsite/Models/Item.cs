@@ -6,13 +6,15 @@ using System.Data.SqlClient;
 using System.Data;
 using ReportWebsite.Enums;
 using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace ReportWebsite.Models
 {
     public class Item
     {
         public int ItemId { get; set; }
+
+        [Required(ErrorMessage ="لطفا توضیحات آیتم را وارد کنید .")]
         public string Text { get; set; }
         public WebSiteType Type { get; set; }
 
@@ -42,6 +44,14 @@ namespace ReportWebsite.Models
 
             };
         }
-
+        public Entities.EN_Item ToItem()
+        {
+            return new Entities.EN_Item
+            {
+                ItemId = ItemId,
+                Text = Text,
+                Type = Type,
+            };
+        }
     }
 }

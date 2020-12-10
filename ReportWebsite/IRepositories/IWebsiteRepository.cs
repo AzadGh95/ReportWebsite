@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ReportWebsite.Repositories
 {
-    interface IWebsiteRepository :IDisposable
+    public interface IWebsiteRepository : IDisposable
     {
         ResultActivity Delete(int Id);
         ResultActivity Insert(Entities.EN_WebSite WebSite);

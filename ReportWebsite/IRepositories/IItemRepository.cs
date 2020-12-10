@@ -1,4 +1,5 @@
 ﻿using Dualp.Common.Types;
+using ReportWebsite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ReportWebsite.Repositories
 {
-    interface IItemRepository : IDisposable
+    public interface IItemRepository : IDisposable
     {
 
         ResultActivity Delete(int id);
