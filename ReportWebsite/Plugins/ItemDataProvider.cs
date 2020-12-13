@@ -7,14 +7,14 @@ using System.Linq;
 using System.Web;
 using System.Transactions;
 using Dualp.Common.Logger;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.Plugins
 {
     public class ItemDataProvider
     {
         private readonly IItemRepository _itemRepository;
-
-
+        
         public ItemDataProvider()
         {
             _itemRepository = new ItemRepository();
@@ -75,6 +75,10 @@ namespace ReportWebsite.Plugins
             }
         }
 
+        public List<Item> GetItems(WebSiteType type) {
+            return _itemRepository.GetItems(type)?.Select(i => (Item)i).ToList();
+
+        }
 
     }
 }

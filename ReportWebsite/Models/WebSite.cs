@@ -9,6 +9,8 @@ using ReportWebsite.SqlConnections;
 using ReportWebsite.Enums;
 using WebSiteType = ReportWebsite.Enums.ReportWebSiteType.WebSiteType;
 using System.ComponentModel.DataAnnotations;
+using ReportWebsite.Entities;
+using ReportWebsite.Plugins;
 
 namespace ReportWebsite.Models
 {
@@ -19,7 +21,7 @@ namespace ReportWebsite.Models
             CreateDate = DateTime.UtcNow;
         }
         public int SiteId { get; set; }
-        [Required(ErrorMessage ="لطفا نام وبسایت را وارد کنید .")]
+        [Required(ErrorMessage = "لطفا نام وبسایت را وارد کنید .")]
         public string Name { get; set; }
 
         [Display(Name = "تاریخ تحویل")]
@@ -28,7 +30,7 @@ namespace ReportWebsite.Models
         public DateTime CreateDate { get; set; }
         public string Admin { get; set; }
         public WebSiteType Type { get; set; }
-    
+
 
         private List<Element> _elements;
         private bool _get;
@@ -38,7 +40,11 @@ namespace ReportWebsite.Models
             {
                 if (!_get && _elements == null)
                 {
-                    _elements = ElementSqlConnection.SelectElementBySite(SiteId).ToList();
+                   // _elements = ElementSqlConnection.SelectElementBySite(SiteId).ToList();
+
+                    var repo =new ElementDataProvider();
+                    _elements = repo.GetElements();
+
                     _get = true;
                 }
 
@@ -75,20 +81,38 @@ namespace ReportWebsite.Models
             };
         }
 
-        public Entities.EN_WebSite ToWebSite()
+        public static implicit operator WebSite(EN_WebSite model)
+        {
+            if (model == null) return null;
+            return new WebSite()
+            {
+                Admin = model.Admin,
+                CreateDate = model.CreateDate,
+                Description = model.Description,
+                Name = model.Name,
+                PasswordSite = model.PasswordSite,
+                PasswordSuper = model.PasswordSuper,
+                SiteId = model.SiteId,
+                Type = model.Type,
+                UserSite=model.UserSite,
+                UserSuper = model.UserSuper
+            };
+        }
+
+        public EN_WebSite ToWebSite()
         {
             return new Entities.EN_WebSite
             {
-               Admin = Admin,
-               CreateDate = CreateDate,
-               Description = Description,
-               Name=Name,
-               PasswordSite = PasswordSite,
-               PasswordSuper = PasswordSuper,
-               SiteId = SiteId,
-               Type = Type,
-               UserSite = UserSite,
-               UserSuper = UserSuper,
+                Admin = Admin,
+                CreateDate = CreateDate,
+                Description = Description,
+                Name = Name,
+                PasswordSite = PasswordSite,
+                PasswordSuper = PasswordSuper,
+                SiteId = SiteId,
+                Type = Type,
+                UserSite = UserSite,
+                UserSuper = UserSuper,
             };
         }
 

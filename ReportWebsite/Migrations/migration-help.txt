@@ -9,3 +9,14 @@ Update-Database
 ................
 if you have more than one context
 Enable-Migrations -ContextTypeName MVCproject.Models.UsersContext
+
+
+
+
+
+
+https://github.com/zzzprojects/EntityFramework.Extended
+Install-Package EntityFramework.Extended
+...............
+Permission for Delete and Update
+

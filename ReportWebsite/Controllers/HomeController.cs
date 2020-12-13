@@ -6,10 +6,19 @@ using System.Web;
 using System.Web.Mvc;
 using  ReportWebsite.SqlConnections;
 using static ReportWebsite.Enums.ReportWebSiteType;
+using ReportWebsite.Plugins;
+
 namespace ReportWebsite.Controllers
 {
     public class HomeController : Controller
     {
+
+        public WebSiteDataProvider _websiteDataProvider;
+
+        public HomeController()
+        {
+            _websiteDataProvider = new WebSiteDataProvider();
+        }
         // GET: Home
         public ActionResult Index()
         {
@@ -22,7 +31,8 @@ namespace ReportWebsite.Controllers
         [HttpGet]
         public JsonResult CountWebSite(WebSiteType type)
         {
-            return Json(WebSiteSqlConnection.Count(type), JsonRequestBehavior.AllowGet);
+           return Json(_websiteDataProvider.Count(type));
+            //return Json(WebSiteSqlConnection.Count(type), JsonRequestBehavior.AllowGet);
         }
     }
 }

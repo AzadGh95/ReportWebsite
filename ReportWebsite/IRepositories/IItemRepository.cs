@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.Repositories
 {
@@ -16,6 +17,7 @@ namespace ReportWebsite.Repositories
         ResultActivity Edit(Entities.EN_Item item, int id);
         Entities.EN_Item GetItem(int id);
         List<Entities.EN_Item> GetItems();
+        List<Entities.EN_Item> GetItems(WebSiteType type);
     }
 }
 

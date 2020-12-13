@@ -6,12 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
 using System.Web;
+using static ReportWebsite.Enums.ReportWebSiteType;
 
 namespace ReportWebsite.Plugins
 {
     public class WebSiteDataProvider
     {
         private readonly IWebsiteRepository _websiteRepository;
+
+        public WebSiteDataProvider()
+        {
+            _websiteRepository = new WebsiteRepository();
+        }
 
         public WebSiteDataProvider(IWebsiteRepository websiteRepository)
         {
@@ -36,6 +42,27 @@ namespace ReportWebsite.Plugins
 
                 throw;
             }
+        }
+        public int Count(WebSiteType type)
+        {
+            return _websiteRepository.CountWeb(type);
+        }
+        public List<WebSite> GetWebSites(WebSiteType type)
+        {
+            try
+            {
+                return _websiteRepository.GetWebSites(type)?.Select(i => (WebSite)i).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        public WebSite GetWebSite(int id)
+        {
+            return _websiteRepository.GetWebsite(id);
         }
     }
 }

@@ -13,6 +13,11 @@ namespace ReportWebsite.Plugins
     public class ElementDataProvider
     {
         private readonly IElementRepository _elementRepository;
+        public ElementDataProvider()
+        {
+            _elementRepository = new ElementRepository();
+        }
+
         public ElementDataProvider(IElementRepository elementRepository)
         {
             _elementRepository = elementRepository;

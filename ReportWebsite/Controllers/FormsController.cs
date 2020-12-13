@@ -1,6 +1,7 @@
 ﻿using Dualp.Common.Logger;
 using ReportWebsite.DataProvider;
 using ReportWebsite.Models;
+using ReportWebsite.Plugins;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,21 @@ namespace ReportWebsite.Controllers
         public WebSiteDP _webSiteDP;
         public ElementDP _elementDP;
         public ItemDP _itemDP;
+
+        public WebSiteDataProvider _webSiteDataProvider;
+        public ItemDataProvider _itemDataProvider;
         public FormsController()
         {
             _webSiteDP = new WebSiteDP();
             _itemDP = new ItemDP();
+            _webSiteDataProvider = new WebSiteDataProvider();
         }
         // GET: Forms
         public ActionResult Form(WebSiteType type, int? siteId)
         {
-            var Items = _itemDP.GetItemsByType(type);
+
+            //var Items = _itemDP.GetItemsByType(type);
+            var Items = _itemDataProvider.GetItems(type);
             ViewBag.Items = Items;
             ViewBag.Type = type;
             ViewBag.siteId = siteId ?? 0;

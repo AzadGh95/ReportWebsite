@@ -14,5 +14,6 @@ namespace ReportWebsite.Repositories
         ResultActivity Edit(Entities.En_Element Element, int Id);
         Entities.En_Element GetElement(int Id);
         List<Entities.En_Element> GetEnElements();
+        int CountElement();
     }
 }

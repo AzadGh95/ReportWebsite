@@ -17,8 +17,6 @@ namespace ReportWebsite.Controllers
         public ItemDP _itemDP;
         public ItemDataProvider _itemDataProvider;
 
-        //public ItemDataProvider() : this() { }
-
         public ItemsController()
         {
             _itemDP = new ItemDP();

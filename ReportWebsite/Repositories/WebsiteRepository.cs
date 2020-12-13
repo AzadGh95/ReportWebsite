@@ -7,73 +7,96 @@ using Dualp.Common.Types;
 using EntityFramework.Extensions;
 using ReportWebsite.Entities;
 using ReportWebsite.Enums;
-using ReportWebsite.Models;
 
 namespace ReportWebsite.Repositories
 {
-    public class ItemRepository : IItemRepository
+    public class WebsiteRepository : IWebsiteRepository
     {
         private readonly DataBaseContext.DataBaseContext _context;
-
-
-        public ItemRepository()
+        public WebsiteRepository()
         {
             this._context = new DataBaseContext.DataBaseContext();
         }
-
-        public ItemRepository(DataBaseContext.DataBaseContext mainContext)
+        public WebsiteRepository(DataBaseContext.DataBaseContext mainContext)
         {
             this._context = mainContext;
         }
-
-        public List<EN_Item> GetItems(ReportWebSiteType.WebSiteType type)
+        public int CountWeb(ReportWebSiteType.WebSiteType webSiteType)
         {
             try
             {
-                return _context.Items.Where(v => v.Type == type).ToList();
-
-            }
-            catch (Exception ex)
-            {
-                this.Log().Fatal(ex.Message
-                    );
-                throw;
-            }
-        }
-
-        ResultActivity IItemRepository.Delete(int id)
-        {
-            try
-            {
-                _context.Items.Where(x => x.ItemId == id).Delete();
-                return new ResultActivity(true);
+                return _context.WebSites.Count();
             }
             catch (Exception ex)
             {
                 this.Log().Fatal(ex.Message);
                 throw;
-
             }
+        }
+
+        public ResultActivity Delete(int Id)
+        {
+            try
+            {
+                _context.WebSites.Where(x => x.SiteId == Id).Delete();
+
+                return new ResultActivity(true);
+            }
+            catch (Exception ex)
+            {
+
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+
 
         }
 
-        void IDisposable.Dispose()
+        public void Dispose()
         {
             _context?.Dispose();
         }
 
-        ResultActivity IItemRepository.Edit(EN_Item item, int id)
+        public ResultActivity Edit(EN_WebSite WebSite)
         {
             try
             {
-                _context.Items.Where(x => x.ItemId == id).Update(x => new EN_Item
-                {
-                    Text = item.Text,
-                    Type = item.Type,
-
+                _context.WebSites.Where(x => x.SiteId == WebSite.SiteId).Update(x => new EN_WebSite {
+                    PasswordSuper = WebSite.PasswordSuper,      
+                    Admin = WebSite.Admin,
+                    PasswordSite = WebSite.PasswordSite,
+                    UserSite = WebSite.UserSite,
+                    Name = WebSite.Name,
+                    Description = WebSite.Description,
+                    UserSuper = WebSite.UserSuper
                 });
-
                 return new ResultActivity(true);
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+        }
+
+        public EN_WebSite GetWebSite(int id)
+        {
+            try
+            {
+                return _context.WebSites.First(x => x.SiteId == id);
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+        }
+
+        public List<EN_WebSite> GetWebSites(ReportWebSiteType.WebSiteType type)
+        {
+            try
+            {
+                return  _context.WebSites.Where(i=>i.Type==type).ToList();
 
             }
             catch (Exception ex)
@@ -83,49 +106,19 @@ namespace ReportWebsite.Repositories
             }
         }
 
-        EN_Item IItemRepository.GetItem(int id)
+        public ResultActivity Insert(EN_WebSite WebSite)
         {
             try
             {
-                return _context.Items.AsNoTracking().FirstOrDefault(x => x.ItemId == id);
-            }
-            catch (Exception ex)
-            {
-                this.Log().Fatal(ex.Message);
-                throw;
-            }
-        }
-
-        List<EN_Item> IItemRepository.GetItems()
-        {
-            try
-            {
-                return _context.Items.AsNoTracking().ToList();
-            }
-            catch (Exception ex)
-            {
-                this.Log().Fatal(ex.Message);
-                throw;
-            }
-
-
-        }
-
-        ResultActivity IItemRepository.Insert(EN_Item item)
-        {
-            try
-            {
-                _context.Items.Add(item);
+                _context.WebSites.Add(WebSite);
                 _context.SaveChanges();
-                return new ResultActivity(true);
+                return new ResultActivity();
             }
             catch (Exception ex)
             {
                 this.Log().Fatal(ex.Message);
                 throw;
             }
-
         }
-
     }
 }
