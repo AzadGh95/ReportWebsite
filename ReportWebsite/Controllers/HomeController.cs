@@ -34,5 +34,10 @@ namespace ReportWebsite.Controllers
            return Json(_websiteDataProvider.Count(type));
             //return Json(WebSiteSqlConnection.Count(type), JsonRequestBehavior.AllowGet);
         }
+
+        public PartialViewResult SliderHomePartial()
+        {
+            return PartialView();
+        }
     }
 }

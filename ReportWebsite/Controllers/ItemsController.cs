@@ -14,12 +14,12 @@ namespace ReportWebsite.Controllers
 {
     public class ItemsController : Controller
     {
-        public ItemDP _itemDP;
+    //    public ItemDP _itemDP;
         public ItemDataProvider _itemDataProvider;
 
         public ItemsController()
         {
-            _itemDP = new ItemDP();
+         //   _itemDP = new ItemDP();
             _itemDataProvider = new ItemDataProvider();
         }
 
@@ -33,9 +33,10 @@ namespace ReportWebsite.Controllers
         [HttpPost]
         public ActionResult Item(Item model)
         {
-            var result = _itemDP.Insert(model);
+            // var result = _itemDP.Insert(model);
             //if (!result)
             //    return result;
+            var result = _itemDataProvider.InsertItem(model);
             return RedirectToAction("Items", new { type = model.Type });
 
         }
@@ -50,21 +51,23 @@ namespace ReportWebsite.Controllers
                 //ADO
                 //return PartialView(_itemDP.GetItem(itemId ?? 0)); 
 
-                return PartialView(null);
+                return PartialView(_itemDataProvider.GetItem(itemId ?? 0));
             }
         }
         public ActionResult Items(WebSiteType type)
         {
             ViewBag.Type = type;
-            return View(_itemDP.GetItemsByType(type));
+            //return View(_itemDP.GetItemsByType(type));
+            return View(_itemDataProvider.GetItems(type));
 
         }
 
         [HttpPost]
-        public ActionResult DeleteItem(int itemId , WebSiteType type)
+        public ActionResult DeleteItem(int itemId, WebSiteType type)
         {
-            var result = _itemDP.DeleteItem(itemId);
-            return RedirectToAction("Items", new {type = type });
+            //var result = _itemDP.DeleteItem(itemId);
+            var result = _itemDataProvider.DeleteItem(itemId);
+            return RedirectToAction("Items", new { type = type });
         }
 
     }

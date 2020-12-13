@@ -129,6 +129,8 @@
   <ItemGroup>
     <Content Include="App_Data\ConnectionString.txt" />
     <Content Include="Global.asax" />
+    <Content Include="MediaFolder\landing1.jpg" />
+    <Content Include="MediaFolder\landing2.jpg" />
     <Content Include="Migrations\migration-help.txt" />
     <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.css" />
     <Content Include="Template\Contents\BootstrapJalaliDatePicker\bootstrap-datepicker.fa.js" />
@@ -3123,6 +3125,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\LocalDatetime.cshtml" />
     <Content Include="Views\Users\Users.cshtml" />
+    <Content Include="Views\Home\SliderHomePartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

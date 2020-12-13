@@ -30,8 +30,8 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-                return _context.Items.Where(v => v.Type == type).ToList();
-
+                var result = _context.Items.Where(v => v.Type == type).ToList();
+                return result;
             }
             catch (Exception ex)
             {

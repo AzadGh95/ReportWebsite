@@ -74,12 +74,30 @@ namespace ReportWebsite.Repositories
 
         public List<En_Element> GetEnElements()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result =_context.Elements.AsNoTracking().ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
         }
 
         public ResultActivity Insert(En_Element Element)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Elements.Add(Element);
+                return new ResultActivity(true);
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ReportWebsite.Plugins
         {
             _elementRepository = elementRepository;
         }
-        ResultActivity InsertElement(Element element)
+        public ResultActivity InsertElement(Element element)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace ReportWebsite.Plugins
                 using (var ts = new TransactionScope(TransactionScopeOption.Required,
                  TransactionScopeAsyncFlowOption.Enabled))
                 {
-                   var result= _elementRepository.Insert(eN_Element);
+                    var result = _elementRepository.Insert(eN_Element);
                     ts.Complete();
                     return result;
                 }
@@ -58,7 +58,7 @@ namespace ReportWebsite.Plugins
                 throw;
             }
         }
-        ResultActivity DeleteElement(int id)
+        public ResultActivity DeleteElement(int id)
         {
             try
             {
@@ -70,8 +70,7 @@ namespace ReportWebsite.Plugins
                 throw;
             }
         }
-
-        ResultActivity UpdateElement(Element element)
+        public ResultActivity UpdateElement(Element element)
         {
             try
             {
@@ -88,7 +87,7 @@ namespace ReportWebsite.Plugins
                         SiteId = element.SiteId,
                         Status = element.Status,
                         Value = element.Value,
-                        
+
                     };
                     var result = _elementRepository.Edit(en_Element, id);
                     ts.Complete();

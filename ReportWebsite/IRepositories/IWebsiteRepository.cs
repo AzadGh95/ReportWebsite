@@ -12,7 +12,7 @@ namespace ReportWebsite.Repositories
     {
         ResultActivity Delete(int Id);
         ResultActivity Insert(Entities.EN_WebSite WebSite);
-        ResultActivity Edit(Entities.EN_WebSite WebSite);
+        ResultActivity Edit(Entities.EN_WebSite WebSite , int id);
         Entities.EN_WebSite GetWebsite(int id);
         List<Entities.EN_WebSite> GetWebSites(WebSiteType type);
         int CountWeb(WebSiteType webSiteType);

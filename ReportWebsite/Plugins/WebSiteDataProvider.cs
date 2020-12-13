@@ -1,4 +1,5 @@
-﻿using Dualp.Common.Types;
+﻿using Dualp.Common.Logger;
+using Dualp.Common.Types;
 using ReportWebsite.Models;
 using ReportWebsite.Repositories;
 using System;
@@ -23,23 +24,37 @@ namespace ReportWebsite.Plugins
         {
             _websiteRepository = websiteRepository;
         }
-        ResultActivity InsertWebsite(WebSite webSite)
+        public ResultActivity InsertWebsite(WebSite webSite)
         {
             try
             {
                 using (var ts = new TransactionScope(TransactionScopeOption.Required,
                  TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    Entities.EN_WebSite eN_WebSite= webSite.ToWebSite();
-                    var result =  _websiteRepository.Insert(eN_WebSite);
-                   
+                    Entities.EN_WebSite eN_WebSite = webSite.ToWebSite();
+                    var result = _websiteRepository.Insert(eN_WebSite);
+
                     ts.Complete();
                     return result;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+        }
+        public ResultActivity UpdateWebSite(WebSite webSite, int siteId)
+        {
+            try
+            {
+                var websiteModel = webSite.ToWebSite();
+                var result = _websiteRepository.Edit(websiteModel, siteId);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
                 throw;
             }
         }
@@ -63,6 +78,12 @@ namespace ReportWebsite.Plugins
         public WebSite GetWebSite(int id)
         {
             return _websiteRepository.GetWebsite(id);
+        }
+
+        public ResultActivity DeleteWebSite(int id)
+        {
+            var result = _websiteRepository.Delete(id);
+            return result;
         }
     }
 }

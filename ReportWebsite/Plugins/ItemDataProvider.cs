@@ -25,7 +25,7 @@ namespace ReportWebsite.Plugins
             _itemRepository = itemRepository;
         }
 
-        ResultActivity InsertItem(Item item)
+        public ResultActivity InsertItem(Item item)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace ReportWebsite.Plugins
                 throw;
             }
         }
-        ResultActivity DeleteItem(int id)
+       public ResultActivity DeleteItem(int id)
         {
             try
             {

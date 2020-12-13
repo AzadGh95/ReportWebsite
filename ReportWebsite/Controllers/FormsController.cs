@@ -13,17 +13,19 @@ namespace ReportWebsite.Controllers
 {
     public class FormsController : Controller
     {
-        public WebSiteDP _webSiteDP;
-        public ElementDP _elementDP;
-        public ItemDP _itemDP;
+        //public WebSiteDP _webSiteDP;
+       // public ElementDP _elementDP;
+      //  public ItemDP _itemDP;
 
         public WebSiteDataProvider _webSiteDataProvider;
         public ItemDataProvider _itemDataProvider;
         public FormsController()
         {
-            _webSiteDP = new WebSiteDP();
-            _itemDP = new ItemDP();
+            //  _webSiteDP = new WebSiteDP();
+            //    _itemDP = new ItemDP();
+            //    _elementDP = new ElementDP();
             _webSiteDataProvider = new WebSiteDataProvider();
+            _itemDataProvider = new ItemDataProvider();
         }
         // GET: Forms
         public ActionResult Form(WebSiteType type, int? siteId)
@@ -57,7 +59,8 @@ namespace ReportWebsite.Controllers
                 ViewBag.siteId = siteId;
                 List<ViewEditModel> ViewEditModels = new List<ViewEditModel>() { };
                 List<Element> TempElements = new List<Element>() { };
-                var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
+               // var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
+                var webSiteModel = _webSiteDataProvider.GetWebSite(siteId??1);
                 if (Items.Count() >= 0)
                 {
                     foreach (var item in Items)
@@ -92,8 +95,10 @@ namespace ReportWebsite.Controllers
             //}
             if (initSiteId == 0)
             {
-                // insert into wesite
-                var result = _webSiteDP.InsertWebsite(webSite);
+                // .....insert into wesite
+
+                //var result = _webSiteDP.InsertWebsite(webSite);
+                var result = _webSiteDataProvider.InsertWebsite(webSite);
                 if (!result)
                     return View(webSite);
 
@@ -101,9 +106,11 @@ namespace ReportWebsite.Controllers
             }
             else
             {
-                // update website
+                // .....update website
+
                 webSite.SiteId = initSiteId ?? 0;
-                var result = _webSiteDP.UpdateWebSite(webSite);
+                //var result = _webSiteDP.UpdateWebSite(webSite);
+                var result = _webSiteDataProvider.UpdateWebSite(webSite , initSiteId ?? 0);
                 if (result)
                 {
                     return RedirectToAction("Forms", new { type = type });
@@ -116,13 +123,15 @@ namespace ReportWebsite.Controllers
         public ActionResult Forms(WebSiteType type)
         {
             ViewBag.Type = type;
-            return View(_webSiteDP.GetWebSites(type));
+            //return View(_webSiteDP.GetWebSites(type));
+            return View(_webSiteDataProvider.GetWebSites(type));
         }
 
         [HttpPost]
         public ActionResult DeleteForm(int siteId, WebSiteType type)
         {
-            _webSiteDP.DeleteWebsite(siteId);
+            //_webSiteDP.DeleteWebsite(siteId);
+            _webSiteDataProvider.DeleteWebSite(siteId);
             return RedirectToAction("Forms", new { type = type });
         }
         //[HttpPost]
@@ -140,7 +149,8 @@ namespace ReportWebsite.Controllers
                 if (siteId == null)
                     return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
 
-                var model = _webSiteDP.GetWebSite(siteId ?? 0);
+                //var model = _webSiteDP.GetWebSite(siteId ?? 0);
+                var model = _webSiteDataProvider.GetWebSite(siteId ?? 0);
                 if (model == null)
                     return Json(new Tuple<bool, string>(false, "فرمی بااین مشخصات یافت نشد"));
 

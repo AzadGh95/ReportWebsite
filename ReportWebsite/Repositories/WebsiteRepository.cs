@@ -57,11 +57,11 @@ namespace ReportWebsite.Repositories
             _context?.Dispose();
         }
 
-        public ResultActivity Edit(EN_WebSite WebSite)
+        public ResultActivity Edit(EN_WebSite WebSite , int SiteId)
         {
             try
             {
-                _context.WebSites.Where(x => x.SiteId == WebSite.SiteId).Update(x => new EN_WebSite {
+                _context.WebSites.Where(x => x.SiteId == SiteId).Update(x => new EN_WebSite {
                     PasswordSuper = WebSite.PasswordSuper,      
                     Admin = WebSite.Admin,
                     PasswordSite = WebSite.PasswordSite,
@@ -83,7 +83,20 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-                return _context.WebSites.First(x => x.SiteId == id);
+                return _context.WebSites.AsNoTracking().First(x => x.SiteId == id);
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+        }
+
+        public EN_WebSite GetWebsite(int id)
+        {
+            try
+            {
+                return _context.WebSites.AsNoTracking().First(x => x.SiteId == id);
             }
             catch (Exception ex)
             {
@@ -96,7 +109,7 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-                return  _context.WebSites.Where(i=>i.Type==type).ToList();
+                return  _context.WebSites.AsNoTracking().Where(i=>i.Type==type).ToList();
 
             }
             catch (Exception ex)
@@ -112,7 +125,7 @@ namespace ReportWebsite.Repositories
             {
                 _context.WebSites.Add(WebSite);
                 _context.SaveChanges();
-                return new ResultActivity();
+                return new ResultActivity(true);
             }
             catch (Exception ex)
             {
