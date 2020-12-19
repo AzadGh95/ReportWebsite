@@ -20,80 +20,85 @@
     @Html.RenderBroadcast("لیست فرم ها", new Tuple<string, string>("#", "فرم ها"))
 }
 
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">لیست فرم    @Title ها</h4>
-                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
-                <div class="heading-elements">
-                    <ul class="list-inline mb-0">
-                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
-                        @*<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>*@
-                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
-                        <li><a data-action="close"><i class="ft-x"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card-content collapse show">
-                <div class="card-body">
-                    <p></p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th style="width: 8% ;">ردیف</th>
-                                    <th style="width: 35% ;">سایت</th>
-                                    <th style="width: 10% ;">تاریخ</th>
-                                    <th style="width: 17% ;">توسط</th>
-                                    <th style="width: 30% ;">ابزارک ها</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model.Count() > 0)
-                                {
-                                    int row = 1;
-                                    foreach (var m in Model)
-                                    {
-                                        <tr>
-                                            <td scope="row">@(row++) </td>
-                                            <td>@m.Name</td>
-                                            <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
-                                            <td>@m.Admin</td>
-                                            <td>
-                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
-                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
-
-                                                <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
-                                                {
-                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
-                                                }
-                                                <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
-                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(type,m.SiteId)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-
-                            </tbody>
-                        </table>
+    <div class="row">
+        @Html.ValidationMessage("LockError")
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">لیست فرم    @Title ها</h4>
+                    <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                    <div class="heading-elements">
+                        <ul class="list-inline mb-0">
+                            <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                            @*<li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>*@
+                            <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            <li><a data-action="close"><i class="ft-x"></i></a></li>
+                        </ul>
                     </div>
                 </div>
+                <div class="card-content collapse show">
+                    <div class="card-body">
+                        <p></p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 8% ;">ردیف</th>
+                                        <th style="width: 35% ;">سایت</th>
+                                        <th style="width: 10% ;">تاریخ</th>
+                                        <th style="width: 17% ;">توسط</th>
+                                        <th style="width: 30% ;">ابزارک ها</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Count() > 0)
+                                    {
+                                        int row = 1;
+                                        foreach (var m in Model)
+                                        {
+                                            <tr>
+                                                <td scope="row">@(row++) </td>
+                                                <td>@m.Name</td>
+                                                <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
+                                                <td>@m.Admin</td>
+                                                <td>
+                                                    <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
+                                                    <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
 
+                                                    <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                    @User.IsInRole("SuperAdmin"){
+                                                    @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))
+                                                    {
+                                                        <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Name" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                    }
+                                                    <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(type,m.SiteId)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+
+                                                    }
+
+                                                    <a class="btn  btn-sm btn-icon  form-report" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title=" چاپ"><i class="ft-printer"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 <div id="FormInfo" class="modal">
     <div class="modal-dialog">
-        <div  id="contentInfoForm">
+        <div id="contentInfoForm">
         </div>
     </div>
 </div>
-            @section Scripts{
-                <script>
+@section Scripts{
+    <script>
 
         function Alert() {
             swal({ text: "این قسمت هنوز نوشته نشده ", timer: 2000, showConfirmButton: false, icon: "info" });
@@ -199,6 +204,6 @@
 
 
 
-                </script>
-                <script src="~/Template/Contents/vendors/js/extensions/sweetalert.min.js"></script>
-            }
+    </script>
+    <script src="~/Template/Contents/vendors/js/extensions/sweetalert.min.js"></script>
+}

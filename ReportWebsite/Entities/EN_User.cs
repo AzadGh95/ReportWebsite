@@ -35,7 +35,8 @@ namespace ReportWebsite.Entities
         public string Phone { get; set; }
         [Column(TypeName = "Nvarchar")]
         [StringLength(100)]
-        public string Role { get; set; }
+        public int RoleId { get; set; }
+        public virtual EN_Role Role { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime CreateDate { get; set; }

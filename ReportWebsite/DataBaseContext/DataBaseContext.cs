@@ -21,6 +21,7 @@ namespace ReportWebsite.DataBaseContext
         public System.Data.Entity.DbSet<Entities.EN_WebSite> WebSites { get; set; }
         public System.Data.Entity.DbSet<Entities.EN_ViewEditModel> ViewEditModels { get; set; }
         public System.Data.Entity.DbSet<Entities.EN_Item> Items { get; set; }
+        public System.Data.Entity.DbSet<Entities.EN_Role> Roles { get; set; }
 
     }
 }

@@ -1,0 +1,99 @@
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
+@using Dualp.Common.Types
+@using ReportWebsite.UtilitySystem
+@using ReportWebsite.Models
+
+
+@model  ReportWebsite.Models.User
+@{
+
+    var Title = "کاربر جدید";
+    ViewBag.Title = Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User U;
+    int UserId = ViewBag.userId??0;
+}
+
+
+@section Broadcast{
+
+    @Html.RenderBroadcast(" ثبت کاربر جدید", new Tuple<string, string>("#", "کاربرجدید"))
+}
+
+
+
+<div class="app-content container center-layout mt-2">
+    <div class="content-wrapper">
+        <div class="content-header row">
+        </div>
+        <div class="content-body">
+            <section class="flexbox-container">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-md-4 col-10 box-shadow-2 p-0">
+                        <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
+                            <div class="card-header border-0">
+                                <div class="card-title text-center">
+                                    <img style="    width: 205px;" src="~/Template/Contents/images/portrait/medium/logo-pd.png" alt="avatar" />
+                                </div>
+                            </div>
+
+                            @using (Html.BeginForm("Home", "SignIn", FormMethod.Post))
+                            {
+                                @Html.Hidden("initUserId", UserId)
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form-horizontal" action="index.html" novalidate>
+                                            <fieldset class="form-group position-relative has-icon-left">                                            
+                                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", id = "FirstName", placeholder = "نام " })
+                                                <div class="form-control-position">
+                                                    <i class="ft-user"></i>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="form-group position-relative has-icon-left">                                           
+                                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", id = "LastName", placeholder = "نام خانوادگی" })
+                                                <div class="form-control-position">
+                                                    <i class="ft-user"></i>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "Username", placeholder = "نام کاربری" })
+                                                <div class="form-control-position">
+                                                    <i class="ft-user"></i>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                               
+                                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "Password", placeholder = "رمزعبور " })
+                                                <div class="form-control-position">
+                                                    <i class="fa fa-key"></i>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                              
+                                                @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "Password", placeholder = "رمزعبور " })
+                                                <div class="form-control-position">
+                                                    <i class="fa fa-key"></i>
+                                                </div>
+                                            </fieldset>
+                                            <div class="form-group row">
+                                                <div class="col-md-6 col-12 text-center text-sm-left">
+                                                    <fieldset>
+
+                                                        <label for="remember-me">  </label>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> ورود</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

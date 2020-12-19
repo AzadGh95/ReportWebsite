@@ -1,8 +1,17 @@
-﻿
+﻿@using ReportWebsite.Infrastructure;
+@using ReportWebsite.Properties
+@using Dualp.Common.Types
+@using ReportWebsite.UtilitySystem
+@using ReportWebsite.Models
+
+
+@model  ReportWebsite.Models.Login
 @{
     ViewBag.Title = "ورود";
     Layout = "~/Views/Shared/_LayoutSingle.cshtml";
+    Login model;
 }
+
 
 <div class="app-content container center-layout mt-2">
     <div class="content-wrapper">
@@ -15,39 +24,48 @@
                         <div class="card border-grey border-lighten-3 px-1 py-1 m-0">
                             <div class="card-header border-0">
                                 <div class="card-title text-center">
-                                        <img style="    width: 205px;" src="~/Template/Contents/images/portrait/medium/logo-pd.png"   alt="avatar"/>
+                                    <h3>پردازش پارسیان</h3>
+                                    <img style="display: none; width: 205px;" src="~/Template/Contents/images/portrait/medium/logo-pd.png" alt="avatar" />
                                 </div>
-               
+
                             </div>
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <form class="form-horizontal" action="index.html" novalidate>
-                                        <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="text" class="form-control" id="user-name" placeholder=" نام کاربری"
-                                                   required>
-                                            <div class="form-control-position">
-                                                <i class="ft-user"></i>
+                            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                            {
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <form class="form-horizontal" action="index.html" novalidate>
+                                            <fieldset class="form-group position-relative has-icon-left">
+
+                                                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "UserName", placeholder = "نام کاربری" })
+
+                                                <div class="form-control-position">
+                                                    <i class="ft-user"></i>
+                                                </div>
+                                            </fieldset>
+                                            <fieldset class="form-group position-relative has-icon-left">
+                                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "Password", placeholder = " رمزعبور" })
+                                                <div class="form-control-position">
+                                                    <i class="fa fa-key"></i>
+                                                </div>
+                                            </fieldset>
+                                            <div class="form-group row">
+                                                <div class="col-md-12 col-12 text-center text-sm-left">
+                                                    <fieldset>
+
+                                                        <label for="remember-me">  </label>
+                                                        <label style="color:#a9293e" for="message-me">
+                                                           
+                                                            @Html.ValidationMessage("LockError")
+                                                        </label>
+                                                    </fieldset>
+                                                </div>
                                             </div>
-                                        </fieldset>
-                                        <fieldset class="form-group position-relative has-icon-left">
-                                            <input type="password" class="form-control" id="user-password" placeholder="رمز عبور "
-                                                   required>
-                                            <div class="form-control-position">
-                                                <i class="fa fa-key"></i>
-                                            </div>
-                                        </fieldset>
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-12 text-center text-sm-left">
-                                                <fieldset>
-                                                 
-                                                    <label for="remember-me">  </label>
-                                                </fieldset>
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> ورود</button>
-                                    </form>
+                                            <button type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> ورود</button>
+                                            <button style="display:none" type="submit" class="btn btn-outline-primary btn-block"><i class="ft-unlock"></i> ثبت نام</button>
+                                        </form>
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

@@ -2608,6 +2608,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Authentication\RoleDataProvider.cs" />
     <Compile Include="Classes\PersianCulture.cs" />
     <Compile Include="Common\System.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
@@ -2622,6 +2623,7 @@
     <Compile Include="Datas\WebsiteRepo.cs" />
     <Compile Include="Entities\En_Element.cs" />
     <Compile Include="Entities\EN_Item.cs" />
+    <Compile Include="Entities\EN_Role.cs" />
     <Compile Include="Entities\EN_User.cs" />
     <Compile Include="Entities\EN_ViewEditModel.cs" />
     <Compile Include="Entities\EN_WebSite.cs" />
@@ -2630,6 +2632,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
+    <Compile Include="IRepositories\IRoleRepositpry.cs" />
+    <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="Migrations\202012090737200_Initial.cs" />
     <Compile Include="Migrations\202012090737200_Initial.designer.cs">
       <DependentUpon>202012090737200_Initial.cs</DependentUpon>
@@ -2639,11 +2643,14 @@
     <Compile Include="ModelBinders\IntModelBinder.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Element.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewEditModel.cs" />
     <Compile Include="Models\WebSite.cs" />
     <Compile Include="Plugins\ElementDataProvider.cs" />
     <Compile Include="Plugins\ItemDataProvider.cs" />
+    <Compile Include="Plugins\UserDataProvider.cs" />
     <Compile Include="Plugins\WebSiteDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
@@ -2656,6 +2663,8 @@
     <Compile Include="IRepositories\IWebsiteRepository.cs" />
     <Compile Include="Repositories\ElementRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\WebsiteRepository.cs" />
     <Compile Include="SqlConnections\ItemSqlConnection.cs" />
     <Compile Include="SqlConnections\WebSiteSqlConnection.cs" />
@@ -3126,6 +3135,8 @@
     <Content Include="Views\Shared\EditorTemplates\LocalDatetime.cshtml" />
     <Content Include="Views\Users\Users.cshtml" />
     <Content Include="Views\Home\SliderHomePartial.cshtml" />
+    <Content Include="Views\Authentication\Error.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -204,3 +204,12 @@ form {
     max-width: 620px;
     margin: 1.75rem auto;
 }
+.btn-outline-primary:hover {
+    background-color: #b76e79;
+    color: #FFFFFF !important;
+}
+.btn-outline-primary:hover {
+    color: #FFFFFF;
+    background-color: #b76e79;
+    border-color: #b76e79;
+}

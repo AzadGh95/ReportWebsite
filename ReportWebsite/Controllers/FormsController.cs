@@ -14,8 +14,8 @@ namespace ReportWebsite.Controllers
     public class FormsController : Controller
     {
         //public WebSiteDP _webSiteDP;
-       // public ElementDP _elementDP;
-      //  public ItemDP _itemDP;
+        // public ElementDP _elementDP;
+        //  public ItemDP _itemDP;
 
         public WebSiteDataProvider _webSiteDataProvider;
         public ItemDataProvider _itemDataProvider;
@@ -28,6 +28,8 @@ namespace ReportWebsite.Controllers
             _itemDataProvider = new ItemDataProvider();
         }
         // GET: Forms
+        //[Authorize(Roles="Admin , SuperAdmin")]
+        [Authorize]
         public ActionResult Form(WebSiteType type, int? siteId)
         {
 
@@ -59,8 +61,8 @@ namespace ReportWebsite.Controllers
                 ViewBag.siteId = siteId;
                 List<ViewEditModel> ViewEditModels = new List<ViewEditModel>() { };
                 List<Element> TempElements = new List<Element>() { };
-               // var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
-                var webSiteModel = _webSiteDataProvider.GetWebSite(siteId??1);
+                // var webSiteModel = _webSiteDP.GetWebSite(siteId ?? 1);
+                var webSiteModel = _webSiteDataProvider.GetWebSite(siteId ?? 1);
                 if (Items.Count() >= 0)
                 {
                     foreach (var item in Items)
@@ -85,6 +87,7 @@ namespace ReportWebsite.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Form(WebSite webSite, WebSiteType type, int? initSiteId)
         {
@@ -110,16 +113,26 @@ namespace ReportWebsite.Controllers
 
                 webSite.SiteId = initSiteId ?? 0;
                 //var result = _webSiteDP.UpdateWebSite(webSite);
-                var result = _webSiteDataProvider.UpdateWebSite(webSite , initSiteId ?? 0);
+                var result = _webSiteDataProvider.UpdateWebSite(webSite, initSiteId ?? 0);
                 if (result)
                 {
+                    ModelState.AddModelError("LockError",
+                 "" + " < i class='fa fa-like'></i>" +
+                 "عملیات ثبت با موفقیت انجام شد."
+                 );
                     return RedirectToAction("Forms", new { type = type });
                 }
+                ModelState.AddModelError("LockError",
+                  "" + " < i class='fa fa-warning'></i>" +
+                  "خطا در ذخیره سازی !"
+                  );
                 return RedirectToAction("Forms", new { type = type });
                 //todo : نمایش پیغام خطا
             }
 
         }
+
+        [Authorize]
         public ActionResult Forms(WebSiteType type)
         {
             ViewBag.Type = type;
@@ -127,6 +140,7 @@ namespace ReportWebsite.Controllers
             return View(_webSiteDataProvider.GetWebSites(type));
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         public ActionResult DeleteForm(int siteId, WebSiteType type)
         {
@@ -141,6 +155,7 @@ namespace ReportWebsite.Controllers
         //    return PartialView(model);
         //}
 
+        [Authorize]
         [HttpPost]
         public JsonResult FormInfo(int? siteId)
         {
@@ -195,7 +210,7 @@ namespace ReportWebsite.Controllers
             catch (Exception e)
             {
                 this.Log().Fatal(e.Message);
-                return Json(new Tuple<bool, string>(false,"مشاهده اطلاعات با خطا مواجه شد."));
+                return Json(new Tuple<bool, string>(false, "مشاهده اطلاعات با خطا مواجه شد."));
             }
         }
 
