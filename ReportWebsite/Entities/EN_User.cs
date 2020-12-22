@@ -33,9 +33,9 @@ namespace ReportWebsite.Entities
         [Column(TypeName = "Nvarchar")]
         [StringLength(100)]
         public string Phone { get; set; }
-        [Column(TypeName = "Nvarchar")]
-        [StringLength(100)]
+
         public int RoleId { get; set; }
+        [ForeignKey("RoleId")]
         public virtual EN_Role Role { get; set; }
 
         [Column(TypeName = "datetime2")]
@@ -44,5 +44,7 @@ namespace ReportWebsite.Entities
         [Column(TypeName = "Nvarchar")]
         [StringLength(100)]
         public string Email { get; set; }
+
+
     }
 }

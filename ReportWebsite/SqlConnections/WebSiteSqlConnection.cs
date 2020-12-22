@@ -223,7 +223,6 @@ namespace ReportWebsite.SqlConnections
             }
             catch (Exception e)
             {
-                return false;
                 throw;
             }
         }

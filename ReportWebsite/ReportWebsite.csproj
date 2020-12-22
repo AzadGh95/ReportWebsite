@@ -2632,11 +2632,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\HTMLExtentions.cs" />
-    <Compile Include="IRepositories\IRoleRepositpry.cs" />
     <Compile Include="IRepositories\IUserRepository.cs" />
     <Compile Include="Migrations\202012090737200_Initial.cs" />
     <Compile Include="Migrations\202012090737200_Initial.designer.cs">
       <DependentUpon>202012090737200_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012211441212_add-rple.cs" />
+    <Compile Include="Migrations\202012211441212_add-rple.designer.cs">
+      <DependentUpon>202012211441212_add-rple.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBinders\CurrencyModelBinder.cs" />
@@ -2644,7 +2647,6 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\Login.cs" />
-    <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewEditModel.cs" />
     <Compile Include="Models\WebSite.cs" />
@@ -2663,7 +2665,6 @@
     <Compile Include="IRepositories\IWebsiteRepository.cs" />
     <Compile Include="Repositories\ElementRepository.cs" />
     <Compile Include="Repositories\ItemRepository.cs" />
-    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Repositories\WebsiteRepository.cs" />
     <Compile Include="SqlConnections\ItemSqlConnection.cs" />
@@ -3150,6 +3151,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012090737200_Initial.resx">
       <DependentUpon>202012090737200_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012211441212_add-rple.resx">
+      <DependentUpon>202012211441212_add-rple.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

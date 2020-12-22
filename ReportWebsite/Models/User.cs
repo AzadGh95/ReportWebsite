@@ -20,30 +20,7 @@ namespace ReportWebsite.Models
         [Required(ErrorMessage = "لطفا رمزعبور را وارد کنید .")]
         public string Password { get; set; }
         public string Phone { get; set; }
-        public int RoleId { get; set; }
-        private EN_Role _role { get; set; }
-        private bool _get;
-        public EN_Role Role {
-            get
-            {
-                if (!_get && _role == null)
-                {
-                   
 
-                    var repo = new RoleRepository();
-                    _role = repo.GetRole(RoleId);
-
-                    _get = true;
-                }
-
-                return _role;
-            }
-            set
-            {
-                _role = value;
-                _get = true;
-            }
-        }
         public DateTime CreateDate { get; set; }
         public bool IsLock { get; set; }
         public string Email { get; set; }
@@ -70,7 +47,6 @@ namespace ReportWebsite.Models
             return new Entities.EN_User()
             {
                 UserName = UserName,
-                RoleId = RoleId,
                 CreateDate = CreateDate,
                 Email = Email,
                 FirstName = FirstName,

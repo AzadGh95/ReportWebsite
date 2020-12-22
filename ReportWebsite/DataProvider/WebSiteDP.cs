@@ -1,4 +1,5 @@
-﻿using ReportWebsite.Models;
+﻿using Dualp.Common.Logger;
+using ReportWebsite.Models;
 using ReportWebsite.SqlConnections;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,8 @@ namespace ReportWebsite.DataProvider
             }
             catch (Exception e)
             {
-                return false;
+
+                this.Log().Fatal(e.Message);
                 throw;
             }
 

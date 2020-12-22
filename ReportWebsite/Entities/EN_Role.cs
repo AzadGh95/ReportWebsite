@@ -8,9 +8,10 @@ namespace ReportWebsite.Entities
 {
     public class EN_Role
     {
+        //[Key]
+        //[Required]
+        //[MaxLength(1)]
         [Key]
-        [Required]
-        [MaxLength(1)]
         public int RoleId { get; set; }
         public string RoleName { get; set; }
         public string RoleInSystem { get; set; }
