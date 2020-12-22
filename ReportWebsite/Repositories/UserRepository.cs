@@ -68,7 +68,19 @@ namespace ReportWebsite.Repositories
                 throw;
             }
         }
-
+        public EN_User GetUser(string user)
+        {
+            try
+            {
+                var u = _context.Users.AsNoTracking().FirstOrDefault(i => i.UserName == user);
+                return u;
+            }
+            catch (Exception ex)
+            {
+                this.Log().Fatal(ex.Message);
+                throw;
+            }
+        }
         public List<EN_User> GetUsers()
         {
             try
@@ -120,15 +132,15 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-                string Password = FormsAuthentication.HashPasswordForStoringInConfigFile(pass, "MD5");
+               // string Password = FormsAuthentication.HashPasswordForStoringInConfigFile(pass, "MD5");
 
-                if (!_context.Users.Any(u => u.UserName == user && u.Password == Password))
+                if (!_context.Users.Any(u => u.UserName == user && u.Password == pass))
                 {
-                    return true;
+                    return false;
                 }
                 else
                 {
-                    return false;
+                    return true;
                 }
 
             }

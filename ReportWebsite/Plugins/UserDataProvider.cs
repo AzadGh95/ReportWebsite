@@ -97,6 +97,10 @@ namespace ReportWebsite.Plugins
         {
             return _userRepository.GetUser(id);
         }
+        public User GetUser(string username)
+        {
+            return _userRepository.GetUser(username);
+        }
         public bool Login(string user , string pass)
         {
             return _userRepository.Login(user, pass);

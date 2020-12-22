@@ -15,6 +15,7 @@ namespace ReportWebsite.IRepositories
         ResultActivity  LockUser(int id, bool doLock);
         ResultActivity  EditUser(EN_User user, int id);
         EN_User GetUser(int id);
+        EN_User GetUser(string user);
         List<EN_User> GetUsers();
 
         bool Login(string user , string pass);

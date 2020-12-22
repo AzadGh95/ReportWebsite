@@ -28,13 +28,14 @@ namespace ReportWebsite.Controllers
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
-                return View();
+                return View("Login");
 
             return View("Login");
-
         }
+
         public ActionResult Login()
         {
+
             return View();
         }
 
@@ -59,20 +60,31 @@ namespace ReportWebsite.Controllers
             bool rememberMe = true;
             string username = model.UserName;
             string password = model.Password;
-
-            var result = _userDataProvider.Login(username, password);
-            if (result == true)
+            if (username == null || password == null)
             {
-                FormsAuthentication.SetAuthCookie(username, rememberMe/*RemmemberMe*/);
-
-                return Redirect(FormsAuthentication.DefaultUrl);
+                ModelState.AddModelError("LockError",
+                   "لطفا تمام فیلد ها را پر کنید."
+                   );
             }
             else
             {
-                ModelState.AddModelError("LockError",
-                    "" + " < i class='fa fa-warning'></i>" +
-                    "نام کاربری یا رمز عبور اشتباه می باشد ."
-                    );
+                var result = _userDataProvider.Login(username, password);
+                if (result == true)
+                {
+                    FormsAuthentication.SetAuthCookie(username, rememberMe/*RemmemberMe*/);
+
+                    //return Redirect(FormsAuthentication.DefaultUrl);
+                //    var u =_userDataProvider.GetUser(username);
+              //      ViewBag.User ="سلام "+ u.FirstName +" "+ u.LastName;
+                    return View("Index");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("LockError",
+                        "نام کاربری یا رمز عبور اشتباه می باشد ."
+                        );
+                }
             }
 
             return View();
