@@ -212,10 +212,10 @@ sup {
 }
 
 a {
-  color : #009C9F;
-  text-decoration : none;
-  background-color : transparent;
-  -webkit-text-decoration-skip : objects;
+    color: #B86B77 !important;
+    text-decoration: none;
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
 }
 a:hover {
   color : #008385;
@@ -2975,11 +2975,11 @@ a.btn.disabled, fieldset:disabled a.btn {
   background-image : none;
   border-color : #00B5B8;
 }
-.btn-outline-primary:hover {
-  color : #FFFFFF;
-  background-color : #00B5B8;
-  border-color : #00B5B8;
-}
+    .btn-outline-primary:hover {
+        color: #FFFFFF;
+        background-color: #00B5B8;
+        border-color: #b76e79;
+    }
 .btn-outline-primary:focus, .btn-outline-primary.focus {
   -webkit-box-shadow : 0 0 0 0.2rem rgba(0, 181, 184, 0.5);
           box-shadow : 0 0 0 0.2rem rgba(0, 181, 184, 0.5);

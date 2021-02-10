@@ -1,5 +1,6 @@
 ﻿using Dualp.Common.Logger;
 using Dualp.Common.Types;
+using ReportWebsite.Entities;
 using ReportWebsite.IRepositories;
 using ReportWebsite.Models;
 using ReportWebsite.Repositories;
@@ -100,6 +101,10 @@ namespace ReportWebsite.Plugins
         public User GetUser(string username)
         {
             return _userRepository.GetUser(username);
+        }
+        public List<EN_User> GetUsers()
+        {
+            return _userRepository.GetUsers();
         }
         public bool Login(string user , string pass)
         {

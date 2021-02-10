@@ -3138,6 +3138,7 @@
     <Content Include="Views\Home\SliderHomePartial.cshtml" />
     <Content Include="Views\Authentication\Error.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Users\User.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

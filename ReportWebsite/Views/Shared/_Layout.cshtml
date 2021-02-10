@@ -75,12 +75,14 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a class="dropdown-item" href="@Links.Dashboard()"><i class="ft-home"></i> خانه </a>
-                                <a class="dropdown-item" href="#"><i class="ft-users"></i>کاربران</a>
-                                @*<a class="dropdown-item" href="#"><i class="ft-check-square"></i> دسترسی ها</a>*@
-
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="@Links.Login()"><i class="ft-power"></i> خروج</a>
-                            </div>
+                                @if (User.IsInRole("SuperAdmin"))
+                                {
+                                    <a class="dropdown-item" href="@Links.Users()"><i class="ft-users"></i>کاربران</a>
+                                    @*<a class="dropdown-item" href="#"><i class="ft-check-square"></i> دسترسی ها</a>*@
+                                }
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="@Links.Logout()"><i class="ft-power"></i> خروج</a>
+                                </div>
                         </li>
                     </ul>
                 </div>

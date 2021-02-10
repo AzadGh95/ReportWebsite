@@ -2,16 +2,16 @@
 @using ReportWebsite.Properties
 @using Dualp.Common.Types
 @using ReportWebsite.UtilitySystem
-@using ReportWebsite.Models
 
 
-@model  List<ReportWebsite.Models.User>
+
+@model  List<ReportWebsite.Entities.EN_User>
 @{
 
     var Title = "کاربران";
     ViewBag.Title = Title;
     Layout = "~/Views/Shared/_Layout.cshtml";
-    User w;
+
 }
 
 
@@ -19,6 +19,15 @@
 
     @Html.RenderBroadcast("لیست کاربران", new Tuple<string, string>("#", "کاربران"))
 }
+
+
+@section Settings{
+    <button class="btn btn-outline-primary pull-left" type="button" data-toggle="modal" data-target="#bootstrap">
+        <a href="@Links.User()"></a><i class="ft-plus"></i> ثبت کاربر جدید
+    </button>
+}
+
+
 
 <div class="row">
     <div class="col-12">
@@ -42,11 +51,11 @@
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th style="width: 8% ;">ردیف</th>
-                                    <th style="width: 35% ;">نام و نام خانوادگی</th>
-                                    <th style="width: 35% ;">نام کاربری</th>
+                                    <th style="width: 5% ;">ردیف</th>
+                                    <th style="width: 20% ;">نام و نام خانوادگی</th>
+                                    <th style="width: 15% ;">نام کاربری</th>
                                     <th style="width: 10% ;">تاریخ ایجاد</th>
-                                    <th style="width: 17% ;">وضعیت</th>
+                                    <th style="width: 5% ;">وضعیت</th>
                                     <th style="width: 30% ;">ابزارک ها</th>
                                 </tr>
                             </thead>
@@ -58,20 +67,27 @@
                                     {
                                         <tr>
                                             <td scope="row">@(row++) </td>
-                                            <td>@m.FirstName +&nbsp; @m.LastName</td>
-                                            <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
+                                            <td>@m.FirstName &nbsp; @m.LastName</td>
                                             <td>@m.UserName</td>
+                                            <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
+                                            <td>@(m.IsLock ? "قفل" : "---")</td>
                                             <td>
-                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
-                                                <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
+                                                @if (m.IsLock)
+                                                {
+                                                    <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" آزاد کردن"><i class="ft-unlock"></i></a>
 
-                                                <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
-                                                @using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.Id}, FormMethod.Post))
+                                                }
+                                                else
+                                                {
+                                                    <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" قفل کردن"><i class="ft-lock"></i></a>
+
+                                                }
+                                                @using (Html.BeginForm("DeleteUser", "Users", new { siteId = m.Id }, FormMethod.Post))
                                                 {
                                                     <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.Id" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
                                                 }
-                                               
-                                                <a class="btn  btn-sm btn-icon  form-edit" href="@Links.Form(m.Id)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
+
+                                                <a class="btn  btn-sm btn-icon  form-edit" href="#" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش "><i class="ft-edit-3"></i></a>
                                             </td>
                                         </tr>
                                     }

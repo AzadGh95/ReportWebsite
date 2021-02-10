@@ -561,10 +561,10 @@ input:focus ~ .bg-primary {
   background-color : transparent;
   color : #00B5B8;
 }
-.btn-outline-primary:hover {
-  background-color : #00B5B8;
-  color : #FFFFFF !important;
-}
+    .btn-outline-primary:hover {
+        background-color: #c68d96;
+        color: #FFFFFF !important;
+    }
 
 input[type='checkbox'].bg-primary + .custom-control-label:before, input[type='radio'].bg-primary + .custom-control-label:before {
   background-color : #00B5B8 !important;
