@@ -117,13 +117,11 @@ namespace ReportWebsite.Controllers
                 if (result)
                 {
                     ModelState.AddModelError("LockError",
-                 "" + " < i class='fa fa-like'></i>" +
                  "عملیات ثبت با موفقیت انجام شد."
                  );
                     return RedirectToAction("Forms", new { type = type });
                 }
                 ModelState.AddModelError("LockError",
-                  "" + " < i class='fa fa-warning'></i>" +
                   "خطا در ذخیره سازی !"
                   );
                 return RedirectToAction("Forms", new { type = type });

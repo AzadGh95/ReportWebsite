@@ -155,7 +155,7 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-                if (!_context.Users.Any(u => u.UserName == username))
+                if (_context.Users.Any(u => u.UserName == username))
                 {
                     return true;
                 }

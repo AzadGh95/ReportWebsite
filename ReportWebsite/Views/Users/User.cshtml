@@ -71,15 +71,15 @@
                                         <fieldset class="form-group">
                                             <label for="basicInput"> نام کاربری</label>
                                             @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
-                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "Phone", placeholder = "تلفن" })
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "Username", placeholder = "نام کاربری" })
 
                                         </fieldset>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
                                         <fieldset class="form-group">
-                                            <label for="basicInput"> رمز عبور</label>
+                                            <label for="basicInput">رمز عبور</label>
                                             @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
-                                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "Email", placeholder = "ایمیل " })
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", id = "Password", placeholder = "رمز عبور " })
 
                                         </fieldset>
                                     </div>

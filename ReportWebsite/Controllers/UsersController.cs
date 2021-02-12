@@ -37,9 +37,6 @@ namespace ReportWebsite.Controllers
         }
 
 
-
-
-
         [Authorize(Roles = "SuperAdmin")]
         [HttpPost]
         //public ActionResult Form(WebSite webSite, int? initSiteId)
@@ -51,30 +48,38 @@ namespace ReportWebsite.Controllers
                 // .....insert website
                 //check username is dublicate 
 
-                if (_userDataProvider.GetUser(user.UserName) != null)
+                if (!IsValidEmail(user.Email))
                 {
                     ModelState.AddModelError("LockError",
-                  "" + " < i class='fa fa-warning'></i>" +
+                   "ایمیل وارد شده اشتباه می باشد  !"
+                    );
+                    return View();
+
+                }
+                if (_userDataProvider.ExitUser(user.UserName))
+                {
+                    ModelState.AddModelError("LockError",
                   "نام کاربری تکراری می باشد !"
                   );
-                    return View(user);
+                    return View();
                 }
                 var result = _userDataProvider.Insert(user);
                 if (!result)
                 {
                     ModelState.AddModelError("LockError",
-           "" + " < i class='fa fa-warning'></i>" +
-           "خطا در ذخیره سازی !"
-           );
-                    return View(user);
+                    "خطا در ذخیره سازی !"
+                     );
+                    return View();
                 }
-                 
-
-                ModelState.AddModelError("Success",
-                 "" + " < i class='fa fa-check'></i>" +
-                 "کاربر جدید با موفقیت ثبت شد."
-                 );
-                return RedirectToAction("Users");
+                else
+                {
+                    ModelState.AddModelError("Success",
+                     "کاربر جدید با موفقیت ثبت شد."
+                     );
+                    ViewBag.Message = "کاربر جدید با موفقیت ثبت شد";
+                    return RedirectToAction("Users");
+                }
+                //return RedirectToAction("Users");
             }
             else
             {
@@ -84,18 +89,19 @@ namespace ReportWebsite.Controllers
                 if (result)
                 {
                     ModelState.AddModelError("LockError",
-                 "" + " < i class='fa fa-like'></i>" +
-                 "کاربر ثبت با موفقیت انجام شد."
+                 "ویرایش با موفقیت انجام شد."
                  );
                     return RedirectToAction("Users");
                 }
-                ModelState.AddModelError("LockError",
-                  "" + " < i class='fa fa-warning'></i>" +
-                  "خطا در ذخیره سازی !"
-                  );
-                return RedirectToAction("Users");
-                //todo : نمایش پیغام خطا
+                else
+                {
+                    ModelState.AddModelError("LockError",
+                                    "خطا در ذخیره سازی !"
+                                    );
+                }
+
             }
+            return RedirectToAction("Users");
 
         }
 
@@ -122,5 +128,25 @@ namespace ReportWebsite.Controllers
             }
         }
 
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpPost]
+        public ActionResult DeleteUser(int userId)
+        {
+            _userDataProvider.Delete(userId);
+            return RedirectToAction("Users");
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

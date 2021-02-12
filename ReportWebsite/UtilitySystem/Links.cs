@@ -22,6 +22,11 @@ namespace ReportWebsite.UtilitySystem
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             return urlHelper.Action("Users", "Users");
         }
+        public static string Users(string message = "")
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("Users", "Users", new { message = message });
+        }
 
         public static string Logout()
         {
