@@ -1,17 +1,166 @@
-﻿
+﻿@using ReportWebsite.Infrastructure
+@using ReportWebsite.Properties
+@using ReportWebsite.UtilitySystem
+@using ReportWebsite.Models
+@model ReportWebsite.Models.User
+
 @{
-    Layout = null;
+
+
+    var Title = "کاربر";
+    ViewBag.Title = Title;
+
+    int UserId = ViewBag.userId ?? 0;
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var i = 0;
 }
 
-<!DOCTYPE html>
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/forms/toggle/switchery.min.css">
+    <link href="~/Template/Contents/vendors/css/forms/toggle/switchery.css" rel="stylesheet" />
+    <link href="~/Template/Contents/vendors/css/forms/toggle/switchery.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/forms/icheck/icheck.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/Contents/vendors/css/forms/icheck/custom.css">
+    <link rel="stylesheet" type="text/css" href="~/Template/Contents/css-rtl/plugins/forms/switch.css">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>User</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+}
+
+@section Broadcast{
+
+    @Html.RenderBroadcast("ایجاد کاربر جدید", new Tuple<string, string>("#", "کاربران"))
+
+}
+
+
+
+<div class="content-body">
+    <!-- Basic Elements start -->
+    <section class="basic-elements">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> کاربر جدید</h4>
+                    </div>
+
+                    @*<form asp-action="/Forms/Form" method="post">*@
+                    @using (Html.BeginForm("User", "Users", FormMethod.Post))
+                    {
+                        @Html.Hidden("inituserId", UserId)
+                        <div class="card-content">
+                            <div class="card-body">
+                                <!--  <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> اطلاعات وب سایت</h4><hr /> -->
+                                <div class="row">
+                                    <input type="hidden" name="UserId">
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> نام </label>
+                                            @*<input type="text" name="Name" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", id = "FirstName", placeholder = "نام" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> نام خانوادگی </label>
+                                            @*<input type="text" name="Name" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", id = "LastName", placeholder = "نام خانوادگی" })
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> نام کاربری</label>
+                                            @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", id = "Phone", placeholder = "تلفن" })
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> رمز عبور</label>
+                                            @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control", id = "Email", placeholder = "ایمیل " })
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> تلفن</label>
+                                            @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", id = "Phone", placeholder = "تلفن" })
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12 mb-1">
+                                        <fieldset class="form-group">
+                                            <label for="basicInput"> ایمیل</label>
+                                            @*<input type="text" name="Admin" class="form-control" id="basicInput">*@
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", id = "Email", placeholder = "ایمیل " })
+
+                                        </fieldset>
+                                    </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                        <p class="error">
+                                            @Html.ValidationMessage("LockError")
+                                        </p>
+                                    </div>
+
+                                    <div class="col-xl-12" style="margin-top: 35px;">
+
+                                        <button type="submit" class="btn btn-primary text-left" onclick="Alert()" style=" padding-right: 20px; padding-left: 20px;">ثبت <i class="fa fa-thumbs-o-up position-right"></i></button>
+                                        <a href="@Links.Users()" class="btn btn-danger text-right">بستن <i class="fa  fa-thumbs-o-down position-right"></i></a>
+
+
+                                    </div>
+
+                                </div>
+
+                                <!--     <h4 class="form-section" style="color: #ad5a68c9;"><i class="ft-info"></i> امکانات وب سایت</h4><hr />-->
+
+                            </div>
+                        </div>
+                    }
+                    @*</form>*@
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Basic Inputs end -->
+</div>
+
+@section Scripts{
+    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.js"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js"></script>
+    <script type="text/javascript" src="~/Template/Contents/vendors/js/ui/jquery.sticky.js"></script>
+    <script type="text/javascript" src="~/Template/Contents/vendors/js/charts/jquery.sparkline.min.js"></script>
+    <script src="~/Template/Contents/vendors/js/forms/icheck/icheck.min.js" type="text/javascript"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js" type="text/javascript"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.js"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/bootstrap-checkbox.min.js"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+    <script src="~/Template/Contents/vendors/js/forms/toggle/switchery.min.js" type="text/javascript"></script>
+    @*<script src="~/Template/Contents/js/scripts/tables/components/table-components.js"></script>
+        <script src="~/Template/Contents/js/scripts/tables/components/table-components.min.js"></script>*@
+    <script>
+
+        $(function () {
+
+            //new Switchery(document.querySelector('.switchery-sm'), { size: 'small' });
+            var elemSmall = document.querySelectorAll('.switchery-sm');
+            for (i = 0; i < elemSmall.length; i++) {
+                new Switchery(elemSmall[i], { className: "switchery switchery-small", color: '#b76e79', secondaryColor: '#f2e4e6', jackColor: '#ecd7da', jackSecondaryColor: '#ecd7da' });
+            }
+            //{ color: '#faab43', secondaryColor: '#fC73d0', jackColor: '#fcf45e', jackSecondaryColor: '#c8ff77' }
+
+            function Alert() {
+                swal({ text: "کاربر جدید با موفقیت ثبت شد ", timer: 2000, showConfirmButton: false, icon: "success" });
+
+            }
+        });
+    </script>
+
+
+
+
+}

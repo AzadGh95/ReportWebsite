@@ -22,7 +22,8 @@ namespace ReportWebsite.Plugins
         }
         public ResultActivity Insert(User user)
         {
-            using (var ts = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+            using (var ts = new TransactionScope(TransactionScopeOption.Required,
+                TransactionScopeAsyncFlowOption.Enabled))
             {
                 try
                 {

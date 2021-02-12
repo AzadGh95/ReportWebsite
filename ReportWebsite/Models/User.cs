@@ -10,7 +10,14 @@ namespace ReportWebsite.Models
 {
     public class User
     {
+        public User()
+        {
+            IsLock = false;
+            CreateDate = DateTime.UtcNow;
+            RoleId = 2;
+        }
         public int Id { get; set; }
+        public int RoleId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
@@ -23,6 +30,8 @@ namespace ReportWebsite.Models
 
         public DateTime CreateDate { get; set; }
         public bool IsLock { get; set; }
+
+        [DataType(DataType.EmailAddress, ErrorMessage = "آدرس ایمیل بدرستی وارد نشده است")]
         public string Email { get; set; }
 
         public static implicit operator User(Entities.EN_User model)
@@ -54,7 +63,8 @@ namespace ReportWebsite.Models
                 IsLock = IsLock ,
                 LastName=LastName,
                 Password=Password,
-                Phone=Phone
+                Phone=Phone,
+                RoleId=RoleId
             };
         }
     }

@@ -100,6 +100,7 @@ namespace ReportWebsite.Repositories
             try
             {
                 _context.Users.Add(user);
+                _context.SaveChanges();
                 return new ResultActivity(true);
             }
             catch (Exception ex)

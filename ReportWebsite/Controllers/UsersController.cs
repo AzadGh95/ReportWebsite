@@ -45,13 +45,35 @@ namespace ReportWebsite.Controllers
         //public ActionResult Form(WebSite webSite, int? initSiteId)
         public ActionResult User(User user, int? inituserId)
         {
+            ViewBag.Title = "کاربر";
             if (inituserId == 0)
             {
                 // .....insert website
+                //check username is dublicate 
+
+                if (_userDataProvider.GetUser(user.UserName) != null)
+                {
+                    ModelState.AddModelError("LockError",
+                  "" + " < i class='fa fa-warning'></i>" +
+                  "نام کاربری تکراری می باشد !"
+                  );
+                    return View(user);
+                }
                 var result = _userDataProvider.Insert(user);
                 if (!result)
+                {
+                    ModelState.AddModelError("LockError",
+           "" + " < i class='fa fa-warning'></i>" +
+           "خطا در ذخیره سازی !"
+           );
                     return View(user);
+                }
+                 
 
+                ModelState.AddModelError("Success",
+                 "" + " < i class='fa fa-check'></i>" +
+                 "کاربر جدید با موفقیت ثبت شد."
+                 );
                 return RedirectToAction("Users");
             }
             else
@@ -82,6 +104,8 @@ namespace ReportWebsite.Controllers
         //public ActionResult Form(int? siteId)
         public ActionResult User(int? userId)
         {
+            ViewBag.Title = "کاربر";
+
             ViewBag.userId = userId ?? 0;
 
             if (userId == null)

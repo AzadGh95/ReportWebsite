@@ -22,9 +22,12 @@
 
 
 @section Settings{
-    <button class="btn btn-outline-primary pull-left" type="button" data-toggle="modal" data-target="#bootstrap">
-        <a href="@Links.User()"></a><i class="ft-plus"></i> ثبت کاربر جدید
-    </button>
+    <a href="@Links.User()">
+        <button class="btn btn-outline-primary pull-left" type="button" data-toggle="modal" data-target="#bootstrap">
+            <i class="ft-plus"></i> ثبت کاربر جدید
+        </button>
+    </a>
+    
 }
 
 
@@ -46,7 +49,8 @@
             </div>
             <div class="card-content collapse show">
                 <div class="card-body">
-                    <p></p>
+                    <p class="success">
+                    @Html.ValidationMessage("Success")</p>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
                             <thead>
