@@ -20,5 +20,8 @@ namespace ReportWebsite.IRepositories
 
         bool Login(string user , string pass);
         bool CheckUsername(string username);
+
+        bool ChangePassword(int userId,string newPass);
+
     }
 }

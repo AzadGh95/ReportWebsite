@@ -148,5 +148,22 @@ namespace ReportWebsite.Controllers
                 return false;
             }
         }
+
+
+        [HttpPost]
+        public ActionResult ChangePassword(int userId , string oldPass , string newPass)
+        {
+           var user = _userDataProvider.GetUser(userId);
+            if (oldPass==user.Password)
+            {
+                ModelState.AddModelError("LockError",
+                  "پسورد وارد شده اشتباه می باشد  !"
+                   );
+                return View();
+            }
+            _userDataProvider.ChangePassword(userId, newPass);
+            return RedirectToAction("Users");
+
+        }
     }
 }

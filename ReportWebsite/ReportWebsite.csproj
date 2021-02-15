@@ -3139,6 +3139,8 @@
     <Content Include="Views\Authentication\Error.cshtml" />
     <Content Include="Views\Home\SignIn.cshtml" />
     <Content Include="Views\Users\User.cshtml" />
+    <Content Include="Reports\Form.mrt" />
+    <Content Include="Reports\ListForms.mrt" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3146,9 +3148,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012090737200_Initial.resx">
       <DependentUpon>202012090737200_Initial.cs</DependentUpon>

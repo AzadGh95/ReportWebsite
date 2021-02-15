@@ -15,7 +15,10 @@
         <Alias>Element</Alias>
         <BusinessObjects isList="true" count="0" />
         <Category>Reports</Category>
-        <Columns isList="true" count="0" />
+        <Columns isList="true" count="2">
+          <value>ItemText,System.String</value>
+          <value>Value,System.String</value>
+        </Columns>
         <Dictionary isRef="1" />
         <Guid>926ab767e3ff483a987504010261efcf</Guid>
         <Name>Element</Name>
@@ -26,8 +29,12 @@
     <Relations isList="true" count="0" />
     <Report isRef="0" />
     <Resources isList="true" count="0" />
-    <Variables isList="true" count="1">
+    <Variables isList="true" count="5">
       <value>,Date,Date,,System.String,,False,False,False,False</value>
+      <value>,Title,Title,,System.String,,False,False,False,False</value>
+      <value>,CreateDate,CreateDate,,System.String,,False,False,False,False</value>
+      <value>,Name,Name,,System.String,,False,False,False,False</value>
+      <value>,Admin,Admin,,System.String,,False,False,False,False</value>
     </Variables>
   </Dictionary>
   <EngineVersion>EngineV2</EngineVersion>
@@ -37,58 +44,161 @@
     <Page1 Ref="4" type="Page" isKey="true">
       <Border>None;[127:127:127];2;None;False;4;Black</Border>
       <Brush>Transparent</Brush>
-      <Components isList="true" count="5">
+      <Components isList="true" count="4">
         <PageHeaderBand1 Ref="5" type="PageHeaderBand" isKey="true">
-          <Border>Bottom;[69:61:14];5;None;False;5;Black</Border>
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,0.2,7.49,0.37</ClientRectangle>
-          <Components isList="true" count="2">
-            <Text9 Ref="6" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.1,0,0.7,0.3</ClientRectangle>
+          <Border>Bottom;[165:165:165];2;Solid;False;4;Black</Border>
+          <Brush>[223:233:234]</Brush>
+          <ClientRectangle>0,0.2,7.49,1.12</ClientRectangle>
+          <Components isList="true" count="8">
+            <Text16 Ref="6" type="Text" isKey="true">
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.08,0.16,0.71,0.23</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,8</Font>
+              <Guid>145c0ac22e1e4d28b0059dde6b8c38ec</Guid>
+              <HorAlignment>Right</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text16</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{PageNumber} از {TotalPageCount}</Text>
+              <TextBrush>[0:111:129]</TextBrush>
+              <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text16>
+            <Text2 Ref="7" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.3,0.12,2.8,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,12,Bold</Font>
+              <Guid>d66a04f8a0944c73aee22a803581a745</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text2</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Title}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text2>
+            <Text9 Ref="8" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>5,0.7,1.9,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir FD,11</Font>
-              <Guid>00401aee88fc44c8a06667c1929129d7</Guid>
+              <Guid>a02fbadac9994d2fbaad62c1b570c9dd</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text9</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text> {Date}</Text>
+              <Text>{Name}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text9>
-            <Text10 Ref="7" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.8,0,0.5,0.3</ClientRectangle>
+            <Text10 Ref="9" type="Text" isKey="true">
+              <Border>None;Transparent;1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>6.9,0.7,0.6,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>3580b38ea07c4686a713d46c8fd31ed4</Guid>
+              <Font>Vazir FD,11,Bold</Font>
+              <Guid>dc94d997b272482abe0447cbfe0aa93f</Guid>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text10</Name>
               <Page isRef="4" />
               <Parent isRef="5" />
-              <Text>تاریخ </Text>
+              <Text>: عنوان</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text10>
+            <Text11 Ref="10" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>4.1,0.7,0.6,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,11,Bold</Font>
+              <Guid>8cff7809af5644499a902cf5bcc773ad</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text11</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>:مسئول </Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text11>
+            <Text17 Ref="11" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>2.4,0.7,1.7,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,11</Font>
+              <Guid>29c69683352e45a39c8cd79005342b18</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text17</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{Admin}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text17>
+            <Text18 Ref="12" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>1.4,0.7,0.6,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,11,Bold</Font>
+              <Guid>24a4047bfb55419491f05054a562b51a</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text18</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>:تاریخ</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text18>
+            <Text19 Ref="13" type="Text" isKey="true">
+              <Border>None;[165:165:165];1;Solid;False;4;Black</Border>
+              <Brush>Transparent</Brush>
+              <ClientRectangle>0.1,0.7,1.3,0.3</ClientRectangle>
+              <Conditions isList="true" count="0" />
+              <Font>Vazir FD,11</Font>
+              <Guid>9b87b9dd64014cccb20da36dcac55d73</Guid>
+              <HorAlignment>Center</HorAlignment>
+              <Margins>0,0,0,0</Margins>
+              <Name>Text19</Name>
+              <Page isRef="4" />
+              <Parent isRef="5" />
+              <Text>{CreateDate}</Text>
+              <TextBrush>Black</TextBrush>
+              <Type>Expression</Type>
+              <VertAlignment>Center</VertAlignment>
+            </Text19>
           </Components>
           <Conditions isList="true" count="0" />
+          <Guid>4d1351e8acf540b3a2564f2b23a09e19</Guid>
           <Name>PageHeaderBand1</Name>
           <Page isRef="4" />
           <Parent isRef="4" />
         </PageHeaderBand1>
-        <PageFooterBand1 Ref="8" type="PageFooterBand" isKey="true">
+        <PageFooterBand1 Ref="14" type="PageFooterBand" isKey="true">
           <Border>Top;[140:140:140];1;Double;False;4;Black</Border>
           <Brush>Transparent</Brush>
           <ClientRectangle>0,10.33,7.49,0.58</ClientRectangle>
           <Components isList="true" count="3">
-            <Text21 Ref="9" type="Text" isKey="true">
+            <Text21 Ref="15" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>3.71,0.51,0.18,0.14</ClientRectangle>
@@ -98,13 +208,13 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text21</Name>
               <Page isRef="4" />
-              <Parent isRef="8" />
+              <Parent isRef="14" />
               <Text>{PageNumber}</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text21>
-            <Text13 Ref="10" type="Text" isKey="true">
+            <Text13 Ref="16" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>6.45,0.14,1,0.25</ClientRectangle>
@@ -115,14 +225,14 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text13</Name>
               <Page isRef="4" />
-              <Parent isRef="8" />
+              <Parent isRef="14" />
               <Text>امضاء ادمین : </Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text13>
-            <Text7 Ref="11" type="Text" isKey="true">
+            <Text7 Ref="17" type="Text" isKey="true">
               <Border>None;[127:127:127];1;Solid;False;4;Black</Border>
               <Brush>Transparent</Brush>
               <ClientRectangle>1.9,0.14,1.5,0.2</ClientRectangle>
@@ -133,7 +243,7 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text7</Name>
               <Page isRef="4" />
-              <Parent isRef="8" />
+              <Parent isRef="14" />
               <Text>مهر و امضاء مدیرعامل :</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,RightToLeft=True,,,A=0</TextOptions>
@@ -146,127 +256,11 @@
           <Page isRef="4" />
           <Parent isRef="4" />
         </PageFooterBand1>
-        <DataBand2 Ref="12" type="DataBand" isKey="true">
-          <Border>Bottom;[127:127:127];1;Solid;False;4;Black</Border>
+        <HeaderBand1 Ref="18" type="HeaderBand" isKey="true">
           <Brush>Transparent</Brush>
-          <BusinessObjectGuid>142dd01e8cfe4048b39fed1b2f8119e3</BusinessObjectGuid>
-          <ClientRectangle>0,0.97,7.49,0.6</ClientRectangle>
-          <Components isList="true" count="6">
-            <Text6 Ref="13" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>4.9,0.1,1.9,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>ef2264798a2a4ed39de40a43141a510b</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text6</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text6>
-            <Text8 Ref="14" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>4.2,0.1,0.6,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>b8163e99429f40e19acf1f74db3d5dd3</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text8</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>تاریخ : </Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text8>
-            <Text4 Ref="15" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>6.8,0.1,0.6,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>a5e9edd18305433cae9bc84c56da6d6a</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text4</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>عنوان : </Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text4>
-            <Text12 Ref="16" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>1.8,0.1,0.6,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>a416e2def96e49a19683bda5c0e8382e</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text12</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <Text>مسئول : </Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text12>
-            <Text14 Ref="17" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>0.1,0.1,1.7,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>3386750f4523445084b097c9f4ae6165</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text14</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text14>
-            <Text15 Ref="18" type="Text" isKey="true">
-              <Border>None;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>3,0.1,1.2,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <Guid>b26a4e3ce7b64ac4bfacd9c77696c3c8</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text15</Name>
-              <Page isRef="4" />
-              <Parent isRef="12" />
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text15>
-          </Components>
-          <Conditions isList="true" count="0" />
-          <DataSourceName isNull="true" />
-          <FilterEngine>SQLQuery</FilterEngine>
-          <Filters isList="true" count="0" />
-          <Guid>1c4b2f7ccc8e46d59cbe76d8b835a5f1</Guid>
-          <Name>DataBand2</Name>
-          <Page isRef="4" />
-          <Parent isRef="4" />
-          <Sort isList="true" count="0" />
-        </DataBand2>
-        <HeaderBand1 Ref="19" type="HeaderBand" isKey="true">
-          <Brush>Transparent</Brush>
-          <ClientRectangle>0,1.97,7.49,0.3</ClientRectangle>
-          <Components isList="true" count="4">
-            <Tex6 Ref="20" type="Text" isKey="true">
+          <ClientRectangle>0,1.72,7.49,0.3</ClientRectangle>
+          <Components isList="true" count="3">
+            <Tex6 Ref="19" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>[240:222:178]</Brush>
               <ClientRectangle>7.19,0,0.3,0.3</ClientRectangle>
@@ -276,34 +270,17 @@
               <Margins>0,0,0,0</Margins>
               <Name>Tex6</Name>
               <Page isRef="4" />
-              <Parent isRef="19" />
+              <Parent isRef="18" />
               <Text>ردیف</Text>
               <TextBrush>Black</TextBrush>
               <TextOptions>,,,,,Angle=45</TextOptions>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tex6>
-            <Tex7 Ref="21" type="Text" isKey="true">
+            <Tex8 Ref="20" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>[240:222:178]</Brush>
-              <ClientRectangle>6.14,0,1.05,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11,Bold</Font>
-              <Guid>847b1e1ecfe84f73932f54a8ec1c5f93</Guid>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Tex7</Name>
-              <Page isRef="4" />
-              <Parent isRef="19" />
-              <Text>وضعیت</Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Tex7>
-            <Tex8 Ref="22" type="Text" isKey="true">
-              <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>[240:222:178]</Brush>
-              <ClientRectangle>4.15,0,1.99,0.3</ClientRectangle>
+              <ClientRectangle>5.15,0,2.04,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir FD,11,Bold</Font>
               <Guid>f050099a305a4de29e1e255d6f8d13c7</Guid>
@@ -311,16 +288,16 @@
               <Margins>0,0,0,0</Margins>
               <Name>Tex8</Name>
               <Page isRef="4" />
-              <Parent isRef="19" />
+              <Parent isRef="18" />
               <Text>عنوان</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Tex8>
-            <Tex2 Ref="23" type="Text" isKey="true">
+            <Tex2 Ref="21" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>[240:222:178]</Brush>
-              <ClientRectangle>0,0,4.15,0.3</ClientRectangle>
+              <ClientRectangle>0,0,5.15,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir FD,11,Bold</Font>
               <Guid>d9f7079d4da1460a9be5d4ba9c6d1513</Guid>
@@ -328,7 +305,7 @@
               <Margins>0,0,0,0</Margins>
               <Name>Tex2</Name>
               <Page isRef="4" />
-              <Parent isRef="19" />
+              <Parent isRef="18" />
               <Text>توضیحات</Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
@@ -340,12 +317,12 @@
           <Page isRef="4" />
           <Parent isRef="4" />
         </HeaderBand1>
-        <DataBand1 Ref="24" type="DataBand" isKey="true">
+        <DataBand1 Ref="22" type="DataBand" isKey="true">
           <Brush>Transparent</Brush>
-          <BusinessObjectGuid>142dd01e8cfe4048b39fed1b2f8119e3</BusinessObjectGuid>
-          <ClientRectangle>0,2.67,7.49,0.3</ClientRectangle>
-          <Components isList="true" count="4">
-            <Text1 Ref="25" type="Text" isKey="true">
+          <BusinessObjectGuid>926ab767e3ff483a987504010261efcf</BusinessObjectGuid>
+          <ClientRectangle>0,2.42,7.49,0.3</ClientRectangle>
+          <Components isList="true" count="3">
+            <Text1 Ref="23" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>White</Brush>
               <ClientRectangle>7.19,0,0.3,0.3</ClientRectangle>
@@ -355,56 +332,40 @@
               <Margins>0,0,0,0</Margins>
               <Name>Text1</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
+              <Parent isRef="22" />
               <Text>{Line}</Text>
               <TextBrush>Black</TextBrush>
               <Type>SystemVariables</Type>
               <VertAlignment>Center</VertAlignment>
             </Text1>
-            <Text2 Ref="26" type="Text" isKey="true">
+            <Text3 Ref="24" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>White</Brush>
-              <ClientRectangle>6.14,0,1.05,0.3</ClientRectangle>
-              <Conditions isList="true" count="0" />
-              <Font>Vazir FD,11</Font>
-              <HorAlignment>Center</HorAlignment>
-              <Margins>0,0,0,0</Margins>
-              <Name>Text2</Name>
-              <Page isRef="4" />
-              <Parent isRef="24" />
-              <Text> </Text>
-              <TextBrush>Black</TextBrush>
-              <Type>Expression</Type>
-              <VertAlignment>Center</VertAlignment>
-            </Text2>
-            <Text3 Ref="27" type="Text" isKey="true">
-              <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
-              <Brush>White</Brush>
-              <ClientRectangle>4.15,0,1.99,0.3</ClientRectangle>
+              <ClientRectangle>5.15,0,2.04,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir FD,11</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text3</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
-              <Text> </Text>
+              <Parent isRef="22" />
+              <Text>{Element.ItemText} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
             </Text3>
-            <Text5 Ref="28" type="Text" isKey="true">
+            <Text5 Ref="25" type="Text" isKey="true">
               <Border>All;[191:191:191];1;Solid;False;4;Black</Border>
               <Brush>White</Brush>
-              <ClientRectangle>0,0,4.15,0.3</ClientRectangle>
+              <ClientRectangle>0,0,5.15,0.3</ClientRectangle>
               <Conditions isList="true" count="0" />
               <Font>Vazir FD,11</Font>
               <HorAlignment>Center</HorAlignment>
               <Margins>0,0,0,0</Margins>
               <Name>Text5</Name>
               <Page isRef="4" />
-              <Parent isRef="24" />
-              <Text> </Text>
+              <Parent isRef="22" />
+              <Text>{Element.Value} </Text>
               <TextBrush>Black</TextBrush>
               <Type>Expression</Type>
               <VertAlignment>Center</VertAlignment>
@@ -429,13 +390,13 @@
       <PaperSize>A4</PaperSize>
       <Report isRef="0" />
       <RightToLeft>True</RightToLeft>
-      <Watermark Ref="29" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
+      <Watermark Ref="26" type="Stimulsoft.Report.Components.StiWatermark" isKey="true">
         <Font>Arial,100</Font>
         <TextBrush>[50:0:0:0]</TextBrush>
       </Watermark>
     </Page1>
   </Pages>
-  <PrinterSettings Ref="30" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
+  <PrinterSettings Ref="27" type="Stimulsoft.Report.Print.StiPrinterSettings" isKey="true" />
   <ReferencedAssemblies isList="true" count="8">
     <value>System.Dll</value>
     <value>System.Drawing.Dll</value>
@@ -447,10 +408,10 @@
     <value>Stimulsoft.Report.Dll</value>
   </ReferencedAssemblies>
   <ReportAlias>Report</ReportAlias>
-  <ReportChanged>7/20/2019 12:20:48 PM</ReportChanged>
+  <ReportChanged>2/14/2021 9:51:58 AM</ReportChanged>
   <ReportCreated>10/23/2018 1:54:03 PM</ReportCreated>
-  <ReportFile>E:\Projects\ReportWebsite\ReportWebsite\Reports\Form.mrt</ReportFile>
-  <ReportGuid>ad8367e2c5994f3bbb4e36f4c671d65d</ReportGuid>
+  <ReportFile>E:\ReportWebsite\ReportWebsite\Reports\Form.mrt</ReportFile>
+  <ReportGuid>0fe88abf80664817968193702e99062d</ReportGuid>
   <ReportImage isNull="true" />
   <ReportName>Report</ReportName>
   <ReportUnit>Inches</ReportUnit>
@@ -480,7 +441,7 @@ namespace Reports
 </Script>
   <ScriptLanguage>CSharp</ScriptLanguage>
   <Styles isList="true" count="1">
-    <Style1 Ref="31" type="Stimulsoft.Report.StiStyle" isKey="true">
+    <Style1 Ref="28" type="Stimulsoft.Report.StiStyle" isKey="true">
       <Brush>HatchBrush,BackwardDiagonal,White,PaleGreen</Brush>
       <Conditions isList="true" count="0" />
       <Font>Vazir FD,11.25,Regular,Point,False,178</Font>

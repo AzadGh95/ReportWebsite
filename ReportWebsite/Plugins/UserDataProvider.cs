@@ -115,5 +115,10 @@ namespace ReportWebsite.Plugins
         {
             return _userRepository.CheckUsername(username);
         }
+
+        public bool ChangePassword(int userId , string newPass)
+        {
+            return _userRepository.ChangePassword(userId, newPass);
+        }
     }
 }

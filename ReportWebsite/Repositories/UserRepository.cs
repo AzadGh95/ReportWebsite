@@ -133,7 +133,7 @@ namespace ReportWebsite.Repositories
         {
             try
             {
-               // string Password = FormsAuthentication.HashPasswordForStoringInConfigFile(pass, "MD5");
+                // string Password = FormsAuthentication.HashPasswordForStoringInConfigFile(pass, "MD5");
 
                 if (!_context.Users.Any(u => u.UserName == user && u.Password == pass))
                 {
@@ -171,6 +171,58 @@ namespace ReportWebsite.Repositories
                 throw;
             }
         }
-
+        public bool ChangePassword(int userId, string newPass)
+        {
+            try
+            {
+                _context.Users.Where(x => x.Id == userId).Update(x => new EN_User
+                {
+                    Password = newPass,
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+        public bool Edit(int userId, EN_User model)
+        {
+            try
+            {
+                _context.Users.Where(x => x.Id == userId).Update(x => new EN_User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Phone = model.Phone,
+                    Email = model.Email,
+                });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
+        public bool Lock(int userId)
+        {
+            try
+            {
+                var l = _context.Users.Where(h => h.Id == userId).First().IsLock;
+                _context.Users.Where(x => x.Id == userId)
+                    .Update(x => new EN_User
+                    {
+                        IsLock = !l
+                    });
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+        }
     }
 }
