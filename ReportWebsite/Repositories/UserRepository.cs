@@ -46,7 +46,6 @@ namespace ReportWebsite.Repositories
                 Email = user.Email,
                 LastName = user.LastName,
                 IsLock = user.IsLock,
-                Password = user.Password,
                 Phone = user.Phone,
                 UserName = user.UserName,
                 FirstName = user.FirstName,

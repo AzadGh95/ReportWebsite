@@ -68,7 +68,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (Model.Count() > 0)
+                                @if (Model != null)
                                 {
                                     int row = 1;
                                     foreach (var m in Model)
@@ -85,7 +85,7 @@
                                                 {
                                                     using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
                                                     {
-                                                        <a class="btn  btn-sm btn-icon  form-lock"  data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" فعال کردن"><i class="ft-unlock"></i></a>
+                                                        <a style="color:red" class="btn btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" فعال کردن"><i class="ft-unlock"></i></a>
 
                                                     }
                                                 }
@@ -234,7 +234,7 @@
             });
 
 
-            
+
             $('.form-lock').on('click', function () {
                 formdelete = $(this).parent();
                 swal({
@@ -276,8 +276,6 @@
 
 
         });
-
-
 
 
     </script>

@@ -79,15 +79,13 @@ namespace ReportWebsite.Plugins
                         LastName = user.LastName,
                         Password = user.Password,
                         Phone = user.Phone,
-                        UserName = user.UserName
+                        UserName = user.UserName,
                     };
                     var result = _userRepository.EditUser(eN_User, id);
                     ts.Complete();
                     return result;
                 }
-
             }
-
             catch (Exception ex)
             {
                 this.Log().Fatal(ex.Message);
