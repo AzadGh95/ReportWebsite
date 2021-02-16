@@ -1,13 +1,16 @@
 ﻿using Dualp.Common.Logger;
+using Dualp.Common.Types;
 using ReportWebsite.DataProvider;
 using ReportWebsite.Models;
 using ReportWebsite.Plugins;
+using ReportWebsite.UtilitySystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using static ReportWebsite.Enums.ReportWebSiteType;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ReportWebsite.Controllers
 {
@@ -211,6 +214,43 @@ namespace ReportWebsite.Controllers
                 return Json(new Tuple<bool, string>(false, "مشاهده اطلاعات با خطا مواجه شد."));
             }
         }
+
+
+
+        #region Report
+        //public ActionResult Reports()
+        //{
+        //    return View("Reports");
+        //}
+        //public ActionResult GetReport(int repoId)
+        //{
+        //    try
+        //    {
+        //        StiReport report = new StiReport();
+        //        report.Load(Server.MapPath("~/Reports/Form.mrt"));
+        //        var webSite = _webSiteDataProvider.GetWebSite(repoId);
+        //        report.RegBusinessObject("Element", webSite.Elements);
+
+        //        report.Dictionary.Variables["Title"].Value = "شرکت پردازش پارسیان";
+        //        report.Dictionary.Variables["Name"].Value = webSite.Name;
+        //        report.Dictionary.Variables["Admin"].Value = webSite.Admin;
+        //        report.Dictionary.Variables["CreateDate"].Value = webSite.CreateDate
+        //            .UtcToLocalTimeZone(TimeZoneInfo.FindSystemTimeZoneById
+        //            ("Iran Standard Time")).LocalDatetime("fa").ToString();
+        //        report.Compile();
+        //        report.Render();
+        //        return Stimulsoft.Report.Mvc.StiMvcViewer.GetReportResult(report);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return Json(new Tuple<bool, string>(true, e.Message));
+        //        throw;
+        //    }
+        //}
+       
+        #endregion
+
+
 
     }
 }

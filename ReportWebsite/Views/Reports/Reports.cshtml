@@ -1,0 +1,23 @@
+﻿@using Stimulsoft.Report.Mvc
+@{
+    ViewBag.Title = "  گزارش";
+}
+@section Style{
+    @*<link href="~/fonts/BNazanin/AtFontFace.css" rel="stylesheet" />*@
+    <link href="~/fonts/Vazir/font-face.css" rel="stylesheet" />
+}
+<div>
+    @Html.Stimulsoft().StiMvcViewer(new StiMvcViewerOptions()
+{
+    Actions =
+        {
+            GetReport = "GetReport",
+            ViewerEvent = "ViewerEvent",
+            EmailReport = "EmailReport",
+        },
+    Toolbar =
+        {
+            ShowSendEmailButton = true
+        }
+})
+</div>

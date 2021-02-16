@@ -54,7 +54,6 @@
                     <p class="success">
                         @Html.ValidationMessage("Success")
                         @(ViewBag.Message)
-
                     </p>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped">
@@ -79,17 +78,23 @@
                                             <td>@m.FirstName &nbsp; @m.LastName</td>
                                             <td>@m.UserName</td>
                                             <td>@m.CreateDate.UtcToLocalTimeZone(System.TimeZoneInfo.FindSystemTimeZoneById("Iran Standard Time")).LocalDatetime("fa").ToString()</td>
-                                            <td>@(m.IsLock ? "قفل" : "---")</td>
+                                            <td>@(m.IsLock ? "غیرفعال" : "فعال")</td>
                                             <td>
+
                                                 @if (m.IsLock)
                                                 {
-                                                    <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" آزاد کردن"><i class="ft-unlock"></i></a>
+                                                    using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                    {
+                                                        <a class="btn  btn-sm btn-icon  form-lock"  data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" فعال کردن"><i class="ft-unlock"></i></a>
 
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.Id" data-placement="bottom" data-toggle="tooltip" data-original-title=" قفل کردن"><i class="ft-lock"></i></a>
-
+                                                    using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                    {
+                                                        <a class="btn  btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" غیرفعال کردن"><i class="ft-lock"></i></a>
+                                                    }
                                                 }
                                                 @using (Html.BeginForm("DeleteUser", "Users", new { userId = m.Id }, FormMethod.Post))
                                                 {
@@ -97,7 +102,7 @@
                                                 }
 
                                                 <a class="btn  btn-sm btn-icon  form-edit" href="@Links.User(m.Id)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش"><i class="ft-edit-3"></i></a>
-                                       
+
                                                 <a class="btn  btn-sm btn-icon  form-edit" href="@Links.ChangePassword(m.Id)" data-placement="bottom" data-toggle="tooltip" data-original-title="تغییر رمزعبور"><i class="ft-ft-refresh-cw"></i></a>
                                             </td>
                                         </tr>
@@ -227,6 +232,49 @@
                     });
 
             });
+
+
+            
+            $('.form-lock').on('click', function () {
+                formdelete = $(this).parent();
+                swal({
+                    title: "تغییر وضعیت  ",
+                    text: "آیا میخواهید    " + $(this).data('title') + " را تغییر وضعیت دهید ؟",
+                    icon: "warning",
+                    buttons: {
+                        cancel: {
+                            text: "نه ، لغو ",
+                            value: null,
+                            visible: true,
+                            className: "",
+                            closeModal: false,
+                            isConfirm: false,
+                        },
+                        confirm: {
+                            text: "بله ، تغییر وضعیت شود ",
+                            value: true,
+                            visible: true,
+                            className: "",
+                            closeModal: false,
+                            isConfirm: true,
+                        }
+                    }
+                })
+                    .then((isConfirm) => {
+                        if (isConfirm) {
+                            formdelete.submit();
+                            //swal("حذف!", "حذف با موفقیت انجام شد ", "success");
+                            swal({ title: "تغییر وضعیت!", text: "تغییر وضعیت با موفقیت انجام شد", timer: 2000, showConfirmButton: false, icon: "success" });
+
+                        } else {
+                            //  swal("لغو", "عملیات حذف لغو شد", "error");
+                            swal({ title: "لغو!", text: "عملیات لغو شد", timer: 2000, showConfirmButton: false, icon: "error" });
+                        }
+                    });
+
+            });
+
+
         });
 
 

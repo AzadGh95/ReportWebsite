@@ -65,6 +65,8 @@
                                                 <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین"><i class="ft-log-in"></i></a>
                                                 <a class="btn  btn-sm btn-icon form-panel" onclick="Alert()" data-placement="bottom" data-toggle="tooltip" data-original-title="ورود ادمین اصلی"><i class="ft-user"></i></a>
                                                 <a class="btn  btn-sm btn-icon  form-info" data-siteId="@m.SiteId" data-placement="bottom" data-toggle="tooltip" data-original-title=" جزئیات"><i class="ft-airplay"></i></a>
+                                                <a class="btn  btn-sm btn-icon" href="@Url.Action("Reports", "Forms", new {repoId = m.SiteId})" data-placement="bottom" data-toggle="tooltip" data-original-title="چاپ">
+                                                    <i class="ft-printer"></i></a>
                                                 @if (User.IsInRole("SuperAdmin"))
                                                 {
                                                     using (Html.BeginForm("DeleteForm", "Forms", new { siteId = m.SiteId, type = type }, FormMethod.Post))

@@ -34,10 +34,10 @@ namespace ReportWebsite.Models
         [DataType(DataType.EmailAddress, ErrorMessage = "آدرس ایمیل بدرستی وارد نشده است")]
         public string Email { get; set; }
 
-        public static implicit operator User(Entities.EN_User model)
+        public static implicit operator User(EN_User model)
         {
             if (model == null) return null;
-            return new Entities.EN_User {
+            return new User {
                 CreateDate = model.CreateDate,
                 Email = model.Email,
                 FirstName = model.FirstName,
@@ -51,7 +51,7 @@ namespace ReportWebsite.Models
             };
            
         }
-        public Entities.EN_User ToUser()
+        public EN_User ToUser()
         {
             return new Entities.EN_User()
             {

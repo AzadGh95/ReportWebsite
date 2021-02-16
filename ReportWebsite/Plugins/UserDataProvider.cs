@@ -44,12 +44,9 @@ namespace ReportWebsite.Plugins
         {
             try
             {
-                using (var ts = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
-                {
+               
                     var user = GetUser(id);
                     return _userRepository.LockUser(id, !(user.IsLock));
-
-                }
 
             }
 
@@ -63,6 +60,8 @@ namespace ReportWebsite.Plugins
         {
             return _userRepository.DeleteUser(id);
         }
+
+
         public ResultActivity Update(User user, int id)
         {
             try

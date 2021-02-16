@@ -3148,7 +3148,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Reports\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202012090737200_Initial.resx">
       <DependentUpon>202012090737200_Initial.cs</DependentUpon>

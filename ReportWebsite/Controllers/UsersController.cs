@@ -77,7 +77,7 @@ namespace ReportWebsite.Controllers
                      "کاربر جدید با موفقیت ثبت شد."
                      );
                     ViewBag.Message = "کاربر جدید با موفقیت ثبت شد";
-                    return RedirectToAction("Users");
+                    return View("Users", "Users");
                 }
                 //return RedirectToAction("Users");
             }
@@ -133,6 +133,10 @@ namespace ReportWebsite.Controllers
         public ActionResult DeleteUser(int userId)
         {
             _userDataProvider.Delete(userId);
+            ModelState.AddModelError("Success",
+              "کاربر جدید با موفقیت ثبت شد."
+              );
+            ViewBag.Message = "کاربر جدید با موفقیت ثبت شد";
             return RedirectToAction("Users");
         }
 
@@ -149,6 +153,14 @@ namespace ReportWebsite.Controllers
             }
         }
 
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpPost]
+        public ActionResult LockUser(int userId)
+        {
+            _userDataProvider.Lock(userId);
+
+            return RedirectToAction("Users");
+        }
 
         [HttpPost]
         public ActionResult ChangePassword(int userId , string oldPass , string newPass)
