@@ -2647,6 +2647,7 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Element.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\PasswordModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ViewEditModel.cs" />
     <Compile Include="Models\WebSite.cs" />
@@ -3141,6 +3142,7 @@
     <Content Include="Views\Users\User.cshtml" />
     <Content Include="Reports\Form.mrt" />
     <Content Include="Reports\ListForms.mrt" />
+    <Content Include="Views\Users\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

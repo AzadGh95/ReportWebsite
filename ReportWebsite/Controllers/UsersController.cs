@@ -163,18 +163,53 @@ namespace ReportWebsite.Controllers
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(int userId , string oldPass , string newPass)
+        public ActionResult ChangePassword(PasswordModel passwordModel, int? inituserid, bool issuperadmin)
         {
-           var user = _userDataProvider.GetUser(userId);
-            if (oldPass==user.Password)
+            var user = _userDataProvider.GetUser(passwordModel.UserId);
+            ViewBag.user = user.FirstName + " " + user.LastName;
+            ViewBag.userid = inituserid;
+            passwordModel.UserId = inituserid ?? 0;
+
+            if (passwordModel.NewPassword != passwordModel.RepeatPassword)
             {
                 ModelState.AddModelError("LockError",
-                  "پسورد وارد شده اشتباه می باشد  !"
-                   );
+                    "تکرار رمز عبور اشتباه می باشد."
+                    );
                 return View();
             }
-            _userDataProvider.ChangePassword(userId, newPass);
-            return RedirectToAction("Users");
+            if (!issuperadmin)
+            {
+                if (passwordModel.OldPassword != user.Password)
+                {
+                    ModelState.AddModelError("LockError",
+                      "رمز عبورفعلی وارد شده اشتباه می باشد  !"
+                       );
+                    return View();
+                }
+            }
+
+            var result = _userDataProvider.ChangePassword(passwordModel.UserId, passwordModel.NewPassword);
+            if (result)
+            {
+                return RedirectToAction("Users");
+            }
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult ChangePassword(int userId)
+        {
+            var user = _userDataProvider.GetUser(userId);
+            ViewBag.user = user.FirstName + " " + user.LastName;
+            ViewBag.userid = userId;
+            var passModel = new PasswordModel()
+            {
+                UserId = userId,
+            };
+
+            return View(passModel);
+
+
 
         }
     }

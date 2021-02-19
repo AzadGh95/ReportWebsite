@@ -23,6 +23,11 @@ namespace ReportWebsite.UtilitySystem
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
             return urlHelper.Action("ChangePassword", "Users", new { userId = userId });
         }
+        public static string ChangePassword(int? userId = null)
+        {
+            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+            return urlHelper.Action("ChangePassword", "Users", new { userId = userId });
+        }
         public static string Users()
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
