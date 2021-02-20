@@ -18,11 +18,11 @@ namespace ReportWebsite.UtilitySystem
             return urlHelper.Action("User", "Users", new { userId = userId });
         }
 
-        public static string ChangePassword(int? userId = null)
-        {
-            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
-            return urlHelper.Action("ChangePassword", "Users", new { userId = userId });
-        }
+        //public static string ChangePassword(int? userId = null)
+        //{
+        //    var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
+        //    return urlHelper.Action("ChangePassword", "Users", new { userId = userId });
+        //}
         public static string ChangePassword(int? userId = null)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext);
