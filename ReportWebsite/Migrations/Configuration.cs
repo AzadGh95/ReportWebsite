@@ -28,8 +28,8 @@
            );
 
             context.Users.AddOrUpdate(u => u.Id,
-                new EN_User() { UserName = "info@dualp.ir", FirstName = "سوپر ادمین", LastName = "", RoleId = 1, Phone = "", Password = "34102030" },
-                new EN_User() { UserName = "admin", FirstName = "ادمین", LastName = "", RoleId = 2, Phone = "", Password = "34102030" }
+                new EN_User() { UserName = "info@dualp.ir", FirstName = "سوپر ادمین", LastName = "", RoleId = 1, Phone = "", Password = "34102030" ,CreateDate = DateTime.UtcNow , IsLock=false},
+                new EN_User() { UserName = "admin", FirstName = "ادمین", LastName = "", RoleId = 2, Phone = "", Password = "34102030" , CreateDate = DateTime.UtcNow ,IsLock=false}
                 );
             context.SaveChanges();
         }

@@ -81,24 +81,27 @@
                                             <td>@(m.IsLock ? "غیرفعال" : "فعال")</td>
                                             <td>
 
-                                                @if (m.IsLock)
+                                                @if (m.UserName == "info@dualp.ir")
                                                 {
-                                                    using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                    if (m.IsLock)
                                                     {
-                                                        <a style="color:red" class="btn btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" فعال کردن"><i class="ft-unlock"></i></a>
+                                                        using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                        {
+                                                            <a style="color:red" class="btn btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" فعال کردن"><i class="ft-unlock"></i></a>
 
+                                                        }
                                                     }
-                                                }
-                                                else
-                                                {
-                                                    using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                    else
                                                     {
-                                                        <a class="btn  btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" غیرفعال کردن"><i class="ft-lock"></i></a>
+                                                        using (Html.BeginForm("LockUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                        {
+                                                            <a class="btn  btn-sm btn-icon  form-lock" data-title="@m.FirstName @m.LastName" data-placement="bottom" data-toggle="tooltip" data-original-title=" غیرفعال کردن"><i class="ft-lock"></i></a>
+                                                        }
                                                     }
-                                                }
-                                                @using (Html.BeginForm("DeleteUser", "Users", new { userId = m.Id }, FormMethod.Post))
-                                                {
-                                                    <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.FirstName @m.LastName" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                    using (Html.BeginForm("DeleteUser", "Users", new { userId = m.Id }, FormMethod.Post))
+                                                    {
+                                                        <a class="btn  btn-sm btn-icon  form-delete" data-title="@m.FirstName @m.LastName" data-toggle="tooltip" data-placement="bottom" data-original-title=" حذف"><i class="ft-trash-2"></i></a>
+                                                    }
                                                 }
 
                                                 <a class="btn  btn-sm btn-icon  form-edit" href="@Links.User(m.Id)" data-placement="bottom" data-toggle="tooltip" data-original-title="ویرایش"><i class="ft-edit-3"></i></a>
